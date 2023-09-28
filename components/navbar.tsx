@@ -12,28 +12,20 @@ import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
-
 import { link as linkStyles } from "@nextui-org/theme";
-
 import { siteConfig } from "@/config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
-
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
-	TwitterIcon,
 	GithubIcon,
 	DiscordIcon,
 	HeartFilledIcon,
 	SearchIcon,
 } from "@/components/icons";
-
-import { Logo } from "@/components/icons";
-import { Image } from "@nextui-org/image"
-import { title, subtitle } from "@/components/primitives";
 import { Divider } from "@nextui-org/react";
 
-export const Navbar = () => {
+const Navbar = () => {
 	const searchInput = (
 		<Input
 			aria-label="Search"
@@ -144,3 +136,5 @@ export const Navbar = () => {
 		</NextUINavbar>
 	);
 };
+
+export default Navbar;
