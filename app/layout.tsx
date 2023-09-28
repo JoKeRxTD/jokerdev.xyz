@@ -3,7 +3,6 @@ import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
-import Navbar  from "../components/Navbar";
 import Footer from "@/components/Footer";
 import clsx from "clsx";
 
@@ -18,9 +17,9 @@ export const metadata: Metadata = {
 		{ media: "(prefers-color-scheme: dark)", color: "black" },
 	],
 	icons: {
-		icon: "/favicon.ico",
-		shortcut: "/favicon-16x16.png",
-		apple: "/apple-touch-icon.png",
+		icon: "/joker_new.png",
+		shortcut: "/joker_new.png",
+		apple: "/joker_new.png",
 	},
 };
 

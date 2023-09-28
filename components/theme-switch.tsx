@@ -18,6 +18,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
 	className,
 	classNames,
 }) => {
+	// themes, dark, light, purple-dark, system
 	const { theme, setTheme } = useTheme();
   const isSSR = useIsSSR();
 

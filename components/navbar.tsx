@@ -1,4 +1,3 @@
-'use client'
 import {
 	Navbar as NextUINavbar,
 	NavbarContent,
@@ -25,28 +24,7 @@ import {
 } from "@/components/icons";
 import { Divider } from "@nextui-org/react";
 
-const Navbar = () => {
-	const searchInput = (
-		<Input
-			aria-label="Search"
-			classNames={{
-				inputWrapper: "bg-default-100",
-				input: "text-sm",
-			}}
-			endContent={
-				<Kbd className="hidden lg:inline-block" keys={["command"]}>
-					K
-				</Kbd>
-			}
-			labelPlacement="outside"
-			placeholder="Search..."
-			startContent={
-				<SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
-			}
-			type="search"
-		/>
-	);
-
+export default function Navbar () {
 	return (
 		<NextUINavbar maxWidth="md" position="sticky" className="border-b border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:border-b lg:bg-gray-200 lg:dark:bg-zinc-800/30">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -136,5 +114,3 @@ const Navbar = () => {
 		</NextUINavbar>
 	);
 };
-
-export default Navbar;
