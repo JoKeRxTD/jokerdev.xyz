@@ -1,15 +1,7 @@
 'use client';
-import NextLink from "next/link";
 import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { Code } from "@nextui-org/code"
-import { button as buttonStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
 import { DiscordIcon, SearchIcon, GithubIcon, HeartFilledIcon } from "@/components/icons";
-import { Image } from "@nextui-org/image"
 import { Tooltip, Button } from "@nextui-org/react";
-import { useState } from "react";
 
 export default function Footer() {
     return (
