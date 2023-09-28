@@ -132,6 +132,8 @@ export const SunFilledIcon = ({
 	</svg>
 );
 
+
+
 export const HeartFilledIcon = ({
 	size = 24,
 	width,
@@ -184,6 +186,7 @@ export const SearchIcon = (props: IconSvgProps) => (
 		/>
 	</svg>
 );
+
 
 export const NextUILogo: React.FC<IconSvgProps> = (props) => {
   const { width, height = 40 } = props;

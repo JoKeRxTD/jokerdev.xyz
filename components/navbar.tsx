@@ -28,6 +28,9 @@ import {
 } from "@/components/icons";
 
 import { Logo } from "@/components/icons";
+import { Image } from "@nextui-org/image"
+import { title, subtitle } from "@/components/primitives";
+import { Divider } from "@nextui-org/react";
 
 export const Navbar = () => {
 	const searchInput = (
@@ -52,12 +55,11 @@ export const Navbar = () => {
 	);
 
 	return (
-		<NextUINavbar maxWidth="xl" position="sticky">
+		<NextUINavbar maxWidth="md" position="sticky" className="border-b border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:border-b lg:bg-gray-200 lg:dark:bg-zinc-800/30">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<NextLink className="flex justify-start items-center gap-1" href="/">
-						<Logo />
-						<p className="font-bold text-inherit">ACME</p>
+						<p className="text-2xl font-bold text-warning-300">JoKeR&nbsp;</p>
 					</NextLink>
 				</NavbarBrand>
 				<ul className="hidden lg:flex gap-4 justify-start ml-2">
@@ -83,9 +85,6 @@ export const Navbar = () => {
 				justify="end"
 			>
 				<NavbarItem className="hidden sm:flex gap-2">
-					<Link isExternal href={siteConfig.links.twitter} aria-label="Twitter">
-						<TwitterIcon className="text-default-500" />
-					</Link>
 					<Link isExternal href={siteConfig.links.discord} aria-label="Discord">
 						<DiscordIcon className="text-default-500" />
 					</Link>
@@ -94,7 +93,6 @@ export const Navbar = () => {
 					</Link>
 					<ThemeSwitch />
 				</NavbarItem>
-				<NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
 				<NavbarItem className="hidden md:flex">
 					<Button
             isExternal
@@ -104,7 +102,7 @@ export const Navbar = () => {
 						startContent={<HeartFilledIcon className="text-danger" />}
 						variant="flat"
 					>
-						Sponsor
+						Donate
 					</Button>
 				</NavbarItem>
 			</NavbarContent>
@@ -118,7 +116,10 @@ export const Navbar = () => {
 			</NavbarContent>
 
 			<NavbarMenu>
-				{searchInput}
+				<h3 className="mx-4 mt-2 text-center text-sm font-bold text-default-900">
+					Menu
+				</h3>
+				<Divider />
 				<div className="mx-4 mt-2 flex flex-col gap-2">
 					{siteConfig.navMenuItems.map((item, index) => (
 						<NavbarMenuItem key={`${item}-${index}`}>
