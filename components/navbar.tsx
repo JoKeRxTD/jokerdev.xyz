@@ -24,7 +24,7 @@ import {
 } from "@/components/icons";
 import { Divider } from "@nextui-org/react";
 
-export default function Navbar () {
+export const  Navbar = () => {
 	return (
 		<NextUINavbar maxWidth="md" position="sticky" className="border-b border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:border-b lg:bg-gray-200 lg:dark:bg-zinc-800/30">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
