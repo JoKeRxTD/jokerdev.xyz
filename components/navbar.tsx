@@ -1,4 +1,3 @@
-"use client";
 import {
 	Navbar as NextUINavbar,
 	NavbarContent,
@@ -8,19 +7,19 @@ import {
 	NavbarItem,
 	NavbarMenuItem,
 } from "@nextui-org/navbar";
-import { Button } from "@nextui-org/button";
-import { Link } from "@nextui-org/link";
-import { link as linkStyles } from "@nextui-org/theme";
-import { siteConfig } from "@/config/site";
-import NextLink from "next/link";
-import clsx from "clsx";
-import { ThemeSwitch } from "@/components/theme-switch";
 import {
 	GithubIcon,
 	DiscordIcon,
 	HeartFilledIcon,
 } from "@/components/icons";
+import clsx from "clsx";
+import NextLink from "next/link";
+import { Link } from "@nextui-org/link";
+import { siteConfig } from "@/config/site";
+import { Button } from "@nextui-org/button";
 import { Divider } from "@nextui-org/react";
+import { link as linkStyles } from "@nextui-org/theme";
+import { ThemeSwitch } from "@/components/theme-switch";
 
 export const  Navbar = () => {
 	return (

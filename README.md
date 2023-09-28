@@ -1,3 +1,6 @@
+# Build
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0c58ef18-37ed-4933-b9d1-93bec47c3f95/deploy-status)](https://app.netlify.com/sites/voluble-travesseiro-912577/deploys)
+
 # Next.js & NextUI Template
 
 This is a template for creating applications using Next.js 13 (app directory) and NextUI (v2).
