@@ -5,7 +5,7 @@ import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import Footer from "@/components/Footer";
 import clsx from "clsx";
-import Navbar  from "@/components/Navbar";
+import { Navbar }  from "@/components/Navbar";
 
 
 export const metadata: Metadata = {
