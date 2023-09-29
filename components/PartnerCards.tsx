@@ -29,7 +29,7 @@ const PartnerCards: PartnerCard[] = [
         tags: ["Servers", "Domains", "VPS"],
         links: [
             {
-                title: "Discor",
+                title: "Discord",
                 link: "https://discord.gg/zaphosting",
             },
             {
@@ -67,7 +67,7 @@ export default function PartnerCard() {
                     shadow="md"
                     className=" w-full p-3 sm:w-1/2 lg:w-1/3 text-center justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                 >
-                    <CardHeader>
+                   <CardHeader className="text-center justify-center items-center text-2xl text-primary-300 font-bold">
                         <h2 className="items-center text-center">{PartnerCard.title}</h2>
                     </CardHeader>
                     <CardBody className="items-center text-center space-y-2 p-1 justify-between">
@@ -96,7 +96,16 @@ export default function PartnerCard() {
                                 color="default"
                                 className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                                 onClick={() => setShow(!show)}
-                                href={link.link}>{link.title}
+                                href={link.link}>
+                                    <Link
+                                isExternal
+                                color="foreground"
+                                className="text-center p-1"
+                                href={link.link}
+                            >
+                                {link.title}
+                            </Link>
+                                
                             </Button>
                         ))}
                     </CardFooter>
