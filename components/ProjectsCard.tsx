@@ -87,8 +87,8 @@ export default function ProjectsCard() {
                     shadow="md"
                     className="max-w-sm w-full sm:w-1/2 lg:w-1/3 justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                 >
-                    <CardHeader>
-                        <h2 className="items-center text-center">{project.title}</h2>
+                    <CardHeader className="text-center justify-center items-center text-2xl text-primary-300 font-bold">
+                        <h2>{project.title}</h2>
                     </CardHeader>
                     <CardBody className="items-center text-center space-y-2 p-1 justify-between">
                         <Image
