@@ -14,7 +14,7 @@ const Home = () => {
 					<Header />
 					<Divider/>
 					<h2 className="text-center p-1">
-						<Code color="warning">Skills</Code>
+						<Code color="primary">Skills</Code>
 					</h2>
 					<p className="text-center p-1">
 						Here are some of my skills that I have learned.
@@ -23,7 +23,7 @@ const Home = () => {
 					{/* <TimeStatus /> */}
 					<Divider/>
 					<h3 className="text-center p-1">
-						<Code color="warning">My Work</Code>
+						<Code color="primary">My Work</Code>
 					</h3>
 					<p className="text-center p-1">
 						Here are some of my projects that I have worked on.

@@ -15,7 +15,7 @@ export default function ProjectPage() {
 	return (
 		<ScrollShadow hideScrollBar className="w-full h-full">
             <h1 className="text-center p-4">
-                <Code color="default">Projects</Code>
+                <Code color="primary">Projects</Code>
             </h1>
             <p className="text-center p-4">
                 Here are some of my projects that I have worked on.

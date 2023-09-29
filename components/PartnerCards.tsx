@@ -83,7 +83,7 @@ export default function PartnerCard() {
                         <p>
                             Tags:{" "}
                             {PartnerCard.tags.map((tag, index) => (
-                                <Code key={index} color="warning" className="mx-1">
+                                <Code key={index} color="primary" className="mx-1">
                                     {tag.toString()}
                                 </Code>
                             ))}

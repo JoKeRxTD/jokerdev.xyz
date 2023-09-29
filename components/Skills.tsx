@@ -1,5 +1,6 @@
 import { Tooltip, Button } from "@nextui-org/react";
 import { useState } from "react";
+import { Code } from "@nextui-org/react";
 
 interface TagProps {
     label: string;
@@ -40,6 +41,9 @@ export default function Skills() {
                     </Button>
                 </Tooltip>
             ))}
+            <p className="p-3">
+                I am currently learning <Code color="primary">Typescript</Code>, <Code color="primary">NextJS</Code>
+            </p>
         </div>
     );
 }
