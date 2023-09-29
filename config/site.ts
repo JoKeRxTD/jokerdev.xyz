@@ -3,15 +3,16 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
 	name: "JoKeR",
 	description: "JoKeR's personal website",
+	lang: "en",
+	locale: "en_GB",
+	url: "https://jokerdev.xyz",
+	ogImg: "https://jokerdev.xyz/images/og.png",
+	twitterImg: "https://jokerdev.xyz/images/twitter.png",
 	navItems: [
 		{
 			label: "Home",
 			href: "/",
 		},
-		// {
-		// 	label: "Docs",
-		// 	href: "/docs",
-		// },
 		{
 			label: "Projects",
 			href: "/projects",
@@ -24,36 +25,20 @@ export const siteConfig = {
 			label: "Contact",
 			href: "/contact",
 		},
-		// {
-		// 	label: "Login",
-		// 	href: "/login",
-		// }
 	],
 	navMenuItems: [
 		{
 			label: "Home",
 			href: "/",
 		},
-		// {
-		// 	label: "Docs",
-		// 	href: "/docs",
-		// },
 		{
 			label: "Projects",
 			href: "/projects",
 		},
-		// {
-		// 	label: "About",
-		// 	href: "/about",
-		// },
-		// {
-		// 	label: "Contact",
-		// 	href: "/contact",
-		// },
-		// {
-		// 	label: "Login",
-		// 	href: "/login",
-		// },
+		{
+			label: "Contact",
+			href: "/contact",
+		},
 	],
 	links: {
 		github: "https://github.com/JoKeRxTD",

@@ -17,10 +17,11 @@ import clsx from "clsx";
 import NextLink from "next/link";
 import { Link } from "@nextui-org/link";
 import { siteConfig } from "@/config/site";
-import { Button } from "@nextui-org/button";
 import { Divider } from "@nextui-org/react";
 import { link as linkStyles } from "@nextui-org/theme";
 import { ThemeSwitch } from "@/components/theme-switch";
+import { Button, Tooltip } from "@nextui-org/react";
+import { Code } from "@nextui-org/code";
 
 export default function Navbar() {
 	return (
@@ -63,7 +64,7 @@ export default function Navbar() {
 					<ThemeSwitch />
 				</NavbarItem>
 				<NavbarItem className="hidden md:flex">
-					<Button
+					{/* <Button
             isExternal
 						as={Link}
 						className="text-sm font-normal text-default-600 bg-default-100"
@@ -72,8 +73,29 @@ export default function Navbar() {
 						variant="flat"
 					>
 						Donate
-					</Button>
+					</Button> */}
+					<span>
+                    <Tooltip className="flex flex-col items-center text-center p-2 space-y-2 justify-center"
+                        content={
+                            <div className="flex flex-col items-center text-center p-2 space-y-2 justify-center border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+                                <p className="text-sm font-bold text-success-300">Zap-Hosting</p>
+                                <p className="text-sm font-normal text-default-600">You found an easter egg!</p>
+								<p className="text-sm font-normal text-default-600">Use code <Code color="success">eqsource-10</Code> for 20% off!</p>
+                            </div>
+                        }
+                    >
+                        <Button
+                            className="text-sm font-normal text-default-600 bg-default-100"
+                            variant="flat"
+                            color="danger"
+                            isIconOnly
+                        >
+                            <HeartFilledIcon />
+                        </Button>
+                    </Tooltip>
+                </span>
 				</NavbarItem>
+				
 			</NavbarContent>
 
 			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
@@ -91,17 +113,14 @@ export default function Navbar() {
 				<Divider />
 				<div className="mx-4 mt-2 flex flex-col gap-2">
 					{siteConfig.navMenuItems.map((item, index) => (
-						<NavbarMenuItem key={`${item}-${index}`}>
+						<NavbarMenuItem key={`${item}-${index}`} className="text-center">
 							<Link
-								color={
-									index === 2
-										? "primary"
-										: index === siteConfig.navMenuItems.length - 1
-										? "danger"
-										: "foreground"
-								}
-								href="#"
-								size="lg"
+								color="foreground"
+								href={item.href}
+								className={clsx(
+									linkStyles({ color: "foreground" }),
+									"data-[active=true]:text-primary data-[active=true]:font-medium"
+								)}
 							>
 								{item.label}
 							</Link>
@@ -111,4 +130,4 @@ export default function Navbar() {
 			</NavbarMenu>
 		</NextUINavbar>
 	);
-};
+}
