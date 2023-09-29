@@ -15,7 +15,7 @@ export default function ProjectPage() {
 	return (
 		<ScrollShadow hideScrollBar className="w-full h-full">
                 <h1 className="text-center p-4">
-                    <Code color="primary">Partners</Code>
+                    <Code color="primary" size="lg">Partners</Code>
                 </h1>
                 <p className="text-center p-4">
                     Here you can find our Partners.

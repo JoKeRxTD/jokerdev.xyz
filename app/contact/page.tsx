@@ -11,14 +11,15 @@ import { ScrollShadow } from "@nextui-org/react";
 
 export default function ProjectPage() {
 	return (
-		<ScrollShadow hideScrollBar className="w-full h-full space-y-3">
+		<ScrollShadow hideScrollBar className="w-full h-full space-y-6">
 			<h1 className="text-center p-4">
-				<Code color="primary">Contact</Code>
+			<Code color="primary" size="lg">Contact</Code>
 			</h1>
+			<div className="p-4 space-y-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+			<CurrentTime />
 			<p className="text-center p-2">
 				Have an inquiry? Feel free to leave a message below.
 			</p>
-			<CurrentTime />
 			<Input
 				label="Name"
 				placeholder="Your Name"
@@ -76,6 +77,8 @@ export default function ProjectPage() {
 					</Button>
 				</div>
 			</div>
+			</div>
+
 		</ScrollShadow>
 	);
 }
