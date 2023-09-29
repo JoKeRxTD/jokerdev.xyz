@@ -24,13 +24,13 @@ interface Project {
 const Projects: Project[] = [
     {
         title: "My Website",
-        description: "This is my website, it is made with NextJS and TailwindCSS.",
+        description: "This is my website, it is made with NextJS and TailwindCSS, This project is open source.",
         image: "/joker_new.png",
         tags: ["NextJS", "TailwindCSS", "NextUI"],
         links: [
             {
                 title: "Github",
-                link: "https://github.com/JoKeRxTD",
+                link: "https://github.com/JoKeRxTD/jokerdev.xyz",
             },
             {
                 title: "Website",
@@ -40,13 +40,13 @@ const Projects: Project[] = [
     },
     {
         title: "Equalizer Roleplay",
-        description: "This is a Discord Bot made with DiscordJS and NodeJS.",
+        description: "This is a FiveM Server made with LUA and QBCore Framework.",
         image: "/eqrp_logo.png",
         tags: ["lua", "fivem"],
         links: [
             {
                 title: "Connect",
-                link: "#"
+                link: "fivem://connect/45.146.255.87:30120"
             },
             {
                 title: "Website",
@@ -113,10 +113,18 @@ export default function ProjectsCard() {
                         {project.links.map((link) => (
                             <Button
                                 key={link.title}
-                                color="default"
+                                variant="bordered"
                                 className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
-                                onClick={() => setShow(!show)}
-                                href={link.link}>{link.title}
+                                href={link.link}
+                            >
+                            <Link
+                                isExternal
+                                color="foreground"
+                                className="text-center p-1"
+                                href={link.link}
+                            >
+                                {link.title}
+                            </Link>
                             </Button>
                         ))}
                     </CardFooter>
