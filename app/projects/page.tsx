@@ -14,17 +14,13 @@ import ProjectsCard from "@/components/ProjectsCard";
 export default function ProjectPage() {
 	return (
 		<ScrollShadow hideScrollBar className="w-full h-full">
-            <section className="flex flex-row flex-wrap justify-center items-center p-2 gap-2 text-[#fafafa] dark:text-[#fafafa]">
-                <div className="text-center items-center justify-center py-1 space-y-2 md:space-y-2 ">
-                    <h1 className="text-center p-4">
-                        <Code color="default">Projects</Code>
-                    </h1>
-                    <p className="text-center p-4">
-                        Here are some of my projects that I have worked on.
-                    </p>
-                    <ProjectsCard />
-                </div>
-            </section>
+            <h1 className="text-center p-4">
+                <Code color="default">Projects</Code>
+            </h1>
+            <p className="text-center p-4">
+                Here are some of my projects that I have worked on.
+            </p>
+            <ProjectsCard />
          </ScrollShadow>
     );
 }
