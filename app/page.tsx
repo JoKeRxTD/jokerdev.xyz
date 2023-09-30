@@ -6,6 +6,7 @@ import { Code } from "@nextui-org/react";
 import Skills from "@/components/Skills"
 // import TimeStatus from "@/components/CurrentTime"
 import ProjectsCard from "@/components/ProjectsCard";
+import AboutCard from "@/components/AboutCard";
 import { motion } from "framer-motion";
 
 const Home = () => {
@@ -21,6 +22,11 @@ const Home = () => {
 				<div className="text-center items-center justify-center py-1 space-y-2 md:space-y-2 ">
 					<Header />
 					<Divider/>
+					<h3 className="text-center p-1">
+						<Code color="primary">About Me</Code>
+					</h3>
+					<AboutCard />
+					<Divider/>
 					<h2 className="text-center p-1">
 						<Code color="primary">Skills</Code>
 					</h2>
@@ -29,14 +35,6 @@ const Home = () => {
 					</p>
 					<Skills />
 					{/* <TimeStatus /> */}
-					<Divider/>
-					<h3 className="text-center p-1">
-						<Code color="primary">My Work</Code>
-					</h3>
-					<p className="text-center p-1">
-						Here are some of my projects that I have worked on.
-					</p>
-					<ProjectsCard />
 					<Divider/>
 				</div>
 		</motion.div>

@@ -8,6 +8,7 @@ import CurrentTime from "@/components/CurrentTime";
 import { DiscordIcon, GithubIcon, HeartFilledIcon } from "@/components/icons";
 import { ScrollShadow } from "@nextui-org/react";
 import { motion } from "framer-motion";
+import {Textarea} from "@nextui-org/react";
 
 
 export default function ProjectPage() {
@@ -40,11 +41,11 @@ export default function ProjectPage() {
 						type="email"
 						className="text-center border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
 					/>
-					<Input
+					<Textarea
 						label="Message"
 						placeholder="Your Message"
-						type="text-area"
-						className="text-center border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+						size="sm"
+						className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
 					/>
 					<Button
 						radius="sm"

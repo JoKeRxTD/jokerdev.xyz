@@ -86,7 +86,6 @@ export default function Navbar() {
                     </Tooltip>
                 </span>
 				</NavbarItem>
-				
 			</NavbarContent>
 
 			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">

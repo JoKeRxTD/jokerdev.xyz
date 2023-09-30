@@ -105,7 +105,6 @@ export default function PartnerCard() {
                             >
                                 {link.title}
                             </Link>
-                                
                             </Button>
                         ))}
                     </CardFooter>
