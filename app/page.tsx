@@ -21,8 +21,8 @@ const Home = () => {
 			>
 				<div className="text-center items-center justify-center py-1 space-y-2 md:space-y-2 ">
 					<Header />
+					{/* <h3 className="text-center p-1">
 					<Divider/>
-					<h3 className="text-center p-1">
 						<Code color="primary">About Me</Code>
 					</h3>
 					<AboutCard />
@@ -34,8 +34,7 @@ const Home = () => {
 						Here are some of my skills that I have learned.
 					</p>
 					<Skills />
-					{/* <TimeStatus /> */}
-					<Divider/>
+					<Divider/> */}
 				</div>
 		</motion.div>
 		</ScrollShadow>

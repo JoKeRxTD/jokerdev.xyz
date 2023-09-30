@@ -11,14 +11,15 @@ import React from "react";
 import { Tooltip, Button } from "@nextui-org/react";
 import { useState } from "react";
 import { HeartFilledIcon } from "@/components/icons";
-import backgroundImage from "@/public/joker_3.gif";
+import backgroundImage from "@/public/wallpaper.jpg";
+import AboutCard from "@/components/AboutCard";
 
 
 
 export default function Header() {
     const [show, setShow] = useState(false);
     return (
-        <section className="bg-cover bg-center bg-no-repeat border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+        <section className="flex flex-col items-center justify-center h-screen w-full bg-cover bg-center bg-no-repeat border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
             style={{ backgroundImage: `url(${backgroundImage.src})` }}>
             <div className="flex flex-col items-center justify-center p-2 space-y-3">
                 <div>
@@ -54,6 +55,8 @@ export default function Header() {
                             &nbsp;for more info.
                         </p>
                     </div>
+
+                    <AboutCard />
                 </div>
             </div>
         </section>
