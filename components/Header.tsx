@@ -30,7 +30,7 @@ export default function Header() {
                 <Image
                     isBlurred
                     shadow="md"
-                    src="/joker_new.png"
+                    src="/joker_1.gif"
                     alt={"my logo is supposed to be here"}
                     width={150}
                     className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
