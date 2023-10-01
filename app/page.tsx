@@ -25,7 +25,7 @@ const Home = () => {
 					<Divider/>
 						<Code color="primary">About Me</Code>
 					</h3>
-					<AboutCard />
+					<AboutCard /> */}
 					<Divider/>
 					<h2 className="text-center p-1">
 						<Code color="primary">Skills</Code>
@@ -34,7 +34,7 @@ const Home = () => {
 						Here are some of my skills that I have learned.
 					</p>
 					<Skills />
-					<Divider/> */}
+					<Divider/>
 				</div>
 		</motion.div>
 		</ScrollShadow>

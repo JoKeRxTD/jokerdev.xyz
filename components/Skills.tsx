@@ -41,7 +41,7 @@ export default function Skills() {
                     </Button>
                 </Tooltip>
             ))}
-            <p className="p-3">
+            <p className="p-3 text-gray-800 dark:text-gray-100">
                 I am currently learning <Code color="primary">Typescript</Code>, <Code color="primary">NextJS</Code>
             </p>
         </div>
