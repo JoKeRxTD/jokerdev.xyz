@@ -25,7 +25,7 @@ import { Code } from "@nextui-org/code";
 
 export default function Navbar() {
 	return (
-		<NextUINavbar maxWidth="md" position="sticky" className="border-b border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:border-b lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+		<NextUINavbar maxWidth="sm" position="sticky" className="top-0 z-50 border-b w-[400px] md:w-[600px] items-center text-center justify-center">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<NextLink className="flex justify-start items-center gap-1" href="/">

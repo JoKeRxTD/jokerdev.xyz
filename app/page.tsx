@@ -19,13 +19,8 @@ const Home = () => {
 				transition={{ ease: "easeOut", duration: 0.15 }}
 				className="w-full h-full"
 			>
-				<div className="text-center items-center justify-center py-1 space-y-2 md:space-y-2 ">
+				<div className="text-center items-center justify-center py-1 space-y-1 md:space-y-1 ">
 					<Header />
-					{/* <h3 className="text-center p-1">
-					<Divider/>
-						<Code color="primary">About Me</Code>
-					</h3>
-					<AboutCard /> */}
 					<Divider/>
 					<h2 className="text-center p-1">
 						<Code color="primary">Skills</Code>

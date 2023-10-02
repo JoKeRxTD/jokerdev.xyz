@@ -44,5 +44,3 @@ export default function Footer() {
         </footer>
     )
 }
-
-// Compare this snippet from components/CurrentTime.tsx:

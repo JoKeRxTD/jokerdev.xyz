@@ -9,10 +9,10 @@ import AboutCard from "@/components/AboutCard";
 
 import anime from "animejs";
 
-export const gradientColors = ["from-yellow-500 to-amber-600", "from-cyan-500 to-indigo-600", "from-red-500 to-rose-600", "from-teal-500 to-emerald-600"]
+export const gradientColors = ["from-cyan-500 to-indigo-600", "from-yellow-500 to-amber-600", "from-red-500 to-rose-600", "from-teal-500 to-emerald-600"]
 export const textColors = ["text-amber-600 dark:text-amber-400", "text-sky-600", "text-red-600", "text-teal-600"]
 export const hoverTextColors = ["hover:text-amber-600 hover:dark:text-amber-400", "hover:text-sky-600", "hover:text-red-600", "hover:text-teal-600"]
-export const bgColors = ["bg-amber-600", "bg-sky-600", "bg-red-600", "bg-teal-600"]
+export const bgColors = ["bg-amber-800", "bg-sky-800", "bg-red-800", "bg-teal-800"]
 export const borderColors = ["border-amber-600", "border-sky-600", "border-red-600", "border-teal-600"]
 
 const foo = <div className={`${"from-cyan-500 to-indigo-600" ||
@@ -41,18 +41,18 @@ export default function Header() {
     const [reducedMotion, setReducedMotion] = useState(false)
 
     let particles = ""
-    for (var i: number = 0; i < 80; i++) {
-        particles += "0"
+    for (var i: number = 0; i < 100; i++) {
+        particles += i
     }
 
     let pixels = ""
-    for (var i: number = 0; i < 80; i++) {
-        pixels += "0"
+    for (var i: number = 0; i < 64; i++) {
+        pixels += i
     }
 
     let padPixels = ""
-    for (var i: number = 0; i < 16; i++) {
-        padPixels += "0"
+    for (var i: number = 0; i < 64; i++) {
+        padPixels += i
     }
 
 
@@ -120,9 +120,8 @@ export default function Header() {
     }, [gradients.length, padPixels, particles, pixels, reducedMotion])
 
     return (
-        <section className="flex flex-col items-center justify-center h-[400px] w-full rounded-md shadow-md border border-gray-300 dark:border-neutral-800/30"
-            >
-            <div className="flex flex-col items-center justify-center p-1 space-y-2">
+        <section className={`relative flex flex-col items-center justify-center h-[450px] w-full overflow-hidden ${borderColors[index]}`}
+        style={{ transition: "opacity 0.5s ease-in-out" }}>
                 <div>
                     <div className="text-gray-800 dark:text-gray-100">
                         <Code color="default" className="p-1 text-gray-100 dark:text-gray-100 bg-gray-800 rounded-md shadow-md">Hi, I&apos;m</Code>
@@ -155,8 +154,7 @@ export default function Header() {
 
                     <AboutCard />
                 </div>
-            </div>
-            {!reducedMotion && particles.split("").map((_, i) => <div className={`absolute opacity-1 rounded-full w-4 h-4 text-gray-100 dark:text-white bg-white dark:bg-gray-800 particle${i} z-[15] -bottom-6`} key={`p${i}`} />)}
+            {!reducedMotion && particles.split("").map((_, i) => <div className={`absolute opacity-1 rounded-full w-4 h-4 text-cyan-100 dark:text-white bg-white dark:bg-cyan-800 particle${i} z-[15] -bottom-6`} key={`p${i}`} />)}
         </section>
     )
 }

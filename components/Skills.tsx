@@ -25,7 +25,7 @@ export default function Skills() {
     const [show, setShow] = useState(false);
 
     return (
-        <div className="flex flex-wrap justify-center items-center p-2 gap-2 text-[#fafafa] dark:text-[#fafafa]">
+        <div className="flex flex-wrap justify-center items-center p-1 gap-1 text-[#fafafa] dark:text-[#fafafa]">
             {Tags.map((tag, index) => (
                 <Tooltip
                     key={index}
