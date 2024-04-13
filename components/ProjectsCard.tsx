@@ -45,10 +45,6 @@ const Projects: Project[] = [
         tags: ["lua", "fivem"],
         links: [
             {
-                title: "Connect",
-                link: "fivem://connect/45.146.255.87:30120"
-            },
-            {
                 title: "Store",
                 link: "https://store.jokerdev.xyz"
             },
