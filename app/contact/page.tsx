@@ -91,7 +91,7 @@ export default function ProjectPage() {
 								</Link>
 							</Button>
 							<Button
-								href="https://discord.gg/HWNzKnZvfH"
+								href="https://discord.gg/UnTTbM7ySS"
 								color="danger"
 								variant="flat"
 							>
@@ -100,7 +100,7 @@ export default function ProjectPage() {
 									isExternal
 									color="foreground"
 									className="text-center p-1"
-									href="https://discord.gg/ycTrS2ZBRh"
+									href="https://discord.gg/UnTTbM7ySS"
 								>
 									Support
 								</Link>

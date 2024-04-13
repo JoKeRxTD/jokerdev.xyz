@@ -25,7 +25,7 @@ const Projects: Project[] = [
     {
         title: "My Website",
         description: "This is my website, it is made with NextJS and TailwindCSS, This project is open source.",
-        image: "/joker_new.png",
+        image: "/joker.jpg",
         tags: ["NextJS", "TailwindCSS", "NextUI"],
         links: [
             {
@@ -39,9 +39,9 @@ const Projects: Project[] = [
         ]
     },
     {
-        title: "Equalizer Roleplay",
-        description: "This is a FiveM Server made with LUA and QBCore Framework.",
-        image: "/eqrp_logo.png",
+        title: "JK:Development",
+        description: "JK:Development is a development service that privides services for FiveM, Discord and more.",
+        image: "/jk_dev2.png",
         tags: ["lua", "fivem"],
         links: [
             {
@@ -49,28 +49,28 @@ const Projects: Project[] = [
                 link: "fivem://connect/45.146.255.87:30120"
             },
             {
-                title: "Website",
-                link: "https://erpforums.xyz"
+                title: "Store",
+                link: "https://store.jokerdev.xyz"
             },
             {
                 title: "Discord",
-                link: "https://discord.gg/M8C75GKdYf"
+                link: "https://discord.gg/UnTTbM7ySS"
             }
         ]
     },
     {
-        title: "Mythbot",
+        title: "Mythbot [Discontinued]",
         description: "This is a Discord Bot made with DiscordJS and NodeJS.",
         image: "/mythbot.png",
         tags: ["DiscordJS", "NodeJS"],
         links: [
             {
                 title: "Invite",
-                link: "#"
+                link: "https://discord.gg/UnTTbM7ySS"
             },
             {
                 title: "Website",
-                link: "https://mythbot.org"
+                link: "https://discord.gg/UnTTbM7ySS"
             }
         ]
     },
