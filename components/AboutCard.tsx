@@ -18,7 +18,7 @@ export default function AboutCard() {
                         <>
                             <ModalHeader className="text-2xl text-bold text-center items-center justify-center text-primary-300">About Me</ModalHeader>
                             <ModalBody>
-                                I am 31 years old, Inspired Full Stack Developer from the United Kingdom,
+                                I am 32 years old, Inspired Full Stack Developer from the United Kingdom,
                                 I started coding in 2015 my first project was a Discord Bot Built with Discord.JS
                                 I am a very friendly person and I love to help people out with their coding problems.
                                 I am a very active person and I love to play video games and watch movies in my spare time.
