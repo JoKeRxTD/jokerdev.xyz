@@ -18,7 +18,7 @@ const Home = () => {
 				exit={{ opacity: 0, scale: 0.95 }}
 				transition={{ ease: "easeOut", duration: 0.15 }}
 				className="w-full h-full">
-				<div className="text-center items-center justify-center py-1 space-y-1 md:space-y-1 ">
+				<div className="text-center items-center justify-center py-1 space-y-1 md:space-y-1">
 					<Header />
 					<Divider/>
 					<h2 className="text-center p-1">
