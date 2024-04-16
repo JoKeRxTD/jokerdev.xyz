@@ -121,7 +121,7 @@ export default function Header() {
 
     return (
         <section className={`relative flex flex-col items-center justify-center h-[450px] w-full overflow-hidden ${borderColors[index]}`}
-        style={{ transition: "opacity 0.5s ease-in-out" }}>
+            style={{ transition: "opacity 0.5s ease-in-out" }}>
                 <div>
                     <div className="text-gray-800 dark:text-gray-100">
                         <Code color="default" className="p-1 text-gray-100 dark:text-gray-100 bg-gray-800 rounded-md shadow-md">Hi, I&apos;m</Code>
@@ -131,7 +131,7 @@ export default function Header() {
                 <Image
                     isBlurred
                     shadow="md"
-                    src="/joker_1.gif"
+                    src="/joker.jpg"
                     alt={"my logo is supposed to be here"}
                     width={150}
                     className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
