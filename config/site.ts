@@ -2,12 +2,12 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
 	name: "JoKeR",
-	description: "JoKeR's personal website",
+	description: "This is the official website of JoKeR. Here you can find all the information about the projects, partners and the developer.",
 	lang: "en",
 	locale: "en_GB",
 	url: "https://jokerdev.xyz",
-	ogImg: "https://jokerdev.xyz/images/og.png",
-	twitterImg: "https://jokerdev.xyz/images/twitter.png",
+	ogImg: "https://cdn.mythbot.org/img/dev_ptoolmtx.jpg",
+	twitterImg: "https://cdn.mythbot.org/img/dev_ptoolmtx.jpg",
 	navItems: [
 		{
 			label: "Home",
