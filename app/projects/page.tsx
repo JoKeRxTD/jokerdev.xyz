@@ -28,6 +28,9 @@ export default function ProjectPage() {
                 <p className="text-center p-4">
                     Here are some of my projects that I have worked on.
                 </p>
+                <p className="text-center p-4">
+                check out my <Code color="success" size="md"><Link href="#" color="success" className="text-center font-bold">Github</Link></Code> for more projects.
+                </p>
                 <ProjectsCard />
             </motion.div>
         </ScrollShadow>
