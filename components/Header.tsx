@@ -138,7 +138,7 @@ export default function Header() {
                     />
                 <div className="text-gray-800 dark:text-gray-100 p-1 gap-1">
                     <p>
-                        I am a passionate <Code color="default" className="p-1 text-gray-100 dark:text-gray-100 bg-gray-800 rounded-md shadow-md">Fullstack Developer</Code> and <Code color="default" className="p-1 text-gray-100 dark:text-gray-100 bg-gray-800 rounded-md shadow-md">Discord Bot Developer</Code> from <Code color="default" className="p-1 text-gray-100 dark:text-gray-100 bg-gray-800 rounded-md shadow-md">EU/UK</Code>.
+                        I am a passionate <Code color="primary" className="text-center font-bold">Fullstack Developer</Code> and <Code color="primary" className="text-center font-bold">Discord Bot Developer</Code> from <Code color="primary" className="text-center font-bold">EU/UK</Code>.
                     </p>
                 </div>
                 <div className="mt-7 flex flex-col gap-3">
