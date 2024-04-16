@@ -24,7 +24,7 @@ const Home = () => {
 					<h2 className="text-center p-1">
 						<Code color="primary">Skills</Code>
 					</h2>
-					<p className="text-center p-1">
+					<p className="text-center pb-8">
 						Here are some of my skills that I have learned.
 					</p>
 					<Skills />
