@@ -1,5 +1,5 @@
 # Build
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0c58ef18-37ed-4933-b9d1-93bec47c3f95/deploy-status)](https://app.netlify.com/sites/voluble-travesseiro-912577/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/851db577-e644-4c91-9fb2-3a1cb0b926f6/deploy-status)](https://app.netlify.com/sites/funny-bombolone-136075/deploys)
 
 # Next.js & NextUI Template
 
