@@ -6,8 +6,8 @@ export const siteConfig = {
 	lang: "en",
 	locale: "en_GB",
 	url: "https://jokerdev.xyz",
-	ogImg: "https://cdn.mythbot.org/img/dev_ptoolmtx.jpg",
-	twitterImg: "https://cdn.mythbot.org/img/dev_ptoolmtx.jpg",
+	ogImg: "https://cdn.mythbot.org/img/dev_4p38wqnd.png",
+	twitterImg: "https://cdn.mythbot.org/img/dev_4p38wqnd.png",
 	navItems: [
 		{
 			label: "Home",
