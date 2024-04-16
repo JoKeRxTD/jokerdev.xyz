@@ -97,13 +97,11 @@ export default function Navbar() {
 			</NavbarContent>
 
 			<NavbarMenu>
-				<h3 className="mx-4 mt-2 text-center text-sm font-bold text-default-900">
-					Menu
-				</h3>
+					<code className="text-center p-4 font-bold text-primary-200">Main Menu</code>
 				<Divider />
-				<div className="mx-4 mt-2 flex flex-col gap-2">
+				<div className="mx-6 mt-4 flex flex-col gap-2">
 					{siteConfig.navMenuItems.map((item, index) => (
-						<NavbarMenuItem key={`${item}-${index}`} className="text-center">
+						<NavbarMenuItem key={`${item}-${index}`} className="text-center justify-center">
 							<Link
 								color="foreground"
 								href={item.href}
