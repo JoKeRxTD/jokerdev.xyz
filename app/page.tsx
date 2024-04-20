@@ -8,7 +8,7 @@ import Skills from "@/components/Skills"
 import ProjectsCard from "@/components/ProjectsCard";
 import AboutCard from "@/components/AboutCard";
 import { motion } from "framer-motion";
-import  PageAds  from "@/components/pageAds" 
+// import  PageAds  from "@/components/pageAds" 
 
 const Home = () => {
 	return (
