@@ -8,6 +8,7 @@ import Skills from "@/components/Skills"
 import ProjectsCard from "@/components/ProjectsCard";
 import AboutCard from "@/components/AboutCard";
 import { motion } from "framer-motion";
+import  PageAds  from "@/components/pageAds" 
 
 const Home = () => {
 	return (
@@ -21,14 +22,9 @@ const Home = () => {
 				<div className="text-center items-center justify-center py-1 space-y-1 md:space-y-1">
 					<Header />
 					<Divider/>
-					<h2 className="text-center p-1">
-						<Code color="primary">Skills</Code>
-					</h2>
-					<p className="text-center pb-8">
-						Here are some of my skills that I have learned.
-					</p>
 					<Skills />
 					<Divider/>
+					{/* <PageAds/> */}
 				</div>
 			</motion.div>
 		</ScrollShadow>

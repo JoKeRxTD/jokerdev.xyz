@@ -25,22 +25,30 @@ export default function Skills() {
     const [show, setShow] = useState(false);
 
     return (
-        <div className="flex flex-wrap justify-center items-center p-1 gap-1 text-[#fafafa] dark:text-[#fafafa]">
-            {Tags.map((tag, index) => (
-                <Tooltip
-                    key={index}
-                    content={tag.label}
-                    className="z-10 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
-                >
-                    <Button
+        <div className="block flex-wrap justify-center items-center p-1 gap-2 text-[#fafafa] dark:text-[#fafafa]">
+            <h2 className="text-center p-1">
+                <Code color="primary">Skills</Code>
+            </h2>
+            <p className="text-center pb-8">
+                Here are some of my skills that I have learned.
+            </p>
+            <div className="gap-2">
+                {Tags.map((tag, index) => (
+                    <Tooltip
                         key={index}
-                        className="w-10 h-10 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
-                        onClick={() => setShow(!show)}
+                        content={tag.label}
+                        className="z-10 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                     >
-                        {tag.label}
-                    </Button>
-                </Tooltip>
-            ))}
+                        <Button
+                            key={index}
+                            className=" border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+                            onClick={() => setShow(!show)}
+                        >
+                            {tag.label}
+                        </Button>
+                    </Tooltip>
+                ))}
+            </div>
             <p className="p-3 text-gray-800 dark:text-gray-100">
                 I am currently learning <Code color="primary">Typescript</Code>, <Code color="primary">NextJS</Code>
             </p>
