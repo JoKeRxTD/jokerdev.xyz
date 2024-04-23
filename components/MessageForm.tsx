@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { ImSpinner2 } from "react-icons/im";
 import { RiSendPlane2Fill } from "react-icons/ri";
 
-export default function MessageComponent() {
+const MessageComponent = () => {
   const name = useRef<string>(""),
     email = useRef<string>(""),
     message = useRef<string>(""),
@@ -24,7 +24,6 @@ export default function MessageComponent() {
 
       if (response.data.result === "FIELD_EMPTY") return setErrMsg("Please fill out all fields!");
       if (response.data.result === "DISCORD_API_ERROR") return setErrMsg("Something went wrong...");
-      if (response.data.result === "404") return setErrMsg("Oops, We hit a 404 error");
 
       setSending(false);
 
@@ -75,4 +74,4 @@ export default function MessageComponent() {
   );
 };
 
-// export default MessageComponent;
+export default MessageComponent;

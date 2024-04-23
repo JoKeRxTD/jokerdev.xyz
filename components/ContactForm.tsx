@@ -26,8 +26,8 @@ const calc = (x: number, y: number) => [-(y - window.innerHeight / 3) / 35, (x -
 
     return (
       <Link href={link} passHref>
-        <animated.a
-          target="_blank"
+        <animated.div
+          // target="_blank"
           rel="noreferrer noopener"
           onMouseMove={({ clientX: x, clientY: y }: { clientX: number; clientY: number }) =>
             set({ xys: calc(x, y) })
@@ -42,7 +42,7 @@ const calc = (x: number, y: number) => [-(y - window.innerHeight / 3) / 35, (x -
           {icon}
           <h1 className="font-medium text-sm text-black/80 dark:text-slate-400 mx-3">{name}</h1>
           <FiExternalLink className="w-5 h-5 text-gray-600" />
-        </animated.a>
+        </animated.div>
       </Link>
     );
   };
