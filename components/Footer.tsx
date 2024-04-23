@@ -2,6 +2,7 @@
 import { Link } from "@nextui-org/link";
 import { DiscordIcon, SearchIcon, GithubIcon, HeartFilledIcon } from "@/components/icons";
 import { Tooltip, Button } from "@nextui-org/react";
+// import  PageAds  from "@/components/pageAds" 
 
 export default function Footer() {
     return (

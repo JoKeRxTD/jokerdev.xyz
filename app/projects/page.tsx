@@ -29,7 +29,7 @@ export default function ProjectPage() {
                     Here are some of my projects that I have worked on.
                 </p>
                 <p className="text-center p-4">
-                Check out my <Code color="success" size="md"><Link href="#" color="success" className="text-center font-bold">Github</Link></Code> for more projects.
+                Check out my <Code color="primary" size="md"><Link href="https://github.com/JoKeRxTD" className="text-center font-bold">Github</Link></Code> for more projects.
                 </p>
                 <ProjectsCard />
             </motion.div>

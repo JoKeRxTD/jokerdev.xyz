@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { Code } from "@nextui-org/react";
 
 const TimeStatus = () => {
     const [time, setTime] = useState<string>("00:00:00 p.m."),
@@ -20,10 +21,10 @@ const TimeStatus = () => {
     return (
         <div className="flex items-center justify-center">
             
-        <p className="text-black/80 dark:text-white/50 text-sm mb-6 mt-6 text-center">
-            It&apos;s currently <span className="font-semibold text-black dark:text-white">{time}</span> for me, so I&apos;m
+        <p className="text-black/80 dark:text-[#fafafa] text-sm mb-6 mt-6 text-center">
+            It&apos;s currently <span className="font-semibold text-black dark:text-white"><Code color="primary" size="sm">{time}</Code></span> for me, so I&apos;m
             probably{" "}
-            <span className="font-semibold text-black dark:text-white">{awake ? "awake" : "sleeping"}</span>. I&apos;ll
+            <span className="font-semibold text-black dark:text-white"><Code color="primary" size="sm">{awake ? "awake" : "sleeping"}</Code></span>. I&apos;ll
             get back to you soon.
         </p>
         </div>

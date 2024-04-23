@@ -124,9 +124,9 @@ export default function Header() {
             style={{ transition: "opacity 0.5s ease-in-out" }}>
                 <div>
                     <div className="text-gray-800 dark:text-gray-100">
-                        <Code color="default" className="p-1 text-gray-100 dark:text-gray-100 bg-gray-800 rounded-md shadow-md">Hi, I&apos;m</Code>
+                        Hi, I&apos;m
                     </div>
-                    <p className="text-5xl font-bold text-primary-200">JoKeR</p>
+                    <p className="text-6xl font-bold text-danger-200">JoKeR</p>
                 </div>
                 <Image
                     isBlurred
@@ -136,7 +136,7 @@ export default function Header() {
                     width={150}
                     className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                     />
-                <div className="text-gray-800 dark:text-gray-100 p-1 gap-1">
+                <div className="text-gray-800 dark:text-gray-100 p-4 gap-1">
                     <p>
                         I am a passionate <Code color="primary" className="text-center font-bold">Fullstack Developer</Code> and <Code color="primary" className="text-center font-bold">Discord Bot Developer</Code> from <Code color="primary" className="text-center font-bold">EU/UK</Code>.
                     </p>
@@ -146,7 +146,7 @@ export default function Header() {
                         <p className="p-1 text-gray-800 dark:text-gray-100">
                             I am avaliable for hire,&nbsp;
                             <Link href="/contact">
-                                <Code color="primary" className="border border-neutral-800 p-1">Contact Me</Code>
+                                <Code color="primary">Contact Me</Code>
                             </Link>
                             &nbsp;for more info.
                         </p>
@@ -154,7 +154,7 @@ export default function Header() {
 
                     <AboutCard />
                 </div>
-            {!reducedMotion && particles.split("").map((_, i) => <div className={`absolute opacity-1 rounded-full w-4 h-4 text-cyan-100 dark:text-white bg-white dark:bg-cyan-800 particle${i} z-[15] -bottom-6`} key={`p${i}`} />)}
+            {!reducedMotion && particles.split("").map((_, i) => <div className={`absolute opacity-1 rounded-full w-4 h-4 text-zinc-900 dark:text-zinc-200  dark:bg-cyan-900 bg-zinc-200 particle${i} z-[15] -bottom-6`} key={`p${i}`} />)}
         </section>
     )
 }
