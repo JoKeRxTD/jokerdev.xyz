@@ -1,17 +1,14 @@
 'use client'
-import { title } from "@/components/primitives";
-import { Input } from "@nextui-org/react";
 import { Code } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
-import { Link } from "@nextui-org/link";
 import CurrentTime from "@/components/CurrentTime";
 import { DiscordIcon, GithubIcon, HeartFilledIcon } from "@/components/icons";
 import { ScrollShadow } from "@nextui-org/react";
 import { motion } from "framer-motion";
-import {Textarea} from "@nextui-org/react";
+import MessageComponent from "@/components/MessageForm";
+import ContactLink from "@/components/ContactForm";
 
 
-export default function ProjectPage() {
+export default function Contact() {
 	return (
 		<ScrollShadow hideScrollBar className="w-full h-full space-y-6">
 			<motion.div
@@ -24,88 +21,32 @@ export default function ProjectPage() {
 				<h1 className="text-center p-4">
 					<Code color="primary" size="lg">Contact</Code>
 				</h1>
-				<div className="p-4 space-y-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
-					<CurrentTime />
-					<p className="text-center p-2">
-						Have an inquiry? Feel free to leave a message below.
+				<div className="p-4 space-y-2 border rounded-xl border-gray-300 dark:border-neutral-800 lg:rounded-xl lg:border">
+					<p className="text-center p-4">
+						Contact me about any inquiries you may have,<br></br> I aim to response within <Code color="primary" size="sm">7 Days</Code>
 					</p>
-					<Input
-						label="Name"
-						placeholder="Your Name"
-						type="text"
-						className="text-center border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
-					/>
-					<Input
-						label="Email"
-						placeholder="Your Email"
-						type="email"
-						className="text-center border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
-					/>
-					<Textarea
-						label="Message"
-						placeholder="Your Message"
-						size="sm"
-						className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
-					/>
-					<Button
-						radius="sm"
-						className="relative overflow-visible rounded-full hover:-translate-y-1 px-12 shadow-xl bg-background/30 after:content-[''] after:absolute after:rounded-full after:inset-0 after:bg-background/40 after:z-[-1] after:transition after:!duration-500 hover:after:scale-150 hover:after:opacity-0"
-						id="submit"
-					>
-						Send
-					</Button>
-
-					<div className="flex flex-col flex-wrap justify-center items-center gap-1 p-1">
-						<p className="text-center p-4">
-							Or you can join my Discord Server.
-						</p>
-						<div className="flex flex-row flex-wrap justify-center items-center gap-1 p-1 text-[#fafafa] dark:text-[#fafafa]">
-							<Button
-								href="#"
-								variant="flat"
-								color="primary"
-							>
-								<DiscordIcon />
-								<Link
-									isExternal
-									color="foreground"
-									className="text-center p-1"
-									href="https://discord.com/users/116730818822537225"
-								>
-									jokerxtd
-								</Link>
-							</Button>
-							<Button
-								href="#"
-								variant="flat"
-								color="default"
-								className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
-							>
-								<GithubIcon />
-								<Link
-									isExternal
-									color="foreground"
-									className="text-center p-1"
-									href="https://github.com/jokerxtd"
-								>
-									jokerxtd
-								</Link>
-							</Button>
-							<Button
-								href="https://discord.gg/UnTTbM7ySS"
-								color="danger"
-								variant="flat"
-							>
-								<HeartFilledIcon />
-								<Link
-									isExternal
-									color="foreground"
-									className="text-center p-1"
-									href="https://discord.gg/UnTTbM7ySS"
-								>
-									Support
-								</Link>
-							</Button>
+					<CurrentTime />
+					<div className="grid grid-cols-1 md:grid-cols-3 md:gap-4 mb-20">
+						<MessageComponent />
+						<div className="row-start-1 md:row-auto">
+						<ContactLink
+							name="jokerxtd"
+							icon={<DiscordIcon className="w-6 h-6 text-[#5865F2]" />}
+							link="https://discord.com/users/116730818822537225"
+							borderColor="hover:border-[#5865F2]/50"
+						/>
+						<ContactLink
+							name="@JoKeRxHD"
+							icon={<GithubIcon className="w-6 h-6 dark:text-[#fafafa] text-[#1d1d1d]" />}
+							link="https://github.com/JoKeRxHD"
+							borderColor="hover:border-[#fafafa]/50"
+						/>
+						<ContactLink
+							name="contact@jokerdev.xyz"
+							icon={<HeartFilledIcon className="w-6 h-6 text-[#d64444]" />}
+							link="mailto:contact@jokerdev.xyz"
+							borderColor="hover:border-[#d64444]/50"
+						/>
 						</div>
 					</div>
 				</div>

@@ -2,13 +2,9 @@
 import Header from "@/components/Header"
 import {Divider} from "@nextui-org/react";
 import {ScrollShadow} from "@nextui-org/react";
-import { Code } from "@nextui-org/react";
 import Skills from "@/components/Skills"
-// import TimeStatus from "@/components/CurrentTime"
-import ProjectsCard from "@/components/ProjectsCard";
-import AboutCard from "@/components/AboutCard";
 import { motion } from "framer-motion";
-// import  PageAds  from "@/components/pageAds" 
+// import  PageAds  from "@/components/pageAds"
 
 const Home = () => {
 	return (

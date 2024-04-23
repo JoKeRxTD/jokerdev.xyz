@@ -7,6 +7,14 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
 import clsx from "clsx";
 
+import type { Viewport } from 'next'
+
+export const viewport: Viewport = {
+	themeColor: [
+		{ media: '(prefers-color-scheme: light)', color: 'white' },
+		{ media: '(prefers-color-scheme: dark)', color: 'black' },
+	],
+}
 
 export const metadata: Metadata = {
 	title: {
@@ -14,10 +22,6 @@ export const metadata: Metadata = {
 		template: `%s - ${siteConfig.name}`,
 	},
 	description: siteConfig.description,
-	themeColor: [
-		{ media: "(prefers-color-scheme: light)", color: "white" },
-		{ media: "(prefers-color-scheme: dark)", color: "black" },
-	],
 	icons: {
 		icon: "/joker_new.png",
 		shortcut: "/joker_new.png",
