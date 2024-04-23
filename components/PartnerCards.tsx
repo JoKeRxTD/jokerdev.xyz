@@ -40,7 +40,7 @@ const PartnerCards: PartnerCard[] = [
     },
     {
         title: "WolfSheild [AC]",
-        description: "Wolfshield is an Anti-Cheat made for FvieM Servers and is made by Xtelfou.",
+        description: "Wolfshield is an Anti-Cheat made for FiveM Servers and is made by Xtelfou.",
         image: "/wolf_shield.png",
         tags: ["lua", "fivem", "QBCore", "ESX"],
         links: [
