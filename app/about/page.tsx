@@ -3,9 +3,19 @@ import { title } from "@/components/primitives";
 import Image from 'next/image';
 import { Code } from "@nextui-org/react";
 import Skills from "@/components/Skills";
+import { ScrollShadow } from "@nextui-org/react";
+import { motion } from "framer-motion";
 
 export default function AboutPage() {
 	return (
+		<ScrollShadow hideScrollBar className="w-full h-full">
+			<motion.div
+				initial={{ opacity: 0, scale: 0.95 }}
+				animate={{ opacity: 1, scale: 1 }}
+				exit={{ opacity: 0, scale: 0.95 }}
+				transition={{ ease: "easeOut", duration: 0.15 }}
+				className="w-full h-full"
+			>
 		<div>
 			
 			<h1 className="text-center p-4">
@@ -29,5 +39,7 @@ export default function AboutPage() {
 
 			</div>
 		</div>
+		</motion.div>
+		</ScrollShadow>
 	);
 }
