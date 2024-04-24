@@ -25,14 +25,14 @@ export default function Skills() {
     const [show, setShow] = useState(false);
 
     return (
-        <div className="block flex-wrap justify-center items-center p-1 gap-2 text-[#fafafa] dark:text-[#fafafa]">
+        <div className="block flex-wrap justify-center items-center p-1 gap-2 text-[#161616] dark:text-[#fafafa]">
             <h2 className="text-center p-1">
-                <Code color="primary" className="text-2xmd font-bold">Skills</Code>
+                <Code color="primary" className="">Skills</Code>
             </h2>
             <p className="text-center pb-8">
                 Here are some of my skills that I have learned.
             </p>
-            <div className="gap-2">
+            <div className="gap-4">
                 {Tags.map((tag, index) => (
                     <Tooltip
                         key={index}
@@ -41,7 +41,7 @@ export default function Skills() {
                     >
                         <Button
                             key={index}
-                            className="m-1 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+                            className="m-1 flex-wrap-reverse justify-center items-center border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                             onClick={() => setShow(!show)}
                         >
                             {tag.label}
