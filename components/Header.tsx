@@ -6,7 +6,6 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import backgroundImage from "@/public/wallpaper.jpg";
 import AboutCard from "@/components/AboutCard";
-import { BackgroundBeams } from "../components/background-beams";
 
 import anime from "animejs";
 
@@ -35,14 +34,94 @@ const foo = <div className={`${"from-cyan-500 to-indigo-600" ||
 
 
 export default function Header() {
+    // blend backgroundImage with background color
     const [index, setIndex] = useState<number>(0)
+    const [gradients] = useState(gradientColors)
+    const [firstLoad, setFirstLoad] = useState(true)
     const [reducedMotion, setReducedMotion] = useState(false)
+
+    let particles = ""
+    for (var i: number = 0; i < 100; i++) {
+        particles += i
+    }
+
+    let pixels = ""
+    for (var i: number = 0; i < 64; i++) {
+        pixels += i
+    }
+
+    let padPixels = ""
+    for (var i: number = 0; i < 64; i++) {
+        padPixels += i
+    }
+
+
+    useEffect(() => {
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setReducedMotion(true)
+        } else {
+            setReducedMotion(false)
+        }
+
+        particles.split("").map((_, i) => anime({
+            targets: `.particle${i}`,
+            keyframes: [
+                { opacity: () => anime.random(10, 50) + "%", tarnslateY: 0, left: () => anime.random(-100, 2000), scale: () => anime.random(90, 150) + "%", duration: 0 },
+                { delay: () => anime.random(0, 3000 + (i * 100)), translateY: () => "-120vh", duration: () => anime.random(2000, 5000), opacity: 0 }
+            ],
+            easing: "easeInOutSine",
+            loop: true
+        }))
+
+        !reducedMotion && pixels.split("").map((_, i) => anime({
+            targets: `.pixel${i}`,
+            opacity: () => anime.random(0, (((i % 8) * 30) - i)) + "%",
+            easing: "easeInOutSine",
+            duration: () => anime.random(800, 5000),
+            loop: true
+        }))
+
+        !reducedMotion && padPixels.split("").map((_, i) => anime({
+            targets: `.pad-pixelb${i}`,
+            opacity: () => anime.random(0, (((i % 8) * 15) - (i * 8))) + "%",
+            easing: "easeInOutSine",
+            duration: () => anime.random(800, 5000),
+            loop: true
+        }))
+
+        !reducedMotion && padPixels.split("").map((_, i) => anime({
+            targets: `.pad-pixelt${i}`,
+            opacity: () => anime.random(0, (((i % 8) * 15) - ((padPixels.length - i) * 8))) + "%",
+            easing: "easeInOutSine",
+            duration: () => anime.random(800, 5000),
+            loop: true
+        }))
+
+        const animation = anime({
+            targets: ".current-gradient",
+            opacity: ["100%", "0%"],
+            duration: 500,
+            easing: "easeInQuad",
+            delay: 0,
+            loop: false,
+            autoplay: false
+        })
+
+        const timer = setInterval(() => {
+            setFirstLoad(false)
+            setIndex((i) => {
+                return i === gradients.length - 1 ? 0 : i + 1
+            })
+            animation.play()
+        }, 5000)
+
+        return () => clearInterval(timer)
+    }, [gradients.length, padPixels, particles, pixels, reducedMotion])
 
     return (
         <section className={`relative flex flex-col items-center justify-center h-[450px] w-full overflow-hidden ${borderColors[index]}`}
-        
             style={{ transition: "opacity 0.5s ease-in-out" }}>
-                {/* <BackgroundBeams /> */}
                 <div>
                     <div className="text-gray-800 dark:text-gray-100">
                         Hi, I&apos;m
@@ -75,7 +154,7 @@ export default function Header() {
 
                     <AboutCard />
                 </div>
-            {/* {!reducedMotion && particles.split("").map((_, i) => <div className={`absolute opacity-1 rounded-full w-4 h-4 text-zinc-900 dark:text-zinc-200  dark:bg-cyan-900 bg-zinc-200 particle${i} z-[15] -bottom-6`} key={`p${i}`} />)} */}
+            {!reducedMotion && particles.split("").map((_, i) => <div className={`absolute opacity-1 rounded-full w-4 h-4 text-zinc-900 dark:text-zinc-200  dark:bg-cyan-900 bg-zinc-200 particle${i} z-[15] -bottom-6`} key={`p${i}`} />)}
         </section>
     )
 }
