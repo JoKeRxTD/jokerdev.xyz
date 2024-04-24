@@ -4,13 +4,13 @@ import CurrentTime from "@/components/CurrentTime";
 import { DiscordIcon, GithubIcon, HeartFilledIcon } from "@/components/icons";
 import { ScrollShadow } from "@nextui-org/react";
 import { motion } from "framer-motion";
-import MessageComponent from "@/components/MessageForm";
-import ContactLink from "@/components/ContactForm";
+import MessageForm from "@/components/MessageForm";
+import ContactLink from "@/components/ContactButtons";
 
 
-export default function Contact() {
+const Contact = () => {
 	return (
-		<ScrollShadow hideScrollBar className="w-full h-full space-y-6">
+		<ScrollShadow hideScrollBar className="w-full h-full">
 			<motion.div
 				initial={{ opacity: 0, scale: 0.95 }}
 				animate={{ opacity: 1, scale: 1 }}
@@ -27,7 +27,7 @@ export default function Contact() {
 					</p>
 					<CurrentTime />
 					<div className="grid grid-cols-1 md:grid-cols-3 md:gap-4 mb-20">
-						<MessageComponent />
+						<MessageForm />
 						<div className="row-start-1 md:row-auto">
 						<ContactLink
 							name="jokerxtd"
@@ -54,3 +54,5 @@ export default function Contact() {
 		</ScrollShadow>
 	);
 }
+
+export default Contact
