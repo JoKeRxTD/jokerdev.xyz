@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import backgroundImage from "@/public/wallpaper.jpg";
 import AboutCard from "@/components/AboutCard";
+import {BackgroundBeams} from "@/components/background-beams";
 
 import anime from "animejs";
 
@@ -122,6 +123,7 @@ export default function Header() {
     return (
         <section className={`relative flex flex-col items-center justify-center h-[450px] w-full overflow-hidden ${borderColors[index]}`}
             style={{ transition: "opacity 0.5s ease-in-out" }}>
+                <BackgroundBeams/>
                 <div>
                     <div className="text-gray-800 dark:text-gray-100">
                         Hi, I&apos;m
@@ -154,7 +156,7 @@ export default function Header() {
 
                     <AboutCard />
                 </div>
-            {!reducedMotion && particles.split("").map((_, i) => <div className={`absolute opacity-1 rounded-full w-4 h-4 text-zinc-900 dark:text-zinc-200  dark:bg-cyan-900 bg-zinc-200 particle${i} z-[15] -bottom-6`} key={`p${i}`} />)}
+            {/* {!reducedMotion && particles.split("").map((_, i) => <div className={`absolute opacity-1 rounded-full w-4 h-4 text-zinc-900 dark:text-zinc-200  dark:bg-cyan-900 bg-zinc-200 particle${i} z-[15] -bottom-6`} key={`p${i}`} />)} */}
         </section>
     )
 }

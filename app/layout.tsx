@@ -6,7 +6,6 @@ import { Providers } from "./providers";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/Footer";
 import clsx from "clsx";
-import { BackgroundBeams } from "../components/background-beams";
 import type { Viewport } from 'next'
 
 export const viewport: Viewport = {
@@ -44,7 +43,6 @@ export default function RootLayout({
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<div className="relative flex flex-col h-screen items-center">
-						<BackgroundBeams/>
 						<Navbar />
 						<main className="container mx-auto max-w-5xl pt-12 px-3 flex-grow">
 							{children}
