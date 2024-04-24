@@ -1,3 +1,4 @@
+
 import { useCallback, useEffect, useState } from "react";
 import { Code } from "@nextui-org/react";
 
@@ -24,8 +25,7 @@ const TimeStatus = () => {
         <p className="text-black/80 dark:text-[#fafafa] text-sm mb-6 mt-6 text-center">
             It&apos;s currently <span className="font-semibold text-black dark:text-white"><Code color="primary" size="sm">{time}</Code></span> for me, so I&apos;m
             probably{" "}
-            <span className="font-semibold text-black dark:text-white"><Code color="primary" size="sm">{awake ? "Awake" : "Sleeping"}</Code></span>. I&apos;ll
-            get back to you soon.
+            <span className="font-semibold text-black dark:text-white"><Code color="primary" size="sm">{awake ? "Awake" : "Sleeping"}</Code></span> I&apos;ll get back to you soon.
         </p>
         </div>
     );
