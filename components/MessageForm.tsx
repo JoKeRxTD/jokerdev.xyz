@@ -1,14 +1,15 @@
+
 import axios from "axios";
 import { useRef, useState } from "react";
 import { ImSpinner2 } from "react-icons/im";
 import { RiSendPlane2Fill } from "react-icons/ri";
 
-const MessageComponent = () => {
+export default function MessageForm () {
   const name = useRef<string>(""),
     email = useRef<string>(""),
     message = useRef<string>(""),
     [sending, setSending] = useState(false),
-    [errMsg, setErrMsg] = useState(""),
+    [errMsg, setErrMsg] = useState(""), // error message
     emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
     sendMessage = async () => {
       if (email.current == "" || message.current == "") return setErrMsg("Please fill out all fields!");
@@ -16,10 +17,11 @@ const MessageComponent = () => {
 
       setSending(true);
 
+      // post data to api/send.ts
       const response = await axios.post("/api/send", {
         name: name.current,
         email: email.current,
-        message: message.current
+        message: message.current,
       });
 
       if (response.data.result === "FIELD_EMPTY") return setErrMsg("Please fill out all fields!");
@@ -63,7 +65,7 @@ const MessageComponent = () => {
 
         <button
           onClick={sendMessage}
-          className="border border-gray-800 hover:bg-gray-200 dark:border-indigo-600/80 dark:bg-indigo-600/70 dark:hover:bg-indigo-500/70 flex flex-row items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-colors duration-75"
+          className="border border-gray-800 hover:bg-gray-200 dark:border-zinc-600/80 dark:bg-zinc-600/70 dark:hover:bg-zinc-500/70 flex flex-row items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-colors duration-75"
         >
           <span className="mt-[2px]">Send</span>
           {!sending && <RiSendPlane2Fill className="ml-2" />}
@@ -73,5 +75,3 @@ const MessageComponent = () => {
     </div>
   );
 };
-
-export default MessageComponent;

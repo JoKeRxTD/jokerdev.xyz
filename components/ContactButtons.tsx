@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 // import {Link} from "@nextui-org/react";
 import React, { ReactElement } from "react";
@@ -8,7 +9,7 @@ import { classNames } from "../util/classNames";
 
 const calc = (x: number, y: number) => [-(y - window.innerHeight / 3) / 35, (x - window.innerWidth / 1.5) / 30, 1.05],
   trans = (x: number, y: number, s: number): string => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`,
-  ContactLink = ({
+  ContactButtons = ({
     name,
     icon,
     link,
@@ -30,7 +31,7 @@ const calc = (x: number, y: number) => [-(y - window.innerHeight / 3) / 35, (x -
           // target="_blank"
           rel="noreferrer noopener"
           onMouseMove={({ clientX: x, clientY: y }: { clientX: number; clientY: number }) =>
-            set({ xys: calc(x, y) })
+            set.start({ xys: calc(x, y) })
           }
           onMouseLeave={() => set({ xys: [0, 0, 1] })}
           style={{ transform: props.xys.to(trans) }}
@@ -47,4 +48,4 @@ const calc = (x: number, y: number) => [-(y - window.innerHeight / 3) / 35, (x -
     );
   };
 
-export default ContactLink;
+export default ContactButtons;
