@@ -24,7 +24,7 @@ interface Project {
 const Projects: Project[] = [
     {
         title: "My Website",
-        description: "This is my website, it is made with NextJS and TailwindCSS, This project is open source.",
+        description: "This is my website, it is made with NextUI, NextJS and TailwindCSS, This project is open source.",
         image: "/joker.jpg",
         tags: ["NextJS", "TailwindCSS", "NextUI"],
         links: [
@@ -93,7 +93,7 @@ export default function ProjectsCard() {
                             alt={project.title}
                             width={150}
                             height={150}
-                            className="p-1 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+                            className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                         />
                         <p>{project.description}</p>
                         <p>
