@@ -126,12 +126,12 @@ export default function Header() {
                     <div className="text-gray-800 dark:text-gray-100">
                         Hi, I&apos;m
                     </div>
-                    <p className="text-6xl font-bold text-danger-200">JoKeR</p>
+                    <p className="text-6xl font-bold text-primary-200">Tom</p>
                 </div>
                 <Image
                     isBlurred
                     shadow="md"
-                    src="/joker.jpg"
+                    src="/me.jpg"
                     alt={"my logo is supposed to be here"}
                     width={150}
                     className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
