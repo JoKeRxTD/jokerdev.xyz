@@ -36,6 +36,10 @@ const Projects: Project[] = [
                 title: "Website",
                 link: "https://jokerdev.xyz",
             },
+            {
+                title: "Discord",
+                link: "https://discord.gg/UnTTbM7ySS"
+            }
         ]
     },
     {
@@ -113,14 +117,9 @@ export default function ProjectsCard() {
                                 className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                                 href={link.link}
                             >
-                            <Link
-                                isExternal
-                                color="foreground"
-                                className="text-center p-1"
-                                href={link.link}
-                            >
+                                <p className="text-gray-800 dark:text-gray-300 lg:text-base text-sm text-center">
                                 {link.title}
-                            </Link>
+                                </p>
                             </Button>
                         ))}
                     </CardFooter>
