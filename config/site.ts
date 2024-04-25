@@ -45,7 +45,7 @@ export const siteConfig = {
 			href: "/partners",
 		},
 		{
-			label: "About",
+			label: "About Me",
 			href: "/about",
 		},
 		{
