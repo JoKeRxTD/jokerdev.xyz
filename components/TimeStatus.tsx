@@ -1,4 +1,4 @@
-
+'use client'
 import { useCallback, useEffect, useState } from "react";
 import { Code } from "@nextui-org/react";
 

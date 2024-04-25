@@ -6,7 +6,7 @@ import { FiExternalLink } from "react-icons/fi";
 import { animated, useSpring } from "react-spring";
 
 
-import { classNames } from "../util/classNames";
+import { classNames } from "@/utils/classNames";
 
 const calc = (x: number, y: number) => [-(y - window.innerHeight / 3) / 35, (x - window.innerWidth / 1.5) / 30, 1.05],
   trans = (x: number, y: number, s: number): string => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`,
@@ -34,11 +34,11 @@ const calc = (x: number, y: number) => [-(y - window.innerHeight / 3) / 35, (x -
           onMouseMove={({ clientX: x, clientY: y }: { clientX: number; clientY: number }) =>
             set.start({ xys: calc(x, y) })
           }
-          onMouseLeave={() => set({ xys: [0, 0, 1] })}
+          onMouseLeave={() => set.start({ xys: [0, 0, 1] })}
           style={{ transform: props.xys.to(trans) }}
           className={classNames(
             borderColor ? borderColor : "hover:border-white/50",
-            "shadow-white shadow-none hover:shadow-lg mb-4 row-start-3 flex flex-row items-center bg-opacity-50 bg-white dark:bg-slate-800/5 rounded-md p-4 border border-zinc-800/50 cursor-pointer transition-colors duration-150"
+            "shadow-white shadow-none hover:shadow-lg mb-2 row-start-3 flex flex-row items-center bg-opacity-50 bg-white dark:bg-slate-800/5 rounded-md p-4 border border-zinc-800/50 cursor-pointer transition-colors duration-150"
           )}
         >
           {icon}
