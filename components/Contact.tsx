@@ -1,7 +1,7 @@
 'use client'
 import { Code } from "@nextui-org/react";
 import CurrentTime from "@/components/TimeStatus";
-import { DiscordIcon, GithubIcon, HeartFilledIcon } from "@/components/Icons";
+import { DiscordIcon, GithubIcon, HeartFilledIcon } from "@/components/icons";
 import { ScrollShadow } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import MessageForm from "@/components/MessageForm";

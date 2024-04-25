@@ -12,7 +12,7 @@ import {
 	GithubIcon,
 	DiscordIcon,
 	HeartFilledIcon,
-} from "@/components/Icons";
+} from "@/components/icons";
 import clsx from "clsx";
 import NextLink from "next/link";
 import { Link } from "@nextui-org/link";
