@@ -6,9 +6,8 @@ import { Code } from "@nextui-org/code"
 import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
-import { DiscordIcon, SearchIcon } from "@/components/icons";
-import { Image } from "@nextui-org/image"
-import TimeStatus from "@/components/CurrentTime"
+import { DiscordIcon, SearchIcon } from "@/components/Icons";
+import { Image } from "@nextui-org/image";
 
 export default function MyButtons() {
     return (
@@ -20,7 +19,7 @@ export default function MyButtons() {
                     className={buttonStyles({ variant: "bordered", radius: "full" })}
                 >
                     <SearchIcon size={20} />
-                    Contact
+                    Contact 2
                 </Link>
                 <Link
                     isExternal
@@ -29,7 +28,7 @@ export default function MyButtons() {
                     className={buttonStyles({ variant: "bordered", radius: "full" })}
                 >
                     <DiscordIcon size={20} />
-                    Discord
+                    Discord 2
                 </Link>
             </div>
     )

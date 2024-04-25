@@ -8,11 +8,8 @@ import {
 	NavbarItem,
 	NavbarMenuItem,
 } from "@nextui-org/navbar";
-import {
-	GithubIcon,
-	DiscordIcon,
-	HeartFilledIcon,
-} from "@/components/icons";
+import { FiGithub, FiHeart } from "react-icons/fi";
+import { SiDiscord } from "react-icons/si";
 import clsx from "clsx";
 import NextLink from "next/link";
 import { Link } from "@nextui-org/link";
@@ -20,7 +17,7 @@ import { siteConfig } from "@/config/site";
 import { Divider } from "@nextui-org/react";
 import { link as linkStyles } from "@nextui-org/theme";
 import { ThemeSwitch } from "@/components/theme-switch";
-import { Button, Tooltip } from "@nextui-org/react";
+import { Tooltip } from "@nextui-org/react";
 import { Code } from "@nextui-org/code"; 
 
 export default function Navbar() {
@@ -58,10 +55,10 @@ export default function Navbar() {
 			>
 				<NavbarItem className="hidden sm:flex gap-2">
 					<Link isExternal href={siteConfig.links.discord} aria-label="Discord">
-						<DiscordIcon className="text-default-500" />
+						<SiDiscord className="text-default-500" />
 					</Link>
 					<Link isExternal href={siteConfig.links.github} aria-label="Github">
-						<GithubIcon className="text-default-500" />
+						<FiGithub className="text-default-500" />
 					</Link>
 					<ThemeSwitch />
 				</NavbarItem>
@@ -83,7 +80,7 @@ export default function Navbar() {
                         <p
                             className="p-2 text-danger-600 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                         >
-                            <HeartFilledIcon />
+                            <FiHeart />
                         </p>
                     </Tooltip>
                 </span>
@@ -92,7 +89,7 @@ export default function Navbar() {
 
 			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
 				<Link isExternal href={siteConfig.links.github} aria-label="Github">
-					<GithubIcon className="text-default-500" />
+					<FiGithub className="text-default-500" />
 				</Link>
 				<ThemeSwitch />
 				<NavbarMenuToggle />

@@ -1,6 +1,6 @@
 'use client';
 import { Link } from "@nextui-org/link";
-import { DiscordIcon, SearchIcon, GithubIcon, HeartFilledIcon } from "@/components/icons";
+import { DiscordIcon, SearchIcon, GithubIcon, HeartFilledIcon } from "@/components/Icons";
 import { Tooltip, Button } from "@nextui-org/react";
 // import  PageAds  from "@/components/pageAds" 
 
