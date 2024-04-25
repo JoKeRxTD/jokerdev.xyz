@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import clsx from "clsx"; 
 import type { Viewport } from 'next'
 
-export const viewport: Viewport = {
+export const viewport: Viewport = { 
 	themeColor: [
 		{ media: '(prefers-color-scheme: light)', color: 'white' },
 		{ media: '(prefers-color-scheme: dark)', color: 'black' },
