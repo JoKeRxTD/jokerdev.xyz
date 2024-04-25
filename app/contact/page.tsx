@@ -67,9 +67,9 @@ const Contact = () => {
 
 <ContactLink
 						name="contact@jokerdev.xyz"
-						icon={<FiMail className="w-5 h-5 text-secondary-400" />}
+						icon={<FiMail className="w-5 h-5 text-white-400" />}
 						link="mailto:contact@jokerdev.xyz"
-						borderColor="hover:border-secondary-400/50"
+						borderColor="hover:border-white/50"
 					/>
 				</div>
 			</div>
