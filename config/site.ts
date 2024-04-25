@@ -22,12 +22,13 @@ export const siteConfig = {
 			href: "/partners",
 		},
 		{
-				label: "Docs",
-				href: "/docs",
-		},
-		{
 			label: "About",
 			href: "/about",
+		},
+		
+		{
+			label: "Contact",
+			href: "/contact",
 		},
 	],
 	navMenuItems: [
@@ -44,12 +45,12 @@ export const siteConfig = {
 			href: "/partners",
 		},
 		{
-			label: "Docs",
-			href: "/docs",
-		},
-		{
 			label: "About",
 			href: "/about",
+		},
+		{
+			label: "Contact",
+			href: "/contact",
 		},
 	],
 	links: {

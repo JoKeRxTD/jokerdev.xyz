@@ -21,37 +21,35 @@ module.exports = {
         extend: "dark", // <- inherit default values from dark theme
         colors: {
           background: "#0D001A",
-          foreground: "#ffffff",
+          foreground: "##f2eafa",
           primary: {
-            50: "#001731",
-            100: "#002D4C",
-            200: "#00416E",
-            300: "#005892",
-            400: "#0072B7",
-            500: "#0088D9",
-            600: "#009DE8",
-            700: "#00B2F7",
-            800: "#00C7FF",
-            900: "#00D9FF",
-            DEFAULT: "#0088D9",
-            foreground: "#ffffff",
+            50: "##180828",
+            100: "##301050",
+            200: "##481878",
+            300: "##6020a0",
+            400: "##7828c8",
+            500: "##9353d3",
+            600: "##ae7ede",
+            700: "##c9a9e9",
+            800: "##e4d4f4",
+            900: "##f2eafa",
+            DEFAULT: "##6020a0",
+            foreground: "##f2eafa",
           },
           focus: "#00B2F7",
         },
-        layout: {
-          disabledOpacity: "0.3",
-          radius: {
-            small: "4px",
-            medium: "6px",
-            large: "8px",
-          },
-          borderWidth: {
-            small: "1px",
-            medium: "2px",
-            large: "3px",
-          },
-        },
       },
+      mytheme: {
+        // custom theme
+        extend: "dark",
+        colors: {
+          primary: {
+            DEFAULT: "#BEF264",
+            foreground: "#000000",
+          },
+          focus: "#BEF264",
+        },
+      }
       
   },
   darkMode: "class",
