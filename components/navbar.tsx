@@ -12,7 +12,7 @@ import {
 	GithubIcon,
 	DiscordIcon,
 	HeartFilledIcon,
-} from "@/components/icons";
+} from "@/components/Icons";
 import clsx from "clsx";
 import NextLink from "next/link";
 import { Link } from "@nextui-org/link";
@@ -25,6 +25,8 @@ import { Code } from "@nextui-org/code";
 
 export default function Navbar() {
 	return (
+		<div>
+
 		<NextUINavbar maxWidth="sm" position="sticky" className="top-0 z-50 border-b w-[400px] md:w-[600px] items-center text-center justify-center">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
@@ -117,5 +119,6 @@ export default function Navbar() {
 				</div>
 			</NavbarMenu>
 		</NextUINavbar>
+		</div>
 	);
 }
