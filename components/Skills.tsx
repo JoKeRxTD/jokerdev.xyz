@@ -50,8 +50,11 @@ export default function Skills() {
                             onClick={() => setShow(!show)}
                             
                         >
-                            <p className="text-gray-800 dark:text-gray-100">
-                            {tag.icon ? tag.icon : tag.label}
+                            <p className="text-gray-800 dark:text-gray-100 text-lg lg:text-2xl">
+                            {/* icon that is the icon color to the skill */}
+                            {/* {tag.icon ? tag.icon : tag.label} */}
+                            
+                            {tag.icon}
                             </p>
                         </Button>
                     </Tooltip>
