@@ -38,13 +38,6 @@ const Contact = () => {
 					/>
 
 					<ContactLink
-						name="contact@jokerdev.xyz"
-						icon={<FiMail className="w-5 h-5 text-secondary-400" />}
-						link="mailto:contact@jokerdev.xyz"
-						borderColor="hover:border-secondary-400/50"
-					/>
-
-					<ContactLink
 						name="Github"
 						icon={<FiGithub className="w-5 h-5 text-gray-400" />}
 						link="https://github.com/jokerxtd"
@@ -54,7 +47,7 @@ const Contact = () => {
 					<ContactLink
 						name="Support"
 						icon={<FiDollarSign className="w-5 h-5 text-yellow-400" />}
-						link="https://github.com/jokerxtd"
+						link="https://buymeacoffee.com/vd_joker"
 						borderColor="hover:border-yellow-400/50"
 					/>
 
@@ -70,6 +63,13 @@ const Contact = () => {
 						icon={<FiTwitch className="w-5 h-5 text-[#6441a5]" />}
 						link="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/youtube-dark.svg"
 						borderColor="hover:border-[#6441a5]/50"
+					/>
+
+<ContactLink
+						name="contact@jokerdev.xyz"
+						icon={<FiMail className="w-5 h-5 text-secondary-400" />}
+						link="mailto:contact@jokerdev.xyz"
+						borderColor="hover:border-secondary-400/50"
 					/>
 				</div>
 			</div>
