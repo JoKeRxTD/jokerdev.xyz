@@ -5,7 +5,7 @@ import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import clsx from "clsx";
+import clsx from "clsx"; 
 import type { Viewport } from 'next'
 
 export const viewport: Viewport = {

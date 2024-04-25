@@ -20,7 +20,7 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { Tooltip } from "@nextui-org/react";
 import { Code } from "@nextui-org/code"; 
 
-export default function Navbar() {
+export default function Navbar() { 
 	return (
 		<NextUINavbar maxWidth="md" position="sticky" className="top-0 z-50 w-[500px] md:w-[600px] items-center text-center justify-center">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
