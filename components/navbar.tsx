@@ -21,7 +21,7 @@ import { Divider } from "@nextui-org/react";
 import { link as linkStyles } from "@nextui-org/theme";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { Button, Tooltip } from "@nextui-org/react";
-import { Code } from "@nextui-org/code";
+import { Code } from "@nextui-org/code"; 
 
 export default function Navbar() {
 	return (

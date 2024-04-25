@@ -41,7 +41,7 @@ export default function Footer() {
 					>
 						<HeartFilledIcon />
 					</Button>
-				</div>
+				</div> 
         </footer>
     )
 }
