@@ -1,6 +1,6 @@
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
-import Skills from "@/components/Skills";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, ButtonGroup } from "@nextui-org/react";
 import { Code } from "@nextui-org/react";
+import {Link} from "@nextui-org/link";
 
 
 export default function AboutCard() {
@@ -16,13 +16,19 @@ export default function AboutCard() {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="text-2xl text-bold text-center items-center justify-center text-primary-300">About Me</ModalHeader>
+                            <ModalHeader className="text-2xl text-bold text-center items-center justify-center text-primary-300">Support Me</ModalHeader>
                             <ModalBody>
-                                I am 32 years old, Inspired Full Stack Developer from the United Kingdom,
-                                I started coding in 2015 my first project was a Discord Bot Built with Discord.JS
-                                I am a very friendly person and I love to help people out with their coding problems.
-                                I am a very active person and I love to play video games and watch movies in my spare time.
-                                <Skills/>
+                                <p className="text-center text-gray-500 dark:text-gray-400">
+                                Oh You Clicked the Special Button, This project is free to use and open source, but if you would like to support me you can do so by clicking the button below.
+                                </p>
+                                <Button
+                                onPress={onClose}
+                                target="_blank"
+                                href="https://www.google.com"
+                                variant="flat"
+                                className="text-white/50 border rounded-xl border-zinc-800 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-zinc-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+                                    Support Me
+                                </Button>
                             </ModalBody>
                             <ModalFooter>
                                 <Button color="primary" onClick={onClose} className="text-gray-800 dark:text-gray-100 border rounded-xl border-[#3c64949f] bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-[#2e4c70b6] dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">

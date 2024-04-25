@@ -21,7 +21,7 @@ export default function AboutPage() {
 			<h1 className="text-center p-4">
 					<Code color="primary" size="lg">About Me</Code>
 				</h1>
-			<div className="flex flex-col items-center justify-center p-6 gap-2 rounded-xl border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+			<div className="flex flex-col items-center justify-center p-6 gap-2 rounded-xl border border-gray-300  backdrop-blur-2xl dark:border-neutral-800  lg:rounded-xl lg:border bg-transparent">
 				<Image
 					src="/me.jpg"
 					alt="Coming Soon"
@@ -35,8 +35,8 @@ export default function AboutPage() {
                                 I am a very friendly person and I love to help people out with their coding problems.
                                 I am a very active person and I love to play video games and watch movies in my spare time.
 				</p>
-                    <Skills/>
 
+                    <Skills/>
 			</div>
 		</div>
 		</motion.div>
