@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import backgroundImage from "@/public/wallpaper.jpg";
 import AboutCard from "@/components/AboutCard";
-import {BackgroundBeams} from "@/components/background-beams";
+import {BackgroundBeams} from "@/components/Header-BG";
 
 import anime from "animejs";
 
