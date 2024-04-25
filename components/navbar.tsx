@@ -22,9 +22,7 @@ import { Code } from "@nextui-org/code";
 
 export default function Navbar() {
 	return (
-		<div>
-
-		<NextUINavbar maxWidth="sm" position="sticky" className="top-0 z-50 border-b w-[400px] md:w-[600px] items-center text-center justify-center">
+		<NextUINavbar maxWidth="md" position="sticky" className="top-0 z-50 w-[500px] md:w-[600px] items-center text-center justify-center">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<NextLink className="flex justify-start items-center gap-1" href="/">
@@ -37,7 +35,7 @@ export default function Navbar() {
 							<NextLink
 								className={clsx(
 									linkStyles({ color: "foreground" }),
-									"data-[active=true]:text-primary data-[active=true]:font-medium"
+									"data-[active=true]:text-primary data-[active=true]:font-medium data-[active=true]:border-white data-[active=true]:border-b-2"
 								)}
 								color="foreground"
 								href={item.href}
@@ -116,6 +114,5 @@ export default function Navbar() {
 				</div>
 			</NavbarMenu>
 		</NextUINavbar>
-		</div>
 	);
 }
