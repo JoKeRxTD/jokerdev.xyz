@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import TimeStatus from "@/components/TimeStatus";
 import { Code } from "@nextui-org/react";
 
-const Contact = () => {
+export default function Contact() {
 	return (
 		<motion.div
 			initial={{ opacity: 0, scale: 0.95 }}
@@ -20,8 +20,8 @@ const Contact = () => {
                     <Code color="primary" size="lg">Contact</Code>
                 </h1>
 			<TimeStatus/>
-			<div className="grid grid-cols-1 md:grid-cols-3 md:gap-2 mb-18">
-				<MessageForm />
+			<div className="grid grid-cols-1 md:grid-cols-1 md:gap-2 mb-18">
+			<MessageForm />
 				<div className="row-start-1 md:row-auto">
 					<ContactLink
 						name="jokerxtd"
@@ -45,13 +45,6 @@ const Contact = () => {
 					/>
 
 					<ContactLink
-						name="Support"
-						icon={<FiDollarSign className="w-5 h-5 text-yellow-400" />}
-						link="https://buymeacoffee.com/vd_joker"
-						borderColor="hover:border-yellow-400/50"
-					/>
-
-					<ContactLink
 						name="Youtube"
 						icon={<FiYoutube className="w-5 h-5 text-red-800" />}
 						link="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/youtube-dark.svg"
@@ -59,13 +52,6 @@ const Contact = () => {
 					/>
 
 					<ContactLink
-						name="Twitch"
-						icon={<FiTwitch className="w-5 h-5 text-[#6441a5]" />}
-						link="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/youtube-dark.svg"
-						borderColor="hover:border-[#6441a5]/50"
-					/>
-
-<ContactLink
 						name="contact@jokerdev.xyz"
 						icon={<FiMail className="w-5 h-5 text-white-400" />}
 						link="mailto:contact@jokerdev.xyz"
@@ -76,5 +62,3 @@ const Contact = () => {
 		</motion.div>
 	);
 };
-
-export default Contact;
