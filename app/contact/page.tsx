@@ -20,8 +20,8 @@ export default function Contact() {
                     <Code color="primary" size="lg">Contact</Code>
                 </h1>
 			<TimeStatus/>
-			<div className="grid grid-cols-1 md:grid-cols-1 md:gap-2 mb-18">
-			<MessageForm />
+			<div className="grid grid-cols-1 md:grid-cols-3 md:gap-1 mb-18">
+				<MessageForm />
 				<div className="row-start-1 md:row-auto">
 					<ContactLink
 						name="jokerxtd"

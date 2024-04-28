@@ -74,7 +74,7 @@ export default function MessageForm () {
 
         <button
           onClick={sendMessage}
-          className="border border-gray-800 hover:bg-gray-200 dark:border-zinc-600/80 dark:bg-zinc-900/70 dark:hover:bg-zinc-800/70 flex flex-row items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-colors duration-75"
+          className="border border-gray-800 hover:bg-gray-200 dark:border-zinc-600/50 dark:bg-zinc-900/10 dark:hover:bg-zinc-800/20 flex flex-row items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-colors duration-75"
         >
           <span className="mt-[2px]">Send</span>
           {!sending && <RiSendPlane2Fill className="ml-2" />}

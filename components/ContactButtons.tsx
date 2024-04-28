@@ -42,7 +42,7 @@ const calc = (x: number, y: number) => [-(y - window.innerHeight / 3) / 35, (x -
           )}
         >
           {icon}
-          <h1 className="font-medium text-sm text-black/80 dark:text-slate-400 mx-3">{name}</h1>
+          <h1 className="font-medium text-sm text-black/80 dark:text-slate-400 mx-4">{name}</h1>
           <FiExternalLink className="w-5 h-5 text-gray-600" />
         </animated.div>
       </Link>
