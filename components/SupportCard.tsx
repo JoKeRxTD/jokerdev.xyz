@@ -3,7 +3,7 @@ import { Code } from "@nextui-org/react";
 import {Link} from "@nextui-org/link";
 
 
-export default function AboutCard() {
+export default function SupportCard() {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     return (
         <div className="flex flex-col flex-wrap justify-center items-center gap-1 p-1">

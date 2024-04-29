@@ -51,7 +51,7 @@ export default function MessageForm () {
         placeholder="Tom / JoKeRxTD"
         type="text"
         onChange={(e: any) => (name.current = e.target.value)}
-        className="w-full p-2 mb-2 rounded-md bg-slate-300/50 dark:bg-slate-200/5 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
+        className="w-full p-2 mb-2 rounded-sm bg-slate-300/50 dark:bg-zinc-900 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
       />
 
       <h1 className="font-bold text-sm dark:text-slate-500 mb-1">Email</h1>
@@ -59,14 +59,14 @@ export default function MessageForm () {
         placeholder="example@email.com"
         type="text"
         onChange={(e: any) => (email.current = e.target.value)}
-        className="w-full p-2 mb-2 rounded-md bg-slate-300/50 dark:bg-slate-200/5 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
+        className="w-full p-2 mb-2 rounded-sm bg-slate-300/50 dark:bg-zinc-900 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
       />
 
       <h1 className="font-bold text-sm dark:text-slate-500 mb-1">Message</h1>
       <textarea
         placeholder="Hi Tom/JoKeR, what's up?"
         onChange={(e: any) => (message.current = e.target.value)}
-        className="w-full p-2 h-44 mb-2 rounded-md bg-slate-300/50 dark:bg-slate-200/5 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
+        className="w-full p-2 h-44 mb-2 rounded-sm bg-slate-300/50 dark:bg-zinc-900 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
       />
 
       <div className="w-full flex flex-row justify-between items-center">

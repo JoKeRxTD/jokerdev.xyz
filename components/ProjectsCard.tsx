@@ -1,3 +1,4 @@
+'use client'
 import { Link } from "@nextui-org/link";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
 import { Image } from "@nextui-org/image"
@@ -5,6 +6,7 @@ import { Button } from "@nextui-org/react";
 import { useState } from "react";
 import { Code } from "@nextui-org/react";
 import { ButtonHTMLAttributes, ReactElement } from "react";
+import passHref  from "react";
 
 interface LinkButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     iconRight?: ReactElement;
@@ -65,7 +67,7 @@ const Projects: Project[] = [
         tags: ["DiscordJS", "NodeJS"],
         links: [
             {
-                title: "Invite",
+                title: "Discord",
                 link: "https://discord.gg/UnTTbM7ySS"
             },
             {
@@ -74,18 +76,41 @@ const Projects: Project[] = [
             }
         ]
     },
+    {
+        title: "JoKeR LinkTree",
+        description: "This is my version of the popular website LinkTree, This project is open source.",
+        image: "/joker3.png",
+        tags: ["NextJS", "ShadCn", "Typescript"],
+        links: [
+            {
+                title: "Github",
+                link: "https://github.com/jokerxtd"
+            },
+            {
+                title: "Preview",
+                link: "https://discord.gg/UnTTbM7ySS"
+            },
+            {
+                title: "Discord",
+                link: "https://discord.gg/UnTTbM7ySS"
+            },
+        ]
+    },
 ]
+
+// card hover gradient border effect when mouse
 
 export default function ProjectsCard() {
     const [show, setShow] = useState(false);
+    
 
     return (
-        <div className="flex flex-row flex-wrap justify-center items-center gap-6 p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 flex-wrap w-full gap-4 p-4 justify-center">
             {Projects.map((project) => (
                 <Card
                     key={project.title}
                     shadow="md"
-                    className="max-w-sm w-full sm:w-1/2 lg:w-1/3 justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+                    className="max-w-sm w-full sm:w-1/2 lg:w-full justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                 >
                     <CardHeader className="text-center justify-center items-center text-2xl text-primary-300 font-bold">
                         <h2>{project.title}</h2>
@@ -110,18 +135,20 @@ export default function ProjectsCard() {
                         </p>
                     </CardBody>
                     <CardFooter className="flex flex-row justify-center gap-2 ">
-                        {project.links.map((link) => (
-                            <Button
-                                key={link.title}
-                                variant="bordered"
-                                className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
-                                href={link.link}
-                            >
-                                <p className="text-gray-800 dark:text-gray-300 lg:text-base text-sm text-center">
-                                {link.title}
-                                </p>
-                            </Button>
-                        ))}
+                            {project.links.map((link) => (
+                                <Button
+                                    key={link.title}
+                                    variant="bordered"
+                                    className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+                                    href={link.link}
+                                >
+                                    <Link href={link.link}>
+                                        <p className="text-gray-800 dark:text-gray-300 lg:text-base text-sm text-center">
+                                        {link.title}
+                                        </p>
+                                    </Link>
+                                </Button>
+                            ))}
                     </CardFooter>
                 </Card>
             ))}
