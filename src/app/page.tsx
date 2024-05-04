@@ -3,6 +3,7 @@ import Header from "@/src/components/Header"
 import {Divider} from "@nextui-org/react";
 import {ScrollShadow} from "@nextui-org/react";
 import Skills from "@/src/components/Skills"
+// import DiscordWidget from "@/src/components/DiscordWidget"
 import { motion } from "framer-motion";
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
 					<Divider/>
 					<Skills />
 					<Divider/>
+					{/* <DiscordWidget/> */}
 				</div>
 			</motion.div>
 		</ScrollShadow>

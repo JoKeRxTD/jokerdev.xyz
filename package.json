@@ -24,23 +24,29 @@
     "@nextui-org/theme": "2.1.6",
     "@react-aria/ssr": "^3.7.1",
     "@react-aria/visually-hidden": "^3.8.3",
+    "@tremor/react": "^3.16.2",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
+    "@upstash/redis": "^1.30.0",
+    "@widgetbot/react-embed": "^1.9.0",
     "animejs": "^3.2.1",
     "autoprefixer": "10.4.15",
     "axios": "^1.6.8",
     "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
     "framer-motion": "^10.18.0",
     "intl-messageformat": "^10.5.0",
+    "lucide-react": "^0.378.0",
     "next": "^14.2.3",
     "next-themes": "^0.2.1",
     "node-fetch": "^3.3.2",
     "postcss": "8.4.29",
     "react": "^18.3.1",
+    "react-country-flag": "^3.1.0",
     "react-dom": "^18.3.1",
     "react-icons": "^5.1.0",
     "react-intersection-observer": "^9.5.2",
@@ -53,6 +59,5 @@
   "devDependencies": {
     "@types/animejs": "^3.1.8",
     "typescript": "^5.4.5"
-    
   }
 }

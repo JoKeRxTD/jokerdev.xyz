@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { RiSendPlane2Fill } from 'react-icons/ri';
 import { ImSpinner2 } from 'react-icons/im';
 import { Input, Textarea } from '@nextui-org/react';
+import SentCard from "@/src/components/MessageSentCard";
 
 // Step 2: Define the schema for form data validation
 const formSchema = z.object({
@@ -22,6 +23,7 @@ const MessageForm = () => {
 
   const [errMsg, setErrMsg] = useState('');
   const [sending, setSending] = useState(false);
+  const [messageSent, setMessageSent] = useState(false);
 
   const sendMessage = async () => {
     setSending(true);
@@ -38,7 +40,7 @@ const MessageForm = () => {
     try {
       await axios.post('/api/sent', formData);
       setFormData({ name: '', email: '', message: '' });
-      setErrMsg('Message sent successfully!');
+      setMessageSent(true);
     } catch (error) {
       setErrMsg('Failed to send message. Please try again later.');
     } finally {
@@ -54,8 +56,11 @@ const MessageForm = () => {
   // Step 4: Update the component's return statement as needed
   // This example assumes no changes are needed in the return statement
   return (
-      <div className="md:col-span-2 row-span-3 bg-opacity-50 bg-white dark:bg-slate-800/5 rounded-md p-3 border border-zinc-800/50">
-
+    <div className="md:col-span-2 row-span-3 bg-opacity-50 bg-white dark:bg-slate-800/5 rounded-md p-3 border border-zinc-800/50">
+      {messageSent ? (
+        <SentCard />
+      ) : (
+        <>
           <p className="text-center">
             Have an inquiry? Feel free to leave a message below.
           </p>
@@ -94,7 +99,9 @@ const MessageForm = () => {
               {sending && <ImSpinner2 className="w-4 h-4 ml-2 animate-spin" />}
             </button>
           </div>
-        </div>
+        </>
+      )}
+    </div>
   );
 };
 
