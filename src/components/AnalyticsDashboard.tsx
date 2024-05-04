@@ -19,9 +19,9 @@ const Badge = ({ percentage }: { percentage: number }) => {
 
   if (isNaN(percentage)) return null
 
-  const positiveClassname = 'bg-green-900/25 text-green-400 ring-green-400/25'
-  const neutralClassname = 'bg-zinc-900/25 text-zinc-400 ring-zinc-400/25'
-  const negativeClassname = 'bg-red-900/25 text-red-400 ring-red-400/25'
+  const positiveClassname = 'bg-green-900/25 text-green-400 ring-green-400/25 dark:bg-green-900/25 dark:text-green-400 dark:ring-green-400/25'
+  const neutralClassname = 'bg-zinc-900/25 text-zinc-400 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25'
+  const negativeClassname = 'bg-red-900/25 text-red-400 ring-red-400/25 dark:bg-red-900/25 dark:text-red-400 dark:ring-red-400/25'
 
   return (
     <span
@@ -49,16 +49,16 @@ const AnalyticsDashboard = ({
   return (
     <div className='flex flex-col gap-6'>
       <div className='grid w-full mx-auto grid-cols-1 sm:grid-cols-2 gap-6'>
-        <Card className='w-full'>
-          <p className='text-tremor-default text-dark-tremor-content'>
+        <Card className='w-full text-center justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
+          <p className='text-base text-[#222222] dark:text-[#b4b3b3] font-semibold'>
             Avg. visitors/day
           </p>
-          <p className='text-3xl text-dark-tremor-content-strong font-semibold'>
+          <p className='text-3xl text-[#222222] dark:text-[#fafafa] font-semibold'>
             {avgVisitorsPerDay}
           </p>
         </Card>
-        <Card className='w-full'>
-          <p className='flex gap-2.5 items-center text-tremor-default text-dark-tremor-content'>
+        <Card className='w-full text-center justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
+          <p className='flex gap-2.5 items-center text-base text-[#222222] dark:text-[#b4b3b3] font-semibold'>
             Visitors today
             <Badge
               percentage={
@@ -66,21 +66,21 @@ const AnalyticsDashboard = ({
               }
             />
           </p>
-          <p className='text-3xl text-dark-tremor-content-strong font-semibold'>
+          <p className='text-3xl  text-[#222222] dark:text-[#fafafa] font-semibold'>
             {amtVisitorsToday}
           </p>
         </Card>
       </div>
 
-      <Card className='flex flex-col sm:grid grid-cols-4 gap-6'>
-        <h2 className='w-full text-dark-tremor-content-strong text-center sm:left-left font-semibold text-xl'>
+      <Card className='flex flex-col sm:grid grid-cols-4 gap-6 text-center justify-center items-center border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
+        <h2 className='w-full text-[#222222] dark:text-[#b4b3b3] text-center sm:left-left font-semibold text-lg'>
           This weeks top visitors:
         </h2>
-        <div className='col-span-3 flex items-center justify-between flex-wrap gap-8'>
+        <div className='col-span-3 flex items-center justify-between flex-wrap gap-8 '>
           {topCountries?.map(([countryCode, number]) => {
             return (
-              <div key={countryCode} className='flex items-center gap-3 text-dark-tremor-content-strong'>
-                <p className='hidden sm:block text-tremor-content'>
+              <div key={countryCode} className='flex items-center gap-3 text-[#222222] dark:text-[#fafafa]'>
+                <p className='sm:block text-[#222222] dark:text-[#fafafa]'>
                   {countryCode}
                 </p>
                 <ReactCountryFlag
@@ -89,7 +89,7 @@ const AnalyticsDashboard = ({
                   countryCode={countryCode}
                 />
 
-                <p className='text-tremor-content sm:text-dark-tremor-content-strong'>
+                <p className='text-[#222222] dark:text-[#fafafa]'>
                   {number}
                 </p>
               </div>
@@ -98,7 +98,7 @@ const AnalyticsDashboard = ({
         </div>
       </Card>
 
-      <Card>
+      <Card className='w-full border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
         {timeseriesPageviews ? (
           <BarChart
             allowDecimals={false}
