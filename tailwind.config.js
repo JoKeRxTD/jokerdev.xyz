@@ -10,53 +10,105 @@ const {
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
-  ],
-  theme: {
-      "blue": {
-        extend: "dark", // <- inherit default values from dark theme
-        colors: {
-          background: "#0D001A",
-          foreground: "##f2eafa",
-          primary: {
-            50: "##180828",
-            100: "##301050",
-            200: "##481878",
-            300: "##6020a0",
-            400: "##7828c8",
-            500: "##9353d3",
-            600: "##ae7ede",
-            700: "##c9a9e9",
-            800: "##e4d4f4",
-            900: "##f2eafa",
-            DEFAULT: "##6020a0",
-            foreground: "##f2eafa",
+    content: [
+      // './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+      './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+      './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+      './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
+    ],
+    theme: {
+      themes: {
+        "purple-dark": {
+          extend: "purple-dark", // <- inherit default values from dark theme
+          colors: {
+            background: "#0D001A",
+            foreground: "#ffffff",
+            primary: {
+              50: "#3B096C",
+              100: "#520F83",
+              200: "#7318A2",
+              300: "#9823C2",
+              400: "#c031e2",
+              500: "#DD62ED",
+              600: "#F182F6",
+              700: "#FCADF9",
+              800: "#FDD5F9",
+              900: "#FEECFE",
+              DEFAULT: "#DD62ED",
+              foreground: "#ffffff",
+            },
+            focus: "#F182F6",
           },
-          focus: "#00B2F7",
+          layout: {
+            disabledOpacity: "0.3",
+            radius: {
+              small: "4px",
+              medium: "6px",
+              large: "8px",
+            },
+            borderWidth: {
+              small: "1px",
+              medium: "2px",
+              large: "3px",
+            },
+          },
         },
+        mytheme: {
+          // custom theme
+          "purple-dark": {
+            extend: "purple-dark", // <- inherit default values from dark theme
+            colors: {
+              background: "#0D001A",
+              foreground: "#ffffff",
+              primary: {
+                50: "#3B096C",
+                100: "#520F83",
+                200: "#7318A2",
+                300: "#9823C2",
+                400: "#c031e2",
+                500: "#DD62ED",
+                600: "#F182F6",
+                700: "#FCADF9",
+                800: "#FDD5F9",
+                900: "#FEECFE",
+                DEFAULT: "#DD62ED",
+                foreground: "#ffffff",
+              },
+              focus: "#F182F6",
+            },
+            layout: {
+              disabledOpacity: "0.3",
+              radius: {
+                small: "4px",
+                medium: "6px",
+                large: "8px",
+              },
+              borderWidth: {
+                small: "1px",
+                medium: "2px",
+                large: "3px",
+              },
+            },
+          },
+          animation: {
+            'border-spin': 'border-spin 7s linear infinite',
+          },
+          colors: {
+            primary: {
+              DEFAULT: "#BEF264",
+              foreground: "#000000",
+            },
+            focus: "#BEF264",
+          },
+        }
       },
-      mytheme: {
-        // custom theme
-        extend: "dark",
-        colors: {
-          primary: {
-            DEFAULT: "#BEF264",
-            foreground: "#000000",
-          },
-          focus: "#BEF264",
-        },
-      }
-      
-  },
-  darkMode: "class",
-  plugins: [
-    nextui(),
-    addVariablesForColors,
-  ],
+    },
+    transpilePackages: ['three'],
+    darkMode: "class",
+    plugins: [
+      nextui(),
+      addVariablesForColors,
+    ],
 };
 
 function addVariablesForColors({ addBase, theme }) {
