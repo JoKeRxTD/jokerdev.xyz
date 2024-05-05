@@ -9,7 +9,8 @@ import {
 	NavbarMenuItem,
 } from "@nextui-org/navbar";
 import { FiGithub, FiHeart } from "react-icons/fi";
-import { SiDiscord } from "react-icons/si";
+import {ZapHostingIcon} from "@/src/components/Icons";
+import { SiDiscord, SiEgghead } from "react-icons/si";
 import clsx from "clsx";
 import NextLink from "next/link";
 import { Link } from "@nextui-org/link";
@@ -22,7 +23,7 @@ import { Code } from "@nextui-org/code";
 
 export default function Navbar() { 
 	return (
-		<NextUINavbar maxWidth="md" position="sticky" className="top-0 z-50 w-[500px] md:w-[600px] items-center text-center justify-center">
+		<NextUINavbar maxWidth="lg" position="sticky" className="top-0 w-[100%] z-50 bg-white dark:bg-black/90 border-b border-gray-200 dark:border-gray-800">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<NextLink className="flex justify-start items-center gap-1" href="/">
@@ -75,10 +76,8 @@ export default function Navbar() {
                             </div>
                         }
                     >
-                        <p
-                            className="p-2 text-danger-600 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
-                        >
-                            <FiHeart />
+                        <p className="p-2 text-md lg:text-lg text-green-600 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+                            <SiEgghead />
                         </p>
                     </Tooltip>
                 </span>

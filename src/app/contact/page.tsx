@@ -49,7 +49,7 @@ export default function Contact() {
 					<ContactLink
 						name="Youtube"
 						icon={<FiYoutube className="w-5 h-5 text-red-800" />}
-						link="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/youtube-dark.svg"
+						link="#"
 						borderColor="hover:border-red-800/50"
 					/>
 					<ContactLink
