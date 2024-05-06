@@ -61,8 +61,8 @@ const Projects: Project[] = [
         ]
     },
     {
-        title: "Mythbot [Discontinued]",
-        description: "This is a Discord Bot made with DiscordJS and NodeJS.",
+        title: "Mythbot Radio [Discontinued]",
+        description: "Join 1,585,911 Users, Use MythBot Radio, With over 30+ Radio Stations From All Over The World..",
         image: "/mythbot.png",
         tags: ["DiscordJS", "NodeJS"],
         links: [
@@ -96,6 +96,18 @@ const Projects: Project[] = [
             },
         ]
     },
+    {
+        title: "EqualizerRP [Discontinued]",
+        description: "Equalizer roleplay is a FiveM roleplay server with a focus on community building and roleplay.",
+        image: "/eqrp_logo.png",
+        tags: ["lua", "html", "css", "js"],
+        links: [
+            {
+                title: "Discord",
+                link: "https://discord.gg/UnTTbM7ySS"
+            },
+        ]
+    },
 ]
 
 // card hover gradient border effect when mouse
@@ -122,7 +134,7 @@ export default function ProjectsCard() {
                             alt={project.title}
                             width={150}
                             height={150}
-                            className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+                            className="border rounded-xl border-gray-300 backdrop-blur-2xl dark:border-neutral-800 lg:rounded-xl lg:border"
                         />
                         <p>{project.description}</p>
                         <p>
