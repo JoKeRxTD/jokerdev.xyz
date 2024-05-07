@@ -5,7 +5,7 @@ import { Snippet } from "@nextui-org/snippet";
 import { Code } from "@nextui-org/code"
 import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/utils/primitives";
+import { title, subtitle } from "@/src/utils/primitives";
 import { DiscordIcon, SearchIcon } from "@/src/components/Icons";
 import { Image } from "@nextui-org/image";
 

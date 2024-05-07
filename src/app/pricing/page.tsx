@@ -1,4 +1,4 @@
-import { title } from "@/utils/primitives";
+import { title } from "@/src/utils/primitives";
 import {Link} from "@nextui-org/react";
 
 export default function PricingPage() {

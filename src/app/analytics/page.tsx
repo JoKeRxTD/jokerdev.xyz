@@ -1,6 +1,6 @@
 import AnalyticsDashboard from '@/src/components/AnalyticsDashboard'
-import { getDate } from '@/utils'
-import { analytics } from '@/utils/analytics'
+import { getDate } from '@/src/utils'
+import { analytics } from '@/src/utils/analytics'
 import { currentUser } from '@clerk/nextjs/server';
 import { UserButton } from "@clerk/nextjs";
 import { Protect } from "@clerk/nextjs";

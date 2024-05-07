@@ -1,6 +1,6 @@
 'use client'
 
-import { analytics } from '@/utils/analytics'
+import { analytics } from '@/src/utils/analytics'
 import { BarChart, Card } from '@tremor/react'
 import { ArrowDownRight, ArrowRight, ArrowUpRight } from 'lucide-react'
 import ReactCountryFlag from 'react-country-flag'

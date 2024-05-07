@@ -1,15 +1,13 @@
 'use client'
 import { useUser } from "@clerk/nextjs";
 import { SignOutButton, UserButton } from "@clerk/nextjs";
-import { Link } from "@nextui-org/link";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
 import { Code } from "@nextui-org/react";
-import { Image } from "@nextui-org/image"
 import { Button } from "@nextui-org/react";
 import { useState } from "react";
 import { UserProfile } from "@clerk/nextjs";
 import NotSignedIn from "@/src/components/NotSignedIn";
-import JoinedOrganizationList from "@/src/components/JoinedOrganizationList";
+// import JoinedOrganizationList from "@/src/components/JoinedOrganizationList";
 import { Tabs, Tab } from "@nextui-org/tabs";
 import { OrganizationList, OrganizationProfile } from "@clerk/nextjs";
 

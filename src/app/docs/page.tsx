@@ -1,5 +1,5 @@
 'use client'
-import { title } from "@/utils/primitives";
+import { title } from "@/src/utils/primitives";
 import Image from 'next/image';
 import { ScrollShadow } from "@nextui-org/react";
 import { motion } from "framer-motion";

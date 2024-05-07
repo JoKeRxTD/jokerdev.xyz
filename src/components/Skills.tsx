@@ -1,7 +1,7 @@
 import { Tooltip, Button } from "@nextui-org/react";
 import { useState } from "react";
 import { Code } from "@nextui-org/react";
-import { classNames } from "@/utils/classNames";
+import { classNames } from "@/src/utils/classNames";
 import { SiTypescript, SiHtml5, SiCss3, SiJavascript, SiNodedotjs, SiReact, SiTailwindcss, SiLua, SiDiscord, SiD3Dotjs } from "react-icons/si";
 
 interface TagProps {

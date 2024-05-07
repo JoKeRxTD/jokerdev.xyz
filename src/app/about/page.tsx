@@ -1,5 +1,5 @@
 "use client";
-import { title } from "@/utils/primitives";
+import { title } from "@/src/utils/primitives";
 import react from "react";
 import Image from "next/image";
 import { Code } from "@nextui-org/react";

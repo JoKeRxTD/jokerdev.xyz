@@ -1,12 +1,6 @@
 
 'use client'
-import { Link } from "@nextui-org/link";
-import { Card, CardHeader, CardBody, CardFooter, Divider } from "@nextui-org/react";
-import { Image } from "@nextui-org/image"
-import { Button } from "@nextui-org/react";
-import { useState } from "react";
-import { Code } from "@nextui-org/react";
-import { ButtonHTMLAttributes, ReactElement } from "react";
+import { Divider } from "@nextui-org/react";
 import { ScrollShadow } from "@nextui-org/react";
 import ProjectsCard from "@/src/components/ProjectsCard";
 import { motion } from "framer-motion";

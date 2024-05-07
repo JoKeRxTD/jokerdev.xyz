@@ -1,12 +1,5 @@
 
 'use client'
-import { Link } from "@nextui-org/link";
-import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
-import { Image } from "@nextui-org/image"
-import { Button } from "@nextui-org/react";
-import { useState } from "react";
-import { Code } from "@nextui-org/react";
-import { ButtonHTMLAttributes, ReactElement } from "react";
 import { ScrollShadow } from "@nextui-org/react";
 import PartnerCard from "@/src/components/PartnerCards";
 import { motion } from "framer-motion";
