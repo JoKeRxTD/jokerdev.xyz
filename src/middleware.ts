@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { analytics } from '@/utils/analytics';
+import { analytics } from '@/src/utils/analytics';
 import { clerkMiddleware } from "@clerk/nextjs/server";
 
 export default clerkMiddleware();
