@@ -443,7 +443,7 @@ export const SunFilledIcon = ({
 );
 
 export const OpenIssues = ({
-  size = 24,
+  size = 20,
   width,
   height,
   ...props
@@ -467,7 +467,7 @@ export const OpenIssues = ({
 );
 
 export const Fork = ({
-  size = 24,
+  size = 20,
   width,
   height,
   ...props
@@ -492,7 +492,7 @@ export const Fork = ({
       </svg>
   );
 export const Stars = ({
-  size = 24,
+  size = 20,
   width,
   height,
   ...props

@@ -80,37 +80,35 @@ function GithubAPI() {
             <CardHeader className="text-center justify-center items-center text-2xl text-primary-300 font-bold">
               <h2 className="items-center text-center">{repo.name}</h2>
             </CardHeader>
-            <CardBody className="items-center text-center space-y-2 p-1 justify-between">
+            <CardBody className="flex flex-wrap items-center text-center space-y-2 p-1 justify-between">
               <p>{repo.description}</p>
-              <p>
-                Tags:{" "}
-                <motion.div
-                  className="w-3 h-3 rounded-full mr-1"
-                  style={{ background: `${Languages}`, border: `solid 3px ${Languages}` }}
-                />
-                {repo.language}
-
-              </p>
+              {repo.language && (
+                <p>
+                  <motion.div
+                    className="w-3 h-3 rounded-full mr-1"
+                    style={{ background: `${Languages}`, border: `solid 3px ${Languages}` }}
+                  />
+                  Tags:{" "}
+                  <Code key={repo.language} color="primary" className="mx-1">
+                    {repo.language.toString()}
+                  </Code>
+                </p>
+              )}
             </CardBody>
             <CardFooter className="flex flex-row items-center text-center justify-center gap-2">
-              <Button
-                variant="flat"
-                isIconOnly
-                color="default"
-                className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
-                onClick={() => window.location.href = repo.html_url}
-              >
-                <GithubIcon />
-              </Button>
               <div className="flex flex-row items-center text-center justify-center gap-2 text-base">
-                <Code color="default" className="flex flex-row items-center text-center justify-center gap-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
-                  {repo.stargazers_count} <Stars className='text-yellow-500' />
+                {/* open github url in a new tab/window */}
+                <Code color="default" onClick={() => window.open(repo.html_url, "_blank")} className="flex flex-row items-center text-center justify-center gap-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30 cursor-pointer">
+                  <GithubIcon />
                 </Code>
                 <Code color="default" className="flex flex-row items-center text-center justify-center gap-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
-                  {repo.forks} <Fork className='text-white text-xl' />
+                  {repo.stargazers_count}<Stars className='text-yellow-500' />
                 </Code>
                 <Code color="default" className="flex flex-row items-center text-center justify-center gap-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
-                  {repo.open_issues} <OpenIssues className='text-orange-600' />
+                  {repo.forks}<Fork className='text-zinc-800 text-xl dark:text-white' />
+                </Code>
+                <Code color="default" className="flex flex-row items-center text-center justify-center gap-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+                  {repo.open_issues}<OpenIssues className='text-orange-600' />
                 </Code>
               </div>
             </CardFooter>
