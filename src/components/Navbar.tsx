@@ -55,12 +55,10 @@ export default function Navbar() {
 							>
 								{item.label}
 							</Link>
-
 						</NavbarItem>
 					))}
 				</ul>
-					<Dropdown
-						className="hidden lg:flex gap-4 justify-start ml-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+					<Dropdown className="hidden lg:flex gap-4 justify-start ml-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
 						<NavbarItem>
 							<DropdownTrigger>
 								<Button
@@ -86,7 +84,7 @@ export default function Navbar() {
 								description="View and manage your data freely"
 								startContent={icons.profile}
 								// href="/user-profile"
-								onPress={() => {
+								onClick={() => {
 									window.location.href = "/user-profile";
 								}}>
 								Profile
@@ -96,7 +94,7 @@ export default function Navbar() {
 								description="Real-time Analytics for your app."
 								startContent={icons.analytics}
 								// href="/analytics"
-								onPress={() => {
+								onClick={() => {
 									window.location.href = "/analytics";
 								}}>
 								Analytics

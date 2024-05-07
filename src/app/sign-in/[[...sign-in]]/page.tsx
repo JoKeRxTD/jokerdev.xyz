@@ -1,19 +1,20 @@
 'use client';
 import * as Clerk from '@clerk/elements/common';
 import * as SignIn from '@clerk/elements/sign-in';
-import {Image} from "@nextui-org/image";
+import { Image } from "@nextui-org/image";
+import { DiscordIcon, GithubIcon, TwitchIcon } from "@/src/components/Icons";
 
 export default function SignInPage() {
   return (
-    <div className="grid w-full flex-grow content-center items-center bg-black px-4 sm:justify-center">
+    <div className="grid w-full flex-grow content-center items-center px-4 sm:justify-center">
       <SignIn.Root>
         <SignIn.Step
           name="start"
-          className="relative isolate w-full space-y-8 rounded-2xl bg-zinc-950 px-4 py-10 shadow-md ring-1 ring-inset ring-white/10 before:absolute before:inset-0 before:-z-10 before:rounded-2xl before:bg-black/50 sm:w-96 sm:px-8"
+          className="relative isolate w-full space-y-8 sm:w-96 sm:px-8 px-4 py-10 shadow-md ring-1 ring-inset ring-white/10 before:absolute before:inset-0 before:-z-10 rounded-2xl border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
         >
           <div className="grid place-items-center">
             <Image src="/joker.jpg" alt="JoKeR" width={125} height={125} />
-            <h1 className="mt-4 text-xl font-medium tracking-tight text-white">Sign in</h1>
+            <h1 className="mt-4 text-xl font-medium tracking-tight text-zinc-800 dark:text-white">Sign in</h1>
           </div>
           <Clerk.GlobalError className="block text-sm text-rose-400" />
           <Clerk.Field name="identifier" className="group/field relative">
@@ -38,18 +39,42 @@ export default function SignInPage() {
             />
             <Clerk.FieldError className="mt-2 block text-xs text-rose-400" />
           </Clerk.Field>
-          <div className="grid place-items-center">
-          <SignIn.Action
-            submit
-            className="relative isolate w-[50%] p-2 rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
-            Sign In
-          </SignIn.Action>
+          {/* clerk login provider (discord, github, twitch) */}
+          <div className="grid grid-cols-3 gap-1">
+          <Clerk.Loading scope="provider:discord">
+            {(isLoading) => (
+                <Clerk.Connection name="discord" disabled={isLoading}>
+                        {isLoading ? " " : <div className="grid p-1 place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"><DiscordIcon className='text-[#7289da]'/></div>}
+                </Clerk.Connection>
+                  )}
+          </Clerk.Loading>
+          <Clerk.Loading scope="provider:github">
+            {(isLoading) => (
+                <Clerk.Connection name="github" disabled={isLoading}>
+                        {isLoading ? " " : <div className="grid p-1 place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"><GithubIcon className='text-[#2b3137] dark:text-[#fafbfc]'/></div>}
+                </Clerk.Connection>
+                  )}
+          </Clerk.Loading>
+          <Clerk.Loading scope="provider:twitch">
+            {(isLoading) => (
+                <Clerk.Connection name="twitch" disabled={isLoading}>
+                        {isLoading ? " " : <div className="grid p-1 place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"><TwitchIcon className='text-[#6441a4]'/></div>}
+                </Clerk.Connection>
+                  )}
+          </Clerk.Loading>
           </div>
-          <p className="text-center text-sm text-white/60">
+          <div className="grid place-items-center">
+            <SignIn.Action
+              submit
+              className="relative isolate w-[50%] p-2 rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+              Sign In
+            </SignIn.Action>
+          </div>
+          <p className="text-center text-sm text-zinc-800 dark:text-white">
             No account?{' '}
             <a
               href="/sign-up"
-              className="text-white decoration-white/30 underline-offset-4 outline-none hover:underline focus-visible:underline"
+              className="text-zinc-800 dark:text-white decoration-white/30 underline-offset-4 outline-none hover:underline focus-visible:underline"
             >
               Create an account
             </a>

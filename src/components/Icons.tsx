@@ -154,13 +154,48 @@ export const LinesIcon: React.FC<IconSvgProps> = ({
   return (
     <svg xmlns="http://www.w3.org/2000/svg"
       height={size || height}
-      viewBox="0 0 24 24"
       width={size || width}
+      viewBox="0 0 24 24"
   {...props}>
     <path
       fill="currentColor"
-      d="m0,8.5c0-.829.671-1.5,1.5-1.5h21c.829,0,1.5.671,1.5,1.5s-.671,1.5-1.5,1.5H1.5c-.829,0-1.5-.671-1.5-1.5Zm22.5,5.5H1.5c-.829,0-1.5.671-1.5,1.5s.671,1.5,1.5,1.5h21c.829,0,1.5-.671,1.5-1.5s-.671-1.5-1.5-1.5Z"/>
+      d="m0,8.5c0-.829.671-1.5,1.5-1.5h21c.829,0,1.5.671,1.5,1.5s-.671,1.5-1.5,1.5H1.5c-.829,0-1.5-.671-1.5-1.5Zm22.5,5.5H1.5c-.829,0-1.5.671-1.5,1.5s.671,1.5,1.5,1.5h21c.829,0,1.5-.671,1.5-1.5s-.671-1.5-1.5-1.5Z"
+      />
     </svg>
+  );
+};
+
+export const TwitchIcon: React.FC<IconSvgProps> = ({
+  size = 24,
+  width,
+  height,
+  ...props
+}) => {
+  return (
+    <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlnsXlink="http://www.w3.org/1999/xlink" 
+    version="1.1"
+    id="Capa_1"
+    x="0px"
+    y="0px" 
+    viewBox="0 0 24 24" 
+    xmlSpace="preserve" 
+    height={size || height}
+    width={size || width}
+    >
+<g>
+	<g>
+		<g className="icon-twitch">
+			<path 
+      fill="#6441a4"
+        d="M6,0L1.714,4.286v15.429h5.143V24l4.286-4.286h3.429L22.286,12V0H6z M20.571,11.143l-3.429,3.429h-3.429l-3,3v-3H6.857     V1.714h13.714V11.143z"/>
+			<rect x="16.286" y="4.714" width="1.714" height="5.143" className="text-white"/>
+			<rect x="11.571" y="4.714" width="1.714" height="5.143" className="text-white"/>
+		</g>
+	</g>
+</g>
+</svg>
   );
 };
 
@@ -172,9 +207,10 @@ export const GithubIcon: React.FC<IconSvgProps> = ({
 }) => {
   return (
     <svg
-      height={size || height}
-      viewBox="0 0 24 24"
-      width={size || width}
+    viewBox="0 0 24 24"
+    width="24"
+    fill="none"
+    stroke="currentColor"
       {...props}
     >
       <path
