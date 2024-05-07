@@ -88,7 +88,7 @@ const Projects: Project[] = [
             },
             {
                 title: "Preview",
-                link: "https://discord.gg/UnTTbM7ySS"
+                link: "https://linktree.jokerdev.xyz"
             },
             {
                 title: "Discord",
