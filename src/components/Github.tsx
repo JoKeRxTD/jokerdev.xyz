@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 const stats = "https://api.github-star-counter.workers.dev/user/jokerxtd"
 const repos = "https://api.github.com/users/jokerxtd/repos?type=owner&per_page=100"
 
-const Language = {
+const Languages = {
   JavaScript: "#F1E05A",
   HTML: "#E34C26",
   CSS: "#563D7C",
@@ -64,18 +64,17 @@ function GithubAPI() {
   return (
     <div className='flex flex-wrap w-full gap-4 p-4 justify-center'>
       <div className='flex flex-col items-center justify-center gap-2 text-center'>
-      <h1 className="text-center p-4">
-        <p className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Github Repositories</p>
-      </h1>
-      <p className="text-center p-4">
-        Here are some of my public github repositories that you can use and build you own applications from just like this <a className="font-bold decoration-wavy decoration-2 underline decoration-sky-800" href="/">website</a>.
-      </p>
-      <p className="text-center p-4">
-        Check out my <a href="https://github.com/JoKeRxTD" className="underline decoration-wavy decoration-2 decoration-green-800 font-bold">Github</a> for more projects.
-      </p>
+        <h1 className="text-center p-4">
+          <p className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Github Repositories</p>
+        </h1>
+        <p className="text-center p-4">
+          Here are some of my public github repositories that you can use and build you own applications from just like this <a className="font-bold decoration-wavy decoration-2 underline decoration-sky-800" href="/">website</a>.
+        </p>
+        <p className="text-center p-4">
+          Check out my <a href="https://github.com/JoKeRxTD" className="underline decoration-wavy decoration-2 decoration-green-800 font-bold">Github</a> for more projects.
+        </p>
       </div>
-      
-      <div className="grid grid-cols-2 lg:grid-cols-3 flex-wrap w-full gap-4 p-4 justify-center">
+      <div className="grid grid-cols-1 lg:grid-cols-3 flex-wrap w-full gap-4 p-4 justify-center ">
         {reposData?.map((repo: any) => (
           <Card key={repo.stargazers_count} className='max-w-sm w-full sm:w-1/2 lg:w-full justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
             <CardHeader className="text-center justify-center items-center text-2xl text-primary-300 font-bold">
@@ -86,8 +85,8 @@ function GithubAPI() {
               <p>
                 Tags:{" "}
                 <motion.div
-                className="w-3 h-3 rounded-full mr-1"
-                style={{ background: `${Language}`, border: `solid 3px ${Language}` }}
+                  className="w-3 h-3 rounded-full mr-1"
+                  style={{ background: `${Languages}`, border: `solid 3px ${Languages}` }}
                 />
                 {repo.language}
 
