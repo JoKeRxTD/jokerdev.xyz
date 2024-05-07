@@ -36,13 +36,13 @@ export default function Navbar() {
 	};
 	return (
 		<NextUINavbar maxWidth="lg" position="sticky" className="top-0 w-[100%] z-50 bg-white dark:bg-black/90 border-b border-gray-200 dark:border-gray-800">
-			<NavbarContent className="basis-1/5" justify="start">
+			<NavbarContent className="basis-1/5 sm:basis-full ml-2 gap-2 justify-center items-center text-bold text-base">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<Link className="flex justify-start items-center gap-1" href="/">
 						<p className="text-2xl font-bold text-primary-300">JoKeR</p>
 					</Link>
 				</NavbarBrand>
-				<ul className="hidden lg:flex gap-4 justify-start ml-2">
+				<ul className="hidden lg:flex gap-4 justify-start ml-2 text-bold text-xl">
 					{siteConfig.navItems.map((item) => (
 						<NavbarItem key={item.href}>
 							<Link
@@ -58,8 +58,8 @@ export default function Navbar() {
 
 						</NavbarItem>
 					))}
+				</ul>
 					<Dropdown
-						type="listbox"
 						className="hidden lg:flex gap-4 justify-start ml-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
 						<NavbarItem>
 							<DropdownTrigger>
@@ -77,7 +77,7 @@ export default function Navbar() {
 						</NavbarItem>
 						<DropdownMenu
 							aria-label="Other Options"
-							className="w-[300px]"
+							className="w-[300px] text-bold text-base"
 							itemClasses={{
 								base: "gap-2",
 							}}>
@@ -103,7 +103,6 @@ export default function Navbar() {
 							</DropdownItem>
 						</DropdownMenu>
 					</Dropdown>
-				</ul>
 			</NavbarContent>
 
 			<NavbarContent
