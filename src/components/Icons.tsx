@@ -102,6 +102,68 @@ export const TwitterIcon: React.FC<IconSvgProps> = ({
   );
 };
 
+export const ProfileIcon: React.FC<IconSvgProps> = ({
+  size = 24,
+  width,
+  height,
+  ...props
+}) => {
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg"
+      height={size || height}
+      viewBox="0 0 24 24"
+      width={size || width}
+    {...props}>
+      <path 
+      fill="currentColor"
+      d="M9,12c3.309,0,6-2.691,6-6S12.309,0,9,0,3,2.691,3,6s2.691,6,6,6Zm0-10c2.206,0,4,1.794,4,4s-1.794,4-4,4-4-1.794-4-4,1.794-4,4-4Zm1.75,14.22c-.568-.146-1.157-.22-1.75-.22-3.86,0-7,3.14-7,7,0,.552-.448,1-1,1s-1-.448-1-1c0-4.962,4.038-9,9-9,.762,0,1.519,.095,2.25,.284,.535,.138,.856,.683,.719,1.218-.137,.535-.68,.856-1.218,.719Zm12.371-4.341c-1.134-1.134-3.11-1.134-4.243,0l-6.707,6.707c-.755,.755-1.172,1.76-1.172,2.829v1.586c0,.552,.448,1,1,1h1.586c1.069,0,2.073-.417,2.828-1.172l6.707-6.707c.567-.567,.879-1.32,.879-2.122s-.312-1.555-.878-2.121Zm-1.415,2.828l-6.708,6.707c-.377,.378-.879,.586-1.414,.586h-.586v-.586c0-.534,.208-1.036,.586-1.414l6.708-6.707c.377-.378,1.036-.378,1.414,0,.189,.188,.293,.439,.293,.707s-.104,.518-.293,.707Z"/>
+      </svg>
+  );
+};
+
+
+export const AnalyticsIcon: React.FC<IconSvgProps> = ({
+  size = 24,
+  width,
+  height,
+  ...props
+}) => {
+  return (
+    <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    id="Bold" 
+      height={size || height}
+      viewBox="0 0 24 24"
+      width={size || width}
+    {...props}>
+      <path 
+      fill="currentColor"
+      d="M5.5,21A2.5,2.5,0,0,1,3,18.5V1.5A1.5,1.5,0,0,0,1.5,0h0A1.5,1.5,0,0,0,0,1.5v17A5.5,5.5,0,0,0,5.5,24h17A1.5,1.5,0,0,0,24,22.5h0A1.5,1.5,0,0,0,22.5,21Z"/><path d="M19.5,18A1.5,1.5,0,0,0,21,16.5v-6a1.5,1.5,0,0,0-3,0v6A1.5,1.5,0,0,0,19.5,18Z"/><path d="M7.5,18A1.5,1.5,0,0,0,9,16.5v-6a1.5,1.5,0,0,0-3,0v6A1.5,1.5,0,0,0,7.5,18Z"/><path d="M13.5,18A1.5,1.5,0,0,0,15,16.5V5.5a1.5,1.5,0,0,0-3,0v11A1.5,1.5,0,0,0,13.5,18Z"/>
+      </svg>
+  );
+};
+
+
+export const LinesIcon: React.FC<IconSvgProps> = ({
+  size = 24,
+  width,
+  height,
+  ...props
+}) => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg"
+      height={size || height}
+      viewBox="0 0 24 24"
+      width={size || width}
+  {...props}>
+    <path
+      fill="currentColor"
+      d="m0,8.5c0-.829.671-1.5,1.5-1.5h21c.829,0,1.5.671,1.5,1.5s-.671,1.5-1.5,1.5H1.5c-.829,0-1.5-.671-1.5-1.5Zm22.5,5.5H1.5c-.829,0-1.5.671-1.5,1.5s.671,1.5,1.5,1.5h21c.829,0,1.5-.671,1.5-1.5s-.671-1.5-1.5-1.5Z"/>
+    </svg>
+  );
+};
+
 export const GithubIcon: React.FC<IconSvgProps> = ({
   size = 24,
   width,
@@ -122,6 +184,31 @@ export const GithubIcon: React.FC<IconSvgProps> = ({
         fillRule="evenodd"
       />
     </svg>
+  );
+};
+export const MoonIcon: React.FC<IconSvgProps> = ({
+  size = 24,
+  width,
+  height,
+  ...props
+}) => {
+  return (
+    <svg
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="moon"
+            viewBox="0 0 24 24"
+            width="24"
+            fill="none"
+            stroke="currentColor"
+            {...props}
+        >
+            <path
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+            />
+        </svg>
   );
 };
 
@@ -491,6 +578,8 @@ export const Fork = ({
       
       </svg>
   );
+
+
 export const Stars = ({
   size = 20,
   width,

@@ -17,30 +17,26 @@ import { ThemeSwitch } from "@/src/components/theme-switch";
 import { UserButton } from "@clerk/nextjs";
 import { OrganizationSwitcher } from "@clerk/nextjs";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem, Button, User, Skeleton, Divider, Link, Tooltip, Code } from "@nextui-org/react";
-import { ChevronDown, Activity, Flash, Server, TagUser, Scale } from "@/src/components/Icons";
+import { ProfileIcon, AnalyticsIcon, LinesIcon } from "@/src/components/Icons";
 
 
 
 // list of items to place in drop down with label & link
 const navDropdown = [
-	{ label: "Dashboard", href: "/dashboard" },
+	{ label: "Profile", href: "/user-profile" },
 	{ label: "Analytics", href: "/analytics" },
 ];
 
 export default function Navbar() {
-	
-const icons = {
-	chevron: <ChevronDown fill="currentColor" size={16} />,
-	scale: <Scale className="text-warning" fill="currentColor" size={30} />,
-	// lock: <Lock className="text-success" fill="currentColor" size={30} />,
-	activity: <Activity className="text-secondary" fill="currentColor" size={30} />,
-	flash: <Flash className="text-primary" fill="currentColor" size={30} />,
-	server: <Server className="text-success" fill="currentColor" size={30} />,
-	user: <TagUser className="text-danger" fill="currentColor" size={30} />,
-};
+
+	const icons = {
+		profile: <ProfileIcon className="text-primary" fill="currentColor" size={18} />,
+		analytics: <AnalyticsIcon className="text-warning" fill="currentColor" size={18} />,
+		dropdown: <LinesIcon className="text-primary" fill="currentColor" size={16} />
+	};
 	return (
 		<NextUINavbar maxWidth="lg" position="sticky" className="top-0 w-[100%] z-50 bg-white dark:bg-black/90 border-b border-gray-200 dark:border-gray-800">
-			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+			<NavbarContent className="basis-1/5" justify="start">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<Link className="flex justify-start items-center gap-1" href="/">
 						<p className="text-2xl font-bold text-primary-300">JoKeR</p>
@@ -59,52 +55,60 @@ const icons = {
 							>
 								{item.label}
 							</Link>
+
 						</NavbarItem>
 					))}
+					<Dropdown
+						type="listbox"
+						className="hidden lg:flex gap-4 justify-start ml-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+						<NavbarItem>
+							<DropdownTrigger>
+								<Button
+									key="dropdown"
+									disableRipple
+									className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+									endContent={icons.dropdown}
+									radius="sm"
+									variant="light"
+								>
+									Other
+								</Button>
+							</DropdownTrigger>
+						</NavbarItem>
+						<DropdownMenu
+							aria-label="Other Options"
+							className="w-[300px]"
+							itemClasses={{
+								base: "gap-2",
+							}}>
+							<DropdownItem
+								key="profile"
+								description="View and manage your data freely"
+								startContent={icons.profile}
+								// href="/user-profile"
+								onPress={() => {
+									window.location.href = "/user-profile";
+								}}>
+								Profile
+							</DropdownItem>
+							<DropdownItem
+								key="analytics"
+								description="Real-time Analytics for your app."
+								startContent={icons.analytics}
+								// href="/analytics"
+								onPress={() => {
+									window.location.href = "/analytics";
+								}}>
+								Analytics
+							</DropdownItem>
+						</DropdownMenu>
+					</Dropdown>
 				</ul>
-				<Dropdown className="hidden lg:flex gap-4 justify-start ml-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
-					<NavbarItem>
-						<DropdownTrigger>
-							<Button
-								disableRipple
-								className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-								endContent={icons.chevron}
-								radius="sm"
-								variant="light"
-							>
-								Other
-							</Button>
-						</DropdownTrigger>
-					</NavbarItem>
-					<DropdownMenu
-						aria-label="Other Options"
-						className="w-[300px]"
-						itemClasses={{
-							base: "gap-2",
-						}}
-					>
-						<DropdownItem
-							key="autoscaling"
-							description="View and manage your data freely"
-							startContent={icons.scale}
-						>
-							Profile
-						</DropdownItem>
-						<DropdownItem
-							key="usage_metrics"
-							description="Real-time Analytics for your app."
-							startContent={icons.activity}
-						>
-							Analytics
-						</DropdownItem>
-					</DropdownMenu>
-				</Dropdown>
 			</NavbarContent>
 
 			<NavbarContent
 				className="hidden sm:flex basis-1/5 sm:basis-full"
-				justify="end"
-			>
+				justify="end">
 				<NavbarItem className="hidden sm:flex gap-2">
 					<Link isExternal href={siteConfig.links.discord} aria-label="Discord">
 						<SiDiscord className="text-default-500" />
