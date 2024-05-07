@@ -30,6 +30,14 @@ export const siteConfig = {
 			label: "Contact",
 			href: "/contact",
 		},
+		// {
+		// 	label: "Analytics",
+		// 	href: "/analytics",
+		// },
+		// {
+		// 	label: "Profile",
+		// 	href: "/user-profile",
+		// },
 	],
 	navMenuItems: [
 		{
@@ -52,6 +60,14 @@ export const siteConfig = {
 			label: "Contact",
 			href: "/contact",
 		},
+		// {
+		// 	label: "Analytics",
+		// 	href: "/analytics",
+		// },
+		// {
+		// 	label: "Profile",
+		// 	href: "/user-profile",
+		// },
 	],
 	links: {
 		github: "https://github.com/JoKeRxTD",
@@ -59,5 +75,10 @@ export const siteConfig = {
 		docs: "https://jk-scripts.gitbook.io",
 		discord: "https://discord.gg/Q6ZSW63Fpw",
     	sponsor: "https://www.paypal.com/paypalme/VisionG?country.x=GB&locale.x=en_GB"
+	},
+	usernames: {
+		github: "JoKeRxTD",
+		twitter: "JoKeRxTD",
+		discord: "JoKeRxTD",
 	},
 };

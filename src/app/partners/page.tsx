@@ -23,8 +23,8 @@ export default function ProjectPage() {
                     className="w-full h-full"
                 >
                 <h1 className="text-center p-4">
-                    <Code color="primary" size="lg">Partners</Code>
-                </h1>
+                        <p className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Partnerships & Sponsors</p>
+                    </h1>
                 <p className="text-center p-4">
                     Here you can find our Partners.
                 </p>

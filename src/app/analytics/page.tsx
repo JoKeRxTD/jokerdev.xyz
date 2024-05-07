@@ -1,11 +1,18 @@
-
 import AnalyticsDashboard from '@/src/components/AnalyticsDashboard'
 import { getDate } from '@/utils'
 import { analytics } from '@/utils/analytics'
+import { currentUser } from '@clerk/nextjs/server';
+import { UserButton } from "@clerk/nextjs";
+import { Protect } from "@clerk/nextjs";
+import AccessDenied from '@/src/components/AccessDenied'
+import NotSignedIn from "@/src/components/NotSignedIn";
 
-const Page = async () => {
+export default async function Page() {
+  const user = await currentUser();
+  
+  if (!user) return <NotSignedIn/>;
+
   const TRACKING_DAYS = 7
-
   const pageviews = await analytics.retrieveDays('pageview', TRACKING_DAYS)
 
   const totalPageviews = pageviews.reduce((acc, curr) => {
@@ -61,21 +68,29 @@ const topCountries = Array.from(topCountriesMap.entries()).sort((a ,b) => {
 }).slice(0, 5)
 
   return (
-      <div className="w-full">
-			  <h1 className="text-center p-4">
-            Analytics  
-        </h1>
-        <p className="text-center p-4">
+  <Protect
+      role="org:admin"
+      fallback={
+        <AccessDenied />
+      }
+    >
+      <div className="w-full p-4 flex flex-col gap-4">
+          <h1 className="text-center p-4">
+            <p className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Analytics</p>
+          </h1>
+          <p className="text-center p-4">
             Here you can find our Analytics.
-        </p>
+          </p>
+          <p className="flex flex-wrap justify-center items-center gap-1 p-1">
+            Hello {user?.firstName}!
+          </p>
         <AnalyticsDashboard
           avgVisitorsPerDay={avgVisitorsPerDay}
           amtVisitorsToday={amtVisitorsToday}
           timeseriesPageviews={pageviews}
           topCountries={topCountries}
         />
-      </div>
+    </div>
+  </Protect>
   )
 }
-
-export default Page

@@ -8,6 +8,21 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* make the background using and svg patten (public/qqquad.svg */
+  min-height: 100vh;
+  background: black;
+  color: #b6b6b6;
+  line-height: 1.5;
+
+  background-image: radial-gradient(#272727 1px, transparent 1px),
+    radial-gradient(#3f3f3f 1px, transparent 1px);
+  background-position: 0 0, 25px 25px;
+  background-attachment: fixed;
+  background-size: 50px 50px;
+
+  /* Hack */
+  overflow-x: hidden;
+  
 }
 
 a {

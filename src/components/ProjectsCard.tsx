@@ -118,6 +118,7 @@ export default function ProjectsCard() {
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 flex-wrap w-full gap-4 p-4 justify-center">
+            
             {Projects.map((project) => (
                 <Card
                     key={project.title}

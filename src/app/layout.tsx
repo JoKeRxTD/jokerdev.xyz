@@ -7,6 +7,8 @@ import Navbar from "@/src/components/Navbar";
 import Footer from "@/src/components/Footer";
 import clsx from "clsx"; 
 import type { Viewport } from 'next';
+import { ClerkProvider } from '@clerk/nextjs'
+import { dark } from '@clerk/themes';
 
 export const viewport: Viewport = { 
 	themeColor: [
@@ -34,23 +36,29 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" suppressHydrationWarning>
-			<body
-				className={clsx(
-					"min-h-screen bg-background font-sans antialiased",
-					fontSans.variable
-				)}
-			>
-				<Providers themeProps={{ attribute: "class", defaultTheme: "purple-dark" }}>
-					<div className="relative flex flex-col h-screen items-center">
-						<Navbar />
-						<main className="container mx-auto max-w-5xl pt-12 px-3 flex-grow">
-							{children}
-						</main>
-						<Footer />
-					</div>
-				</Providers>
-			</body>
-		</html>
+		<ClerkProvider 
+		appearance={{
+			baseTheme: dark
+		}}
+		>
+			<html lang="en" suppressHydrationWarning>
+				<body
+					className={clsx(
+						"backdrop-blur-md dark:bg-black dark:text-white bg-white text-black font-sans",
+						fontSans
+					)}
+				>
+					<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+						<div className="relative flex flex-col h-screen items-center">
+							<Navbar />
+							<main className="container mx-auto max-w-5xl pt-12 px-3 flex-grow">
+								{children}
+							</main>
+							<Footer />
+						</div>
+					</Providers>
+				</body>
+			</html>
+		</ClerkProvider>
 	);
 }

@@ -6,7 +6,7 @@ import { Tooltip, Button } from "@nextui-org/react";
 
 export default function Footer() {
     return (
-        <footer className="flex flex-col w-[100%] flex-wrap justify-center items-center gap-1 p-1 text-zinc-200 dark:text-zinc-800/30 border-t border-gray-300 dark:border-gray-800">
+        <footer className="flex flex-col w-[100%] flex-wrap justify-center items-center gap-1 p-1 z-50 bg-white dark:bg-black border-t border-gray-200 dark:border-gray-800">
             <Link
                 isExternal
                 className="flex items-center gap-1 text-current"
@@ -17,43 +17,47 @@ export default function Footer() {
                 <p className="text-primary">JoKeR</p>
             </Link>
             <div className="flex flex-row flex-wrap justify-center items-center gap-1 p-1 text-zinc-200 dark:text-zinc-800/30">
-					<Link isExternal href="https://discord.gg/HgasfQEJUr" aria-label="Discord">
+					{/* <Link isExternal href="https://discord.gg/HgasfQEJUr" aria-label="Discord"> */}
 					<Button
 						variant="flat"
 						color="primary"
 						isIconOnly
+						onClick={() => window.location.href = "https://discord.gg/HgasfQEJUr"}
 					>
 						<DiscordIcon />
 					</Button>
-					</Link>
+					{/* </Link> */}
 						
-					<Link isExternal href="https://github.com/JoKeRxTD" aria-label="Github">
+					{/* <Link isExternal href="https://github.com/JoKeRxTD" aria-label="Github"> */}
 					<Button
 						variant="flat"
 						color="default"
 						isIconOnly
+						onClick={() => window.location.href = "https://github.com/jokerxtd"}
 					>
 						<GithubIcon />
 					</Button>
-					</Link>
-					<Link isExternal href="https://www.paypal.com/paypalme/VisionG?country.x=GB&locale.x=en_GB" aria-label="Support">
+					{/* </Link> */}
+					{/* <Link isExternal href="https://www.paypal.com/paypalme/VisionG?country.x=GB&locale.x=en_GB" aria-label="Support"> */}
 					<Button
 						variant="flat"
 						color="danger"
 						isIconOnly
+						onClick={() => window.location.href = "https://www.paypal.com/paypalme/VisionG?country.x=GB&locale.x=en_GB"}
 					>
 						<HeartFilledIcon />
 					</Button>
-					</Link>
-					<Link isExternal href="https://zap-hosting.com/joker" aria-label="Zap-Hosting">
+					{/* </Link> */}
+					{/* <Link isExternal href="https://zap-hosting.com/joker" aria-label="Zap-Hosting"> */}
 					<Button
 						variant="flat"
 						color="success"
 						isIconOnly
+						onClick={() => window.location.href = "https://zap-hosting.com/joker"}
 					>
 						<ZapHostingIcon />
 					</Button>
-					</Link>
+					{/* </Link> */}
 				</div> 
         </footer>
     )

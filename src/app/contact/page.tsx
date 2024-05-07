@@ -16,9 +16,9 @@ export default function Contact() {
 			transition={{ ease: "easeOut", duration: 0.15 }}
 			className="w-full"
 		>
-			<h1 className="text-center">
-                    <Code color="primary" size="lg">Contact</Code>
-                </h1>
+			<h1 className="text-center p-4">
+                        <p className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Contact</p>
+                    </h1>
 			<p className="text-center p-4">
 				Contact me about any inquiries you may have,<br></br> I aim to response within <Code color="primary" size="sm">7 Days</Code>
 			</p>

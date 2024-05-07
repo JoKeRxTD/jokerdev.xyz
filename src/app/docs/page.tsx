@@ -14,7 +14,9 @@ export default function DocsPage() {
 				transition={{ ease: "easeOut", duration: 0.15 }}
 				className="w-full h-full">
 				<div>
-					<h1 className={title()}>Docs [Coming Soon]</h1>
+					<h1 className="text-center p-4">
+                        <p className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Documentation</p>
+                    </h1>
 					<div className="flex flex-col items-center justify-center m-6">
 						<Image
 							src="/joker.jpg"

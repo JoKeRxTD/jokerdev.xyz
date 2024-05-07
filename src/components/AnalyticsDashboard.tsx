@@ -40,6 +40,11 @@ const Badge = ({ percentage }: { percentage: number }) => {
   )
 }
 
+const CustomDate = ({ date }: { date: string }) => {
+  const d = new Date(date)
+  return <p>{d.toDateString()}</p>
+}
+
 const AnalyticsDashboard = ({
   avgVisitorsPerDay,
   amtVisitorsToday,
@@ -102,6 +107,7 @@ const AnalyticsDashboard = ({
         {timeseriesPageviews ? (
           <BarChart
             allowDecimals={false}
+            colors={['zinc-800', 'zinc-500']}
             showAnimation
             data={timeseriesPageviews.map((day) => ({
               name: day.date,

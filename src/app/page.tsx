@@ -5,6 +5,7 @@ import {ScrollShadow} from "@nextui-org/react";
 import Skills from "@/src/components/Skills"
 // import DiscordWidget from "@/src/components/DiscordWidget"
 import { motion } from "framer-motion";
+import Github  from "@/src/components/Github";
 
 const Home = () => {
 	return (
@@ -20,7 +21,7 @@ const Home = () => {
 					<Divider/>
 					<Skills />
 					<Divider/>
-					{/* <DiscordWidget/> */}
+					<Github/>
 				</div>
 			</motion.div>
 		</ScrollShadow>
