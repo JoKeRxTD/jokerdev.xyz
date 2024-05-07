@@ -135,7 +135,7 @@ export default function ProjectsCard() {
                             alt={project.title}
                             width={150}
                             height={150}
-                            className="border rounded-xl border-gray-300 backdrop-blur-2xl dark:border-neutral-800 lg:rounded-xl lg:border"
+                            className="p-1 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                         />
                         <p>{project.description}</p>
                         <p>
@@ -154,10 +154,15 @@ export default function ProjectsCard() {
                                     variant="bordered"
                                     className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                                     href={link.link}
+                                    
                                 >
-                                    <Link href={link.link}>
+                                    <Link 
+                                    href={link.link}
+                                    isExternal
+                                    color="foreground"
+                                    className="text-center p-1">
                                         <p className="text-gray-800 dark:text-gray-300 lg:text-base text-sm text-center">
-                                        {link.title}
+                                            {link.title}
                                         </p>
                                     </Link>
                                 </Button>

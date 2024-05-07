@@ -54,18 +54,30 @@ const PartnerCards: PartnerCard[] = [
             }
         ]
     },
+    {
+        title: "Partnership/Sponsor",
+        description: "If you want to partner with me or sponsor me, feel free to contact me.",
+        image: "/joker.jpg",
+        tags: ["Hosting", "Discord"],
+        links: [
+            {
+                title: "Discord",
+                link: "https://discord.gg/UnTTbM7ySS"
+            }
+        ]
+    },
 ]
 
 export default function PartnerCard() {
     const [show, setShow] = useState(false);
 
     return (
-        <div className="flex flex-row flex-wrap justify-center items-center gap-6 p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 flex-wrap w-full gap-4 p-4 justify-center">
             {PartnerCards.map((PartnerCard) => (
                 <Card
                     key={PartnerCard.title}
                     shadow="md"
-                    className="w-full p-3 sm:w-1/2 lg:w-1/3 text-center justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+                    className="max-w-sm w-full sm:w-1/2 lg:w-full justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                 >
                    <CardHeader className="text-center justify-center items-center text-2xl text-primary-300 font-bold">
                         <h2 className="items-center text-center">{PartnerCard.title}</h2>
@@ -97,7 +109,7 @@ export default function PartnerCard() {
                                 className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                                 onClick={() => setShow(!show)}
                                 href={link.link}>
-                                    <Link
+                            <Link
                                 isExternal
                                 color="foreground"
                                 className="text-center p-1"
