@@ -69,7 +69,7 @@ const MessageForm = () => {
             placeholder="Tom / JoKeRxTD"
             type="text"
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full p-2 mb-2 rounded-sm bg-slate-300/50 dark:bg-zinc-900 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
+            className="w-full p-2 mb-2 rounded-sm  text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
           />
 
           <h1 className="font-bold text-sm dark:text-slate-500 mb-1">Email</h1>
@@ -77,14 +77,14 @@ const MessageForm = () => {
             placeholder="example@email.com"
             type="text"
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full p-2 mb-2 rounded-sm bg-slate-300/50 dark:bg-zinc-900 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
+            className="w-full p-2 mb-2 rounded-sm  text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
           />
 
           <h1 className="font-bold text-sm dark:text-slate-500 mb-1">Message</h1>
           <Textarea
             placeholder="Hi Tom/JoKeR, what's up?"
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-            className="w-full p-2 h-36 mb-1 rounded-sm bg-slate-300/50 dark:bg-zinc-900 text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
+            className="w-full p-2 h-36 mb-1 rounded-sm text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
           />
 
           <div className="w-full flex flex-row justify-between items-center">
