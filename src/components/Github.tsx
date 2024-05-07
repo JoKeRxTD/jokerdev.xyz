@@ -68,10 +68,10 @@ function GithubAPI() {
         <p className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Github Repositories</p>
       </h1>
       <p className="text-center p-4">
-        Here are some of my public github repositories that you can use and build you own applications from just like this <a className="font-bold decoration-2 underline decoration-sky-800" href="/">website</a>.
+        Here are some of my public github repositories that you can use and build you own applications from just like this <a className="font-bold decoration-wavy decoration-2 underline decoration-sky-800" href="/">website</a>.
       </p>
       <p className="text-center p-4">
-        Check out my <a href="https://github.com/JoKeRxTD" className="underline decoration-2 decoration-green-800 font-bold">Github</a> for more projects.
+        Check out my <a href="https://github.com/JoKeRxTD" className="underline decoration-wavy decoration-2 decoration-green-800 font-bold">Github</a> for more projects.
       </p>
       </div>
       

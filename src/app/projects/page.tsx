@@ -30,7 +30,7 @@ export default function ProjectPage() {
                     Here are some of my projects that I have worked on.
                 </p>
                 <p className="text-center p-4">
-                Check out my <a href="https://github.com/JoKeRxTD" className="underline font-bold decoration-2 decoration-green-800 text-blue-500 dark:text-blue-800 font-bold">Github</a> for more projects.
+                Check out my <a href="https://github.com/JoKeRxTD" className="underline decoration-wavy decoration-2 decoration-green-800 text-blue-500 dark:text-blue-800 font-bold">Github</a> for more projects.
                 </p>
                 <ProjectsCard />
                 <Divider/>

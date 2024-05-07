@@ -32,9 +32,9 @@ export default function AboutPage() {
 								className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
 							/>
 						<p className="text-center text-gray-500 dark:text-gray-400">
-							I am 32 years old, Inspired <a className="underline font-bold decoration-2 decoration-sky-800">Full Stack Developer</a> from the <a className="underline font-bold decoration-2 decoration-red-800">United
+							I am 32 years old, Inspired <a className="underline decoration-wavy font-bold decoration-2 decoration-sky-800">Full Stack Developer</a> from the <a className="underline decoration-wavy font-bold decoration-2 decoration-red-800">United
 							Kingdom</a>, I started coding in 2015 my first project was a Discord
-							Bot Built with <a className="underline font-bold decoration-2 decoration-sky-800">Discord.JS</a>. I am a very friendly person and I love
+							Bot Built with <a className="underline decoration-wavy font-bold decoration-2 decoration-sky-800">Discord.JS</a>. I am a very friendly person and I love
 							to help people out with their coding problems. I am a very active
 							person and I love to play video games and watch movies in my spare
 							time.

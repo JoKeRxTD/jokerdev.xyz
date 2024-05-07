@@ -66,7 +66,7 @@ export default function Header() {
                 <div className="mt-7 flex flex-col gap-3">
                     <div className="flex flex-row items-center justify-center space-x-1">
                         <p className="p-1 text-gray-800 dark:text-gray-100">
-                            I am <a className="underline font-bold decoration-2 decoration-yellow-800">avaliable</a> for hire,&nbsp;
+                            I am <a className="underline decoration-wavy font-bold decoration-2 decoration-yellow-800">avaliable</a> for hire,&nbsp;
                             <Link href="/contact">
                                 <Code color="primary">Contact Me</Code>
                             </Link>
