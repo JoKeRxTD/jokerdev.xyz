@@ -199,6 +199,23 @@ export const TwitchIcon: React.FC<IconSvgProps> = ({
   );
 };
 
+export const JokerIcon: React.FC<IconSvgProps> = ({
+  size = 24,
+  width,
+  height,
+  ...props
+}) => {
+  return (
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+      <text
+        font-size={size}
+        fill="currentColor"
+        stroke="currentColor"
+      >JoKeR</text>
+    </svg>
+  );
+};
+
 export const GithubIcon: React.FC<IconSvgProps> = ({
   size = 24,
   width,
