@@ -17,7 +17,7 @@ import { ThemeSwitch } from "@/src/components/theme-switch";
 import { UserButton } from "@clerk/nextjs";
 import { OrganizationSwitcher } from "@clerk/nextjs";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem, Button, User, Skeleton, Divider, Link, Tooltip, Code } from "@nextui-org/react";
-import { ProfileIcon, AnalyticsIcon, LinesIcon } from "@/src/components/Icons";
+import { ProfileIcon, AnalyticsIcon, LinesIcon, PartnerIcon } from "@/src/components/Icons";
 
 
 
@@ -32,7 +32,11 @@ export default function Navbar() {
 	const icons = {
 		profile: <ProfileIcon className="text-primary" fill="currentColor" size={18} />,
 		analytics: <AnalyticsIcon className="text-warning" fill="currentColor" size={18} />,
-		dropdown: <LinesIcon className="text-primary" fill="currentColor" size={16} />
+		dropdown: <LinesIcon className="text-primary" fill="currentColor" size={16} />,
+		github: <FiGithub className="text-primary" fill="currentColor" size={18} />,
+        discord: <SiDiscord className="text-primary" fill="currentColor" size={18} />,
+        egghead: <SiEgghead className="text-primary" fill="currentColor" size={18} />,
+		partner: <PartnerIcon className="text-primary text-bold" fill="currentColor" size={24} />,
 	};
 	return (
 		<NextUINavbar maxWidth="lg" position="sticky" className="top-0 w-[100%] z-50 bg-white dark:bg-black/90 border-b border-gray-200 dark:border-gray-800">
@@ -40,6 +44,19 @@ export default function Navbar() {
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<Link className="flex justify-start items-center gap-1" href="/">
 						<p className="text-2xl font-bold text-primary-300">JoKeR</p>
+						{/* <Tooltip className="flex flex-col items-center text-center p-2 space-y-2 justify-center"
+								content={
+									<div className="flex flex-col items-center text-center p-2 space-y-2 justify-center border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+										<p className="text-sm font-bold text-success-300">Zap-Hosting</p>
+										<p className="text-sm font-normal text-default-600">You found an easter egg!</p>
+										<p className="text-sm font-normal text-default-600">Use code&nbsp;
+											<Link isExternal href="https://zap-hosting.com/joker">
+												<Code color="success">eqsource-10</Code>
+											</Link>
+											&nbsp;for 20% off!</p>
+									</div>
+								}>
+							</Tooltip> */}
 					</Link>
 				</NavbarBrand>
 					<ul className="hidden lg:flex gap-4 justify-start ml-2 text-bold text-xl">
@@ -58,7 +75,7 @@ export default function Navbar() {
 							</NavbarItem>
 						))}
 					</ul>
-					<Dropdown className="hidden lg:flex gap-4 justify-start ml-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+					<Dropdown className="sm:hidden lg:flex gap-4 justify-start ml-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
 						<NavbarItem>
 							<DropdownTrigger>
 								<Button
@@ -81,7 +98,7 @@ export default function Navbar() {
 							}}>
 							<DropdownItem
 								key="profile"
-								description="View and manage your data freely"
+								description='Tom "JoKeR" area to manage the site'
 								startContent={icons.profile}
 								onClick={() => {
 									window.location.href = "/user-profile";
@@ -96,6 +113,15 @@ export default function Navbar() {
 									window.location.href = "/analytics";
 								}}>
 								Analytics
+							</DropdownItem>
+							<DropdownItem
+								key="partners"
+								description="Our partners and sponsors."
+								startContent={icons.partner}
+								onClick={() => {
+									window.location.href = "/partners";
+								}}>
+								Partners
 							</DropdownItem>
 						</DropdownMenu>
 					</Dropdown>
@@ -144,25 +170,6 @@ export default function Navbar() {
 						</NavbarMenuItem>
 					))}
 				</div>
-				<Divider />
-				<NavbarMenuItem className="text-center justify-center">
-					<Tooltip className="flex flex-col items-center text-center p-2 space-y-2 justify-center"
-						content={
-							<div className="flex flex-col items-center text-center p-2 space-y-2 justify-center border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
-								<p className="text-sm font-bold text-success-300">Zap-Hosting</p>
-								<p className="text-sm font-normal text-default-600">You found an easter egg!</p>
-								<p className="text-sm font-normal text-default-600">Use code&nbsp;
-									<Link isExternal href="https://zap-hosting.com/joker">
-										<Code color="success">eqsource-10</Code>
-									</Link>
-									&nbsp;for 20% off!</p>
-							</div>
-						}>
-						<p className="sm:w-1vh sm:items-center sm:text-center sm:justify-center p-2 text-md lg:text-lg text-blue-600 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200">
-							<SiEgghead />
-						</p>
-					</Tooltip>
-				</NavbarMenuItem>
 			</NavbarMenu>
 		</NextUINavbar>
 	);
