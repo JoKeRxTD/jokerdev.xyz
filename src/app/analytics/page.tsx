@@ -10,7 +10,7 @@ import NotSignedIn from "@/src/components/NotSignedIn";
 export default async function Page() {
   const user = await currentUser();
   
-  if (!user) return <NotSignedIn/>;
+  // if (!user) return <NotSignedIn/>;
 
   const TRACKING_DAYS = 7
   const pageviews = await analytics.retrieveDays('pageview', TRACKING_DAYS)
@@ -70,10 +70,8 @@ const topCountries = Array.from(topCountriesMap.entries()).sort((a ,b) => {
   return (
   <Protect
       role="org:admin"
-      fallback={
-        <AccessDenied />
-      }
-    >
+      fallback={<AccessDenied />}
+      >
       <div className="w-full p-4 flex flex-col gap-4">
           <h1 className="text-center p-4">
             <p className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Analytics</p>
