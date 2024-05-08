@@ -22,12 +22,39 @@ export const metadata: Metadata = {
 		default: siteConfig.name,
 		template: `%s - ${siteConfig.name}`,
 	},
-	description: siteConfig.description,
-	icons: {
-		icon: "/joker_new.png",
-		shortcut: "/joker_new.png",
-		apple: "/joker_new.png",
+	openGraph: {
+		title: "jokerdev.xyz",
+		description: "This is the official website of JoKeR. Here you can find all the information about the projects, partners and the developer.",
+		url: "https://jokerdev.xyz",
+		siteName: "jokerdev.xyz",
+		images: [
+		{
+			url: "https://cdn.mythbot.org/img/dev_4p38wqnd.png",
+			width: 1920,
+			height: 1080,
+		},
+		],
+		locale: "en-US",
+		type: "website",
 	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+		  index: true,
+		  follow: true,
+		  "max-video-preview": -1,
+		  "max-image-preview": "large",
+		  "max-snippet": -1,
+		},
+	  },
+	  twitter: {
+		title: "Tom 'JoKeR'",
+		card: "summary_large_image",
+	  },
+	  icons: {
+		shortcut: "/joker_new.png",
+	  },
 };
 
 export default function RootLayout({
