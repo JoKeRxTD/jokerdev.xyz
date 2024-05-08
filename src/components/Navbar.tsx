@@ -42,22 +42,22 @@ export default function Navbar() {
 						<p className="text-2xl font-bold text-primary-300">JoKeR</p>
 					</Link>
 				</NavbarBrand>
-				<ul className="hidden lg:flex gap-4 justify-start ml-2 text-bold text-xl">
-					{siteConfig.navItems.map((item) => (
-						<NavbarItem key={item.href}>
-							<Link
-								className={clsx(
-									linkStyles({ color: "foreground" }),
-									"data-[active=true]:text-primary data-[active=true]:font-medium data-[active=true]:border-white data-[active=true]:border-b-2"
-								)}
-								color="foreground"
-								href={item.href}
-							>
-								{item.label}
-							</Link>
-						</NavbarItem>
-					))}
-				</ul>
+					<ul className="hidden lg:flex gap-4 justify-start ml-2 text-bold text-xl">
+						{siteConfig.navItems.map((item) => (
+							<NavbarItem key={item.href}>
+								<Link
+									className={clsx(
+										linkStyles({ color: "foreground" }),
+										"data-[active=true]:text-primary data-[active=true]:font-medium data-[active=true]:border-white data-[active=true]:border-b-2"
+									)}
+									color="foreground"
+									href={item.href}
+								>
+									{item.label}
+								</Link>
+							</NavbarItem>
+						))}
+					</ul>
 					<Dropdown className="hidden lg:flex gap-4 justify-start ml-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
 						<NavbarItem>
 							<DropdownTrigger>
@@ -83,17 +83,15 @@ export default function Navbar() {
 								key="profile"
 								description="View and manage your data freely"
 								startContent={icons.profile}
-								// href="/user-profile"
 								onClick={() => {
 									window.location.href = "/user-profile";
 								}}>
-								Profile
+								Dashboard
 							</DropdownItem>
 							<DropdownItem
 								key="analytics"
 								description="Real-time Analytics for your app."
 								startContent={icons.analytics}
-								// href="/analytics"
 								onClick={() => {
 									window.location.href = "/analytics";
 								}}>
@@ -102,7 +100,6 @@ export default function Navbar() {
 						</DropdownMenu>
 					</Dropdown>
 			</NavbarContent>
-
 			<NavbarContent
 				className="hidden sm:flex basis-1/5 sm:basis-full"
 				justify="end">
