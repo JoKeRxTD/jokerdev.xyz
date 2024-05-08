@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-	name: "JoKeR",
+	name: 'Tom "JoKeR"',
 	description: "This is the official website of JoKeR. Here you can find all the information about the projects, partners and the developer.",
 	lang: "en",
 	locale: "en_GB",
@@ -16,10 +16,6 @@ export const siteConfig = {
 		{
 			label: "Projects",
 			href: "/projects",
-		},
-		{
-			label: "Partners",
-			href: "/partners",
 		},
 		{
 			label: "About",
@@ -60,14 +56,14 @@ export const siteConfig = {
 			label: "Contact",
 			href: "/contact",
 		},
-		// {
-		// 	label: "Analytics",
-		// 	href: "/analytics",
-		// },
-		// {
-		// 	label: "Profile",
-		// 	href: "/user-profile",
-		// },
+		{
+			label: "Analytics",
+			href: "/analytics",
+		},
+		{
+			label: "Dashboard",
+			href: "/user-profile",
+		},
 	],
 	links: {
 		github: "https://github.com/JoKeRxTD",
