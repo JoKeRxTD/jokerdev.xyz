@@ -23,16 +23,16 @@ export const metadata: Metadata = {
 		template: `%s - ${siteConfig.name}`,
 	},
 	openGraph: {
-		title: "Tom 'JoKeR'",
-		description: "This is the official website of JoKeR. Here you can find all the information about the projects, partners and the developer.",
-		url: "https://jokerdev.xyz",
-		siteName: "Tom 'JoKeR'",
+		title: `${siteConfig.name}`,
+		description: `${siteConfig.description}`,
+		url: `${siteConfig.url}`,
+		siteName: `${siteConfig.name}`,
 		images: [
-		{
-			url: "https://i.imgur.com/ajmsHR5.jpeg",
-			width: 1920,
-			height: 1080,
-		},
+			{
+				url: `${siteConfig.ogImg}`,
+				width: 1920,
+				height: 1080,
+			},
 		],
 		locale: "en-US",
 		type: "website",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 		},
 	  },
 	  twitter: {
-		title: "Tom 'JoKeR'",
+		title: `${siteConfig.name}`,
 		card: "summary_large_image",
 	  },
 	  icons: {
