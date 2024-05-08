@@ -40,7 +40,7 @@ export default function Header() {
     return (
         <section className={`relative flex flex-col items-center justify-center h-[450px] w-full overflow-hidden ${borderColors[index]}`}
         style={{ transition: "opacity 0.5s ease-in-out" }}>
-            {/* <BackgroundBeams /> */}
+            <BackgroundBeams />
                 <div>
                     <div className="text-gray-800 dark:text-gray-100">
                         Hi, I&apos;m
