@@ -20,7 +20,7 @@ const Badge = ({ percentage }: { percentage: number }) => {
   if (isNaN(percentage)) return null
 
   const positiveClassname = 'bg-green-900/25 text-green-400 ring-green-400/25 dark:bg-green-900/25 dark:text-green-400 dark:ring-green-400/25'
-  const neutralClassname = 'bg-zinc-900/25 text-zinc-400 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25'
+  const neutralClassname = 'bg-orange-900/25 text-orange-400 ring-orange-400/25 dark:bg-orange-900/25 dark:text-orange-400 dark:ring-orange-400/25'
   const negativeClassname = 'bg-red-900/25 text-red-400 ring-red-400/25 dark:bg-red-900/25 dark:text-red-400 dark:ring-red-400/25'
 
   return (
@@ -38,11 +38,6 @@ const Badge = ({ percentage }: { percentage: number }) => {
       {percentage.toFixed(0)}%
     </span>
   )
-}
-
-const CustomDate = ({ date }: { date: string }) => {
-  const d = new Date(date)
-  return <p>{d.toDateString()}</p>
 }
 
 const AnalyticsDashboard = ({
