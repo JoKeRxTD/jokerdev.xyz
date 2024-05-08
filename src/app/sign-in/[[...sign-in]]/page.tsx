@@ -41,27 +41,27 @@ export default function SignInPage() {
           </Clerk.Field>
           {/* clerk login provider (discord, github, twitch) */}
           <div className="grid grid-cols-3 gap-1">
-          <Clerk.Loading scope="provider:discord">
-            {(isLoading) => (
-                <Clerk.Connection name="discord" disabled={isLoading}>
-                        {isLoading ? " " : <div className="grid p-1 place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"><DiscordIcon className='text-[#7289da]'/></div>}
-                </Clerk.Connection>
-                  )}
-          </Clerk.Loading>
-          <Clerk.Loading scope="provider:github">
-            {(isLoading) => (
-                <Clerk.Connection name="github" disabled={isLoading}>
-                        {isLoading ? " " : <div className="grid p-1 place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"><GithubIcon className='text-[#2b3137] dark:text-[#fafbfc]'/></div>}
-                </Clerk.Connection>
-                  )}
-          </Clerk.Loading>
-          <Clerk.Loading scope="provider:twitch">
-            {(isLoading) => (
-                <Clerk.Connection name="twitch" disabled={isLoading}>
-                        {isLoading ? " " : <div className="grid p-1 place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"><TwitchIcon className='text-[#6441a4]'/></div>}
-                </Clerk.Connection>
-                  )}
-          </Clerk.Loading>
+            <Clerk.Loading scope="provider:discord">
+              {(isLoading) => (
+                  <Clerk.Connection name="discord" disabled={isLoading}>
+                          {isLoading ? " " : <div className="grid p-1 place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"><DiscordIcon className='text-[#7289da]'/></div>}
+                  </Clerk.Connection>
+                    )}
+            </Clerk.Loading>
+            <Clerk.Loading scope="provider:github">
+              {(isLoading) => (
+                  <Clerk.Connection name="github" disabled={isLoading}>
+                          {isLoading ? " " : <div className="grid p-1 place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"><GithubIcon className='text-[#2b3137] dark:text-[#fafbfc]'/></div>}
+                  </Clerk.Connection>
+                    )}
+            </Clerk.Loading>
+            <Clerk.Loading scope="provider:twitch">
+              {(isLoading) => (
+                  <Clerk.Connection name="twitch" disabled={isLoading}>
+                          {isLoading ? " " : <div className="grid p-1 place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"><TwitchIcon className='text-[#6441a4]'/></div>}
+                  </Clerk.Connection>
+                    )}
+            </Clerk.Loading>
           </div>
           <div className="grid place-items-center">
             <SignIn.Action
