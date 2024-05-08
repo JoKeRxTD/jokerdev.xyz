@@ -23,13 +23,13 @@ export const metadata: Metadata = {
 		template: `%s - ${siteConfig.name}`,
 	},
 	openGraph: {
-		title: "jokerdev.xyz",
+		title: "Tom 'JoKeR'",
 		description: "This is the official website of JoKeR. Here you can find all the information about the projects, partners and the developer.",
 		url: "https://jokerdev.xyz",
-		siteName: "jokerdev.xyz",
+		siteName: "Tom 'JoKeR'",
 		images: [
 		{
-			url: "https://cdn.mythbot.org/img/dev_4p38wqnd.png",
+			url: "https://i.imgur.com/ajmsHR5.jpeg",
 			width: 1920,
 			height: 1080,
 		},
