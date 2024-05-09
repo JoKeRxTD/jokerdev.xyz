@@ -1,7 +1,7 @@
 import "@/src/styles/globals.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
+// import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import Navbar from "@/src/components/Navbar";
 import Footer from "@/src/components/Footer";
@@ -9,6 +9,9 @@ import clsx from "clsx";
 import type { Viewport } from 'next';
 import { ClerkProvider } from '@clerk/nextjs'
 import { dark } from '@clerk/themes';
+import { Inter as FontSans } from "next/font/google"
+
+import { cn } from "../utils/cn";
 
 export const viewport: Viewport = { 
 	themeColor: [
@@ -16,6 +19,11 @@ export const viewport: Viewport = {
 		{ media: '(prefers-color-scheme: dark)', color: 'black' },
 	],
 }
+
+const fontSans = FontSans({
+	subsets: ["latin"],
+	variable: "--font-sans",
+  })
 
 export const metadata: Metadata = {
 	title: {
@@ -70,9 +78,9 @@ export default function RootLayout({
 		>
 			<html lang="en" suppressHydrationWarning>
 				<body
-					className={clsx(
-						"backdrop-blur-md dark:bg-black dark:text-white bg-white text-black font-sans",
-						fontSans
+					className={cn(
+						"min-h-screen bg-background font-sans antialiased",
+						fontSans.variable
 					)}
 				>
 					<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>

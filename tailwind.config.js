@@ -1,5 +1,5 @@
 import {nextui} from '@nextui-org/theme'
-
+const { fontFamily } = require("tailwindcss/defaultTheme")
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 const colors = require("tailwindcss/colors");
@@ -103,6 +103,9 @@ module.exports = {
           "tremor-default": ["0.875rem", { lineHeight: "1.25rem" }],
           "tremor-title": ["1.125rem", { lineHeight: "1.75rem" }],
           "tremor-metric": ["1.875rem", { lineHeight: "2.25rem" }],
+        },
+        fontFamily: {
+          sans: ["var(--font-sans)", ...fontFamily.sans],
         },
       },
     },
