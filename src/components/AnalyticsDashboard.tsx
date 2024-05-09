@@ -1,9 +1,9 @@
 'use client'
-
 import { analytics } from '@/src/utils/analytics'
-import { BarChart, Card } from '@tremor/react'
+import { BarChart, Card, AreaChart, BarList } from '@tremor/react'
 import { ArrowDownRight, ArrowRight, ArrowUpRight } from 'lucide-react'
 import ReactCountryFlag from 'react-country-flag'
+import { Divider } from "@nextui-org/react";
 
 interface AnalyticsDashboardProps {
   avgVisitorsPerDay: string
@@ -71,7 +71,7 @@ const AnalyticsDashboard = ({
           </p>
         </Card>
       </div>
-
+      <Divider/>
       <Card className='flex flex-col sm:grid grid-cols-4 gap-6 text-center justify-center items-center border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
         <h2 className='w-full text-[#222222] dark:text-[#b4b3b3] text-center sm:left-left font-semibold text-lg'>
           This weeks top visitors:
@@ -88,7 +88,6 @@ const AnalyticsDashboard = ({
                   svg
                   countryCode={countryCode}
                 />
-
                 <p className='text-[#222222] dark:text-[#fafafa]'>
                   {number}
                 </p>
@@ -97,12 +96,31 @@ const AnalyticsDashboard = ({
           })}
         </div>
       </Card>
+      <Divider/>
+      {/* <Card className='w-full border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/3'>      
+      {timeseriesPageviews ? (
+          <AreaChart
+            allowDecimals={false}
+              colors={['zinc-800', 'zinc-500']}
+              showAnimation
+              data={timeseriesPageviews.map((day) => ({
+                name: day.date,
+                Visitors: day.events.reduce((acc, curr) => {
+                  return acc + Object.values(curr)[0]!
+                }, 0),
+              }))}
+              categories={['Visitors']}
+              index='name'
+            />
+          ) : null}
 
+      </Card>
+      <Divider/> */}
       <Card className='w-full border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
         {timeseriesPageviews ? (
           <BarChart
             allowDecimals={false}
-            colors={['zinc-800', 'zinc-500']}
+            colors={['zinc-800']}
             showAnimation
             data={timeseriesPageviews.map((day) => ({
               name: day.date,
@@ -113,10 +131,16 @@ const AnalyticsDashboard = ({
             categories={['Visitors']}
             index='name'
           />
+          
         ) : null}
       </Card>
+      <Divider/>
     </div>
   )
 }
 
+export type { AnalyticsDashboardProps }
+
 export default AnalyticsDashboard
+
+
