@@ -50,7 +50,6 @@ export default function Error({
               >
                 <span className="text-default-600">Return to the light</span>
               </button>
-
             </div>
           </section>
     </motion.div>
