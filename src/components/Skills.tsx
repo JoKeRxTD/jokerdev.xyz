@@ -30,9 +30,9 @@ export default function Skills() {
 
     return (
         <div className="block flex-wrap justify-center items-center p-1 gap-2 text-[#161616] dark:text-[#fafafa]">
-            <h2 className="text-center p-1">
-                <Code color="primary" className="">Skills</Code>
-            </h2>
+            <h1 className="text-center p-4">
+          <p className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Skills</p>
+        </h1>
             <p className="text-center pb-8">
                 Here are some of my skills that I have learned.
             </p>
@@ -42,7 +42,7 @@ export default function Skills() {
                         key={index}
                         content={tag.label}
                         color={tag.color as any}
-                        className='z-11 border  rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border'
+                        className='z-11 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border'
                     >
                         <Button
                             key={index}
