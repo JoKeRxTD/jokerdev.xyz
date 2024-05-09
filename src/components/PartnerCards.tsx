@@ -11,6 +11,7 @@ interface LinkButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 interface PartnerCard {
+    id: string;
     title: string;
     description: string;
     image: string;
@@ -23,6 +24,7 @@ interface PartnerCard {
 
 const PartnerCards: PartnerCard[] = [
     {
+        id: "zaphosting",
         title: "Zap-Hosting",
         description: "Zap-Hosting is a hosting company that offers a wide range of products.",
         image: "/zap-hosting.png",
@@ -39,6 +41,7 @@ const PartnerCards: PartnerCard[] = [
         ]
     },
     {
+        id: "wolfshield",
         title: "WolfSheild [AC]",
         description: "Wolfshield is an Anti-Cheat made for FiveM Servers and is made by Xtelfou.",
         image: "/wolf_shield.png",
@@ -55,6 +58,7 @@ const PartnerCards: PartnerCard[] = [
         ]
     },
     {
+        id: "jokerdev",
         title: "Partnership/Sponsor",
         description: "If you want to partner with me or sponsor me, feel free to contact me.",
         image: "/joker.jpg",
@@ -70,6 +74,20 @@ const PartnerCards: PartnerCard[] = [
 
 export default function PartnerCard() {
     const [show, setShow] = useState(false);
+    const [border, setBorder] = useState(false);
+
+    // set border based on id
+    const borderStyle = (id: string) => {
+        if (id === "zaphosting") {
+            return "border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30";
+        } else if (id === "wolfshield") {
+            return "border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30";
+        } else if (id === "jokerdev") {
+            return "border rounded-xl border-blue-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-blue-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30";
+        } else {
+            return "border-gray-300";
+        }
+    };
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 flex-wrap w-full gap-4 p-4 justify-center">
@@ -77,7 +95,7 @@ export default function PartnerCard() {
                 <Card
                     key={PartnerCard.title}
                     shadow="md"
-                    className="max-w-sm w-full sm:w-1/2 lg:w-full justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+                    className={borderStyle(PartnerCard.id)}
                 >
                    <CardHeader className="text-center justify-center items-center text-2xl text-primary-300 font-bold">
                         <h2 className="items-center text-center">{PartnerCard.title}</h2>
