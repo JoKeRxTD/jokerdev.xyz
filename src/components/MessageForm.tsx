@@ -66,7 +66,7 @@ const MessageForm = () => {
           </p>
           <h1 className="font-bold text-sm dark:text-slate-500 mb-1">Name / Discord</h1>
           <Input
-            placeholder="Tom / JoKeRxTD"
+            placeholder="Tom / JoKeR"
             type="text"
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className="w-full p-2 mb-2 rounded-sm  text-sm placeholder:text-gray-600 dark:placeholder:text-slate-200/20"
