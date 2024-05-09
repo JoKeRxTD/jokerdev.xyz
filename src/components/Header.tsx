@@ -56,12 +56,7 @@ export default function Header() {
                     className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                     />
                 <div className="text-gray-800 dark:text-gray-100 p-4 gap-1">
-                        I am a passionate 
-                    <Code color="primary" className="text-center font-bold">Fullstack Developer</Code> 
-                        and 
-                    <Code color="primary" className="text-center font-bold">Discord Bot Developer</Code> 
-                        from 
-                    <Code color="primary" className="text-center font-bold">EU/UK</Code>.
+                        I am a passionate self taught <Code color="primary" size="sm" className="text-center font-bold">Fullstack Developer</Code> Web Developer & <Code color="primary" size="sm" className="text-center font-bold">Discord Bot Developer</Code> from <Code color="primary" size="sm" className="text-center font-bold">EU/UK</Code>.
                 </div>
                 <div className="mt-7 flex flex-col gap-3">
                     <div className="flex flex-row items-center justify-center space-x-1">
@@ -73,7 +68,6 @@ export default function Header() {
                             &nbsp;for more info.
                         </p>
                     </div>
-
                     <SupportCard />
                 </div>
             </section>
