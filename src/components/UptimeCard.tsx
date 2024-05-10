@@ -21,7 +21,7 @@ function formatUrl(url: string) {
 }
 
 export const UptimeCard = () => {
-    const url = "www.jokerdev.xyz";
+    const url = "jokerdev.xyz";
     const { dailyStatusData, monthlyAverage, isOperational } = useStatusData({
         url,
     });
