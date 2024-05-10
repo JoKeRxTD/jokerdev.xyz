@@ -28,10 +28,6 @@ type MonthlyStatusDataType = {
   status: StatusType;
 };
 
-interface MonthlyStatusDataTypes {
-  [key: string]: any;
-}
-
 export function useStatusData({ url }: { url: string }) {
   const [dailyStatusData, setDailyStatusData] = useState<DailyStatusDataType[]>(
     []
@@ -186,7 +182,6 @@ export function useStatusData({ url }: { url: string }) {
     const path = `$.${endTime}`;
 
     const result = await redis.json.get(`daily_status_json:${url}`, path);
-    if (!result) return;
 
     const newMonthlyAverageData = monthlyAverage.slice(0, -1);
 
@@ -214,18 +209,18 @@ export function useStatusData({ url }: { url: string }) {
   
     const path = `$`;
   
-    const result: MonthlyStatusDataTypes[] | null = await redis.json.get(`daily_status_json:${url}`, path);
+    const result = await redis.json.get(`daily_status_json:${url}`, path);
   
-    const newMonthlyData: MonthlyStatusDataType[] = result ? Object.keys(result[0] || {}).map(
+    const newMonthlyData: MonthlyStatusDataType[] = result ? Object.keys(result).map(
       (key) => {
         console.log(key, today);
         return {
           time: key,
           pv: 2400,
-          avg_ping: result && result[0] && result[0][key]? result[0][key].avg_ping ?? 0 : 0,
-          totalCheck: result && result[0] && result[0][key]? result[0][key].totalCheck?? 0 : 0,
-          successfulCheck: result && result[0] && result[0][key]? result[0][key].successfulCheck?? 0 : 0,
-          status: result && result[0] && result[0][key]? result[0][key].status?? "missing" : "missing",
+          avg_ping: (result as MonthlyStatusDataType).avg_ping,
+          totalCheck: (result as MonthlyStatusDataType).totalCheck,
+          successfulCheck: (result as MonthlyStatusDataType).successfulCheck,
+          status: (result as MonthlyStatusDataType).status,
         };
       }
     ) : [];
