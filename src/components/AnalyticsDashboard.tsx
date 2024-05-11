@@ -97,25 +97,6 @@ const AnalyticsDashboard = ({
         </div>
       </Card>
       <Divider/>
-      {/* <Card className='w-full border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/3'>      
-      {timeseriesPageviews ? (
-          <AreaChart
-            allowDecimals={false}
-              colors={['zinc-800', 'zinc-500']}
-              showAnimation
-              data={timeseriesPageviews.map((day) => ({
-                name: day.date,
-                Visitors: day.events.reduce((acc, curr) => {
-                  return acc + Object.values(curr)[0]!
-                }, 0),
-              }))}
-              categories={['Visitors']}
-              index='name'
-            />
-          ) : null}
-
-      </Card>
-      <Divider/> */}
       <Card className='w-full border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
         {timeseriesPageviews ? (
           <BarChart
@@ -138,8 +119,6 @@ const AnalyticsDashboard = ({
     </div>
   )
 }
-
-export type { AnalyticsDashboardProps }
 
 export default AnalyticsDashboard
 
