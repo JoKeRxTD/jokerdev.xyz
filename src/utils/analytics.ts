@@ -1,10 +1,8 @@
-import { RedisClient }  from '../lib/redis-client'
+import { RedisClient } from '@/src/lib/redis'
 import { getDate } from '@/src/utils'
 import { parse } from 'date-fns'
 
-const redis = RedisClient()
-
-// export const revalidate = 0; // disable cache
+const redis = RedisClient();
 
 type AnalyticsArgs = {
   retention?: number

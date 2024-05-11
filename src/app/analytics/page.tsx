@@ -6,7 +6,6 @@ import { UserButton } from "@clerk/nextjs";
 import { Protect } from "@clerk/nextjs";
 import AccessDenied from '@/src/components/AccessDenied'
 import NotSignedIn from "@/src/components/NotSignedIn";
-import { UptimeCard } from "@/src/components/UptimeCard";
 
 export default async function Page() {
   const user = await currentUser();
@@ -89,7 +88,6 @@ const topCountries = Array.from(topCountriesMap.entries()).sort((a ,b) => {
           timeseriesPageviews={pageviews}
           topCountries={topCountries}
         />
-        <UptimeCard/>
     </div>
   </Protect>
   )
