@@ -1,4 +1,3 @@
-'use client'
 import { Tooltip, Button } from "@nextui-org/react";
 import { useState } from "react";
 import { Code } from "@nextui-org/react";
