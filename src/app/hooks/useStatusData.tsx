@@ -222,10 +222,10 @@ export function useStatusData({ url }: { url: string }) {
         return {
           time: key,
           pv: 2400,
-          avg_ping: result && result[0] && result[0][key]? result[0][key].avg_ping ?? 0 : 0,
-          totalCheck: result && result[0] && result[0][key]? result[0][key].totalCheck?? 0 : 0,
-          successfulCheck: result && result[0] && result[0][key]? result[0][key].successfulCheck?? 0 : 0,
-          status: result && result[0] && result[0][key]? result[0][key].status?? "missing" : "missing",
+          avg_ping: result[0][key].avg_ping,
+          totalCheck: result[0][key].totalCheck,
+          successfulCheck: result[0][key].successfulCheck,
+          status: result[0][key].status,
         };
       }
     ) : [];
