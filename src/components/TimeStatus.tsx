@@ -24,7 +24,7 @@ const TimeStatus = () => {
             <p className="flex flex-wrap items-center justify-center text-black/80 dark:text-[#fafafa] text-center text-xs">
                 It&apos;s currently <span className="font-semibold text-black dark:text-white"><Code color="danger" size="sm" className="text-xs">{time}</Code></span> for me, so I&apos;m
                 probably{" "}
-                <span className="font-semibold text-black dark:text-white text-xs"><Code color="danger" size="sm" className="text-xs">{awake ? "Awake" : "Sleeping"}</Code></span> I&apos;ll get back to you soon.
+                <p className="font-semibold text-black dark:text-white text-xs"><Code color="danger" size="sm" className="text-xs">{awake ? "Awake" : "Sleeping"}</Code></p> I&apos;ll get back to you soon.
             </p>
         </div>
     );
