@@ -104,7 +104,7 @@ export default function Navbar() {
 						</DropdownItem>
 						<DropdownItem
 							key="partners"
-							description="Our partners and sponsors."
+							description="My partners and sponsors."
 							startContent={icons.partner}
 							onClick={() => {
 								window.location.href = "/partners";
@@ -114,15 +114,12 @@ export default function Navbar() {
 					</DropdownMenu>
 				</Dropdown>
 			</NavbarContent>
-				<NavbarContent>
-					<NavbarItem className="hidden sm:flex gap-2 left-50">
-						<DiscordWidget />
-					</NavbarItem>
-                </NavbarContent>
 			<NavbarContent
 				className="hidden sm:flex basis-1/5 sm:basis-full"
 				justify="end">
 				<NavbarItem className="hidden sm:flex gap-2">
+					<Skeleton className="hidden sm:flex" isLoaded={false} />
+					<DiscordWidget />
 					<Link isExternal href={siteConfig.links.discord} aria-label="Discord">
 						{icons.discord}
 					</Link>
@@ -130,10 +127,8 @@ export default function Navbar() {
 						{icons.github}
 					</Link>
 					<ThemeSwitch />
+					<UserButton />
 				</NavbarItem>
-				<Skeleton className="hidden sm:flex" isLoaded={false} />
-				{/* <OrganizationSwitcher />
-				<UserButton /> */}
 			</NavbarContent>
 
 			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
