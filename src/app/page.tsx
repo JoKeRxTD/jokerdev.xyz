@@ -18,7 +18,7 @@ const Home = () => {
 				className="w-full h-full">
 				<div className="text-center items-center justify-center py-1 space-y-1 md:space-y-1">
 					<Header />
-					<Spotify/>
+					{/* <Spotify/> */}
 					<Divider/>
 					<Skills />
 					<Divider/>
