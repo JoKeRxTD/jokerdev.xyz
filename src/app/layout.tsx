@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 import { Providers } from "./providers";
 import Navbar from "@/src/components/Navbar";
 import Footer from "@/src/components/Footer";
-import clsx from "clsx"; 
+import clsx from "clsx";
 import type { Viewport } from 'next';
 import { ClerkProvider } from '@clerk/nextjs'
 import { dark } from '@clerk/themes';
@@ -13,7 +13,7 @@ import { Inter as FontSans } from "next/font/google"
 
 import { cn } from "../utils/cn";
 
-export const viewport: Viewport = { 
+export const viewport: Viewport = {
 	themeColor: [
 		{ media: '(prefers-color-scheme: light)', color: 'white' },
 		{ media: '(prefers-color-scheme: dark)', color: 'black' },
@@ -23,7 +23,7 @@ export const viewport: Viewport = {
 const fontSans = FontSans({
 	subsets: ["latin"],
 	variable: "--font-sans",
-  })
+})
 
 export const metadata: Metadata = {
 	title: {
@@ -49,21 +49,22 @@ export const metadata: Metadata = {
 		index: true,
 		follow: true,
 		googleBot: {
-		  index: true,
-		  follow: true,
-		  "max-video-preview": -1,
-		  "max-image-preview": "large",
-		  "max-snippet": -1,
+			index: true,
+			follow: true,
+			"max-video-preview": -1,
+			"max-image-preview": "large",
+			"max-snippet": -1,
 		},
-	  },
-	  twitter: {
+	},
+	twitter: {
 		title: `${siteConfig.name}`,
 		card: "summary_large_image",
-	  },
-	  icons: {
+	},
+	icons: {
 		shortcut: "/joker_new.png",
-	  },
+	},
 };
+
 
 export default function RootLayout({
 	children,
@@ -71,15 +72,14 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<ClerkProvider 
-		appearance={{
-			baseTheme: dark
-		}}
-		>
+		<ClerkProvider
+			appearance={{
+				baseTheme: dark
+			}}>
 			<html lang="en" suppressHydrationWarning>
 				<body
 					className={cn(
-						"min-h-screen bg-background font-sans antialiased",
+						"min-h-screen bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 transition-colors duration-200 ease-in-out",
 						fontSans.variable
 					)}
 				>
