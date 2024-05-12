@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 
 
 
-const stats = "https://api.github-star-counter.workers.dev/user/jokerxtd"
+const stats = "https://api.github-star-counter.workers.dev/user/jokerxtd" // {"stars":12,"forks":4}
 const repos = "https://api.github.com/users/jokerxtd/repos?type=owner&per_page=100"
 
 const Languages = {
@@ -53,26 +53,29 @@ function GithubAPI() {
     //  get all public repo data from my github
     queryFn: async () => {
       const { data } = await axios.get(repos)
-      // Filter repos with 1 or more forks and stars
-      const filteredRepos = data.filter((repo: any) => repo.forks_count >= 1 || repo.stargazers_count >= 1)
-      return filteredRepos
+      // Filter repos if private do not display
+      const filteredRepos = data.filter((repo: any) => repo.private == false || repo.stargazers_count >= 1)
+      //display in star rating order 
+      const sortedRepositories = filteredRepos.sort((a: any, b: any) => b.stargazers_count - a.stargazers_count)
+      // do not display more than 8 repositories
+      const limitedRepositories = sortedRepositories.slice(0, 8)
+
+      return limitedRepositories
     },
   })
 
-  if (errorRepos) return 'An error has occurred: ' + errorRepos.message
+  // if (errorRepos) return 'An error has occurred: ' + errorRepos.message
 
   return (
     <div className='flex flex-wrap w-full gap-4 p-4 justify-center'>
       <div className='flex flex-col items-center justify-center gap-2 text-center'>
-        <h1 className="text-center p-4">
-          <p className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Github Repositories</p>
-        </h1>
-        <p className="text-center p-4">
+        <div className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Github Repositories</div>
+        <div className="text-center p-4">
           Here are some of my public github repositories<br/>You can use these to build your own applications from just like this <a className="font-bold decoration-wavy decoration-2 underline decoration-sky-800" href="/">website</a>.
-        </p>
-        <p className="text-center p-4">
+        </div>
+        <div className="text-center p-4">
           Check out my <a href="https://github.com/JoKeRxTD" className="underline decoration-wavy decoration-2 decoration-green-800 font-bold">Github</a> for more projects.
-        </p>
+        </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 flex-wrap w-full gap-4 p-4 justify-center ">
         {reposData?.map((repo: any) => (
@@ -81,9 +84,9 @@ function GithubAPI() {
               <h2 className="items-center text-center">{repo.name}</h2>
             </CardHeader>
             <CardBody className="flex flex-wrap items-center text-center space-y-2 p-1 justify-between">
-              <p>{repo.description}</p>
+              <div>{repo.description}</div>
               {repo.language && (
-                <p>
+                <div>
                   <motion.div
                     className="w-3 h-3 rounded-full mr-1"
                     style={{ background: `${Languages}`, border: `solid 3px ${Languages}` }}
@@ -92,14 +95,13 @@ function GithubAPI() {
                   <Code key={repo.language} color="primary" className="mx-1">
                     {repo.language.toString()}
                   </Code>
-                </p>
+                </div>
               )}
             </CardBody>
-            <CardFooter className="flex flex-row items-center text-center justify-center gap-2">
+            <CardFooter className="grid flex-row items-center text-center justify-center gap-2">
               <div className="flex flex-row items-center text-center justify-center gap-2 text-base">
-                {/* open github url in a new tab/window */}
                 <Code color="default" onClick={() => window.open(repo.html_url, "_blank")} className="flex flex-row items-center text-center justify-center gap-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30 cursor-pointer">
-                  <GithubIcon />
+                  <GithubIcon className='text-gray-800 dark:text-gray-100' />
                 </Code>
                 <Code color="default" className="flex flex-row items-center text-center justify-center gap-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
                   {repo.stargazers_count}<Stars className='text-yellow-500' />
@@ -111,6 +113,9 @@ function GithubAPI() {
                   {repo.open_issues}<OpenIssues className='text-orange-600' />
                 </Code>
               </div>
+                <Code color='default' className="text-center font-extrabold items-center justify-center text-blue-500 p-1 border border-zinc-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-zinc-200 lg:dark:bg-zinc-800/30">
+                  Last Updated: {new Date(repo.updated_at).toLocaleDateString()}
+                </Code>
             </CardFooter>
           </Card>
         ))}
