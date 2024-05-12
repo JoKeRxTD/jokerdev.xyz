@@ -6,7 +6,7 @@ import Skills from "@/src/components/Skills"
 // import DiscordWidget from "@/src/components/DiscordWidget"
 import { motion } from "framer-motion";
 import Github  from "@/src/components/Github";
-
+import Spotify from "@/src/components/Spotify";
 const Home = () => {
 	return (
 		<ScrollShadow hideScrollBar className="w-full h-full">
@@ -18,6 +18,7 @@ const Home = () => {
 				className="w-full h-full">
 				<div className="text-center items-center justify-center py-1 space-y-1 md:space-y-1">
 					<Header />
+					<Spotify/>
 					<Divider/>
 					<Skills />
 					<Divider/>
