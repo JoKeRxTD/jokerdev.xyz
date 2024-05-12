@@ -6,6 +6,7 @@ import React from "react";
 import { useState } from "react";
 import SupportCard from "@/src/components/SupportCard";
 import {BackgroundBeams} from "@/src/components/Header-BG";
+import Spotify from "@/src/components/Spotify";
 
 export default function Header() {
     const [index, setIndex] = useState<number>(0);
@@ -42,6 +43,7 @@ export default function Header() {
                         </p>
                     </div>
                     <SupportCard />
+                    <Spotify/>
                 </div>
             </section>
     )
