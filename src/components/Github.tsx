@@ -53,44 +53,46 @@ function GithubAPI() {
     //  get all public repo data from my github
     queryFn: async () => {
       const { data } = await axios.get(repos)
-      // Filter repos if private do not display
-      const filteredRepos = data.filter((repo: any) => repo.private == false || repo.stargazers_count >= 1)
+      // Filter repos if private do not display if last edit is more than 1 year ago do not display
+      const filteredRepos = data.filter((repo: any) => !repo.fork == false && new Date(repo.updated_at) > new Date(new Date().setFullYear(new Date().getFullYear() - 1)) || repo.stargazers_count >= 1)
+      // if last ed
       //display in star rating order 
       const sortedRepositories = filteredRepos.sort((a: any, b: any) => b.stargazers_count - a.stargazers_count)
-      // do not display more than 8 repositories
-      const limitedRepositories = sortedRepositories.slice(0, 8)
+      // do not display more than 9 repositories
+      const limitedRepositories = sortedRepositories.slice(0, 9)
 
       return limitedRepositories
     },
   })
 
-  // if (errorRepos) return 'An error has occurred: ' + errorRepos.message
+  if (errorRepos) return 'An error has occurred: ' + errorRepos.message
 
   return (
+
     <div className='flex flex-wrap w-full gap-4 p-4 justify-center'>
+      {/* <motion.div
+        className="w-3 h-3 rounded-full mr-1"
+        style={{ background: `${Languages}`, border: `solid 3px ${Languages}` }}
+      /> */}
       <div className='flex flex-col items-center justify-center gap-2 text-center'>
         <div className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Github Repositories</div>
         <div className="text-center p-4">
-          Here are some of my public github repositories<br/>You can use these to build your own applications from just like this <a className="font-bold decoration-wavy decoration-2 underline decoration-sky-800" href="/">website</a>.
+          Here are some of my public github repositories<br />You can use these to build your own applications from just like this <a className="font-bold decoration-wavy decoration-2 underline decoration-sky-800" href="/">website</a>.
         </div>
         <div className="text-center p-4">
           Check out my <a href="https://github.com/JoKeRxTD" className="underline decoration-wavy decoration-2 decoration-green-800 font-bold">Github</a> for more projects.
         </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 flex-wrap w-full gap-4 p-4 justify-center ">
+      <div className="grid grid-cols-1 lg:grid-cols-3 flex-wrap w-full gap-2 p-2 justify-center ">
         {reposData?.map((repo: any) => (
-          <Card key={repo.stargazers_count} className='max-w-sm w-full sm:w-1/2 lg:w-full justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
+          <Card key={repo.id} className='max-w-sm w-full sm:w-1/2 lg:w-full justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
             <CardHeader className="text-center justify-center items-center text-2xl text-primary-300 font-bold">
               <h2 className="items-center text-center">{repo.name}</h2>
             </CardHeader>
             <CardBody className="flex flex-wrap items-center text-center space-y-2 p-1 justify-between">
-              <div>{repo.description}</div>
+              <p className='text-small'>{repo.description}</p>
               {repo.language && (
                 <div>
-                  <motion.div
-                    className="w-3 h-3 rounded-full mr-1"
-                    style={{ background: `${Languages}`, border: `solid 3px ${Languages}` }}
-                  />
                   Tags:{" "}
                   <Code key={repo.language} color="primary" className="mx-1">
                     {repo.language.toString()}
@@ -113,9 +115,9 @@ function GithubAPI() {
                   {repo.open_issues}<OpenIssues className='text-orange-600' />
                 </Code>
               </div>
-                <Code color='default' className="text-center font-extrabold items-center justify-center text-blue-500 p-1 border border-zinc-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-zinc-200 lg:dark:bg-zinc-800/30">
-                  Last Updated: {new Date(repo.updated_at).toLocaleDateString()}
-                </Code>
+              <Code color='default' className="text-center font-extrabold items-center justify-center text-blue-500 p-1 border border-zinc-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-zinc-200 lg:dark:bg-zinc-800/30">
+                Last Updated: {new Date(repo.updated_at).toLocaleDateString()}
+              </Code>
             </CardFooter>
           </Card>
         ))}
