@@ -70,10 +70,10 @@ function GithubAPI() {
   return (
 
     <div className='flex flex-wrap w-full gap-4 p-4 justify-center'>
-      {/* <motion.div
+      <motion.div
         className="w-3 h-3 rounded-full mr-1"
         style={{ background: `${Languages}`, border: `solid 3px ${Languages}` }}
-      /> */}
+      />
       <div className='flex flex-col items-center justify-center gap-2 text-center'>
         <div className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Github Repositories</div>
         <div className="text-center p-4">
