@@ -17,8 +17,8 @@ import { ThemeSwitch } from "@/src/components/theme-switch";
 import { UserButton } from "@clerk/nextjs";
 import { OrganizationSwitcher } from "@clerk/nextjs";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem, Button, User, Skeleton, Divider, Link, Tooltip, Code } from "@nextui-org/react";
-import { ProfileIcon, AnalyticsIcon, LinesIcon, PartnerIcon } from "@/src/components/Icons";
-
+import { ProfileIcon, AnalyticsIcon, LinesIcon, PartnerIcon, DiscordIcon, GithubIcon } from "@/src/components/Icons";
+import DiscordWidget from "@/src/components/DiscordWidget";
 
 
 // list of items to place in drop down with label & link
@@ -30,122 +30,118 @@ const navDropdown = [
 export default function Navbar() {
 
 	const icons = {
-		profile: <ProfileIcon className="text-primary" fill="currentColor" size={18} />,
-		analytics: <AnalyticsIcon className="text-warning" fill="currentColor" size={18} />,
-		dropdown: <LinesIcon className="text-primary" fill="currentColor" size={16} />,
-		github: <FiGithub className="text-primary" fill="currentColor" size={18} />,
-        discord: <SiDiscord className="text-primary" fill="currentColor" size={18} />,
-        egghead: <SiEgghead className="text-primary" fill="currentColor" size={18} />,
+		profile: <ProfileIcon className="text-primary" fill="currentColor" size={24} />,
+		analytics: <AnalyticsIcon className="text-warning" fill="currentColor" size={24} />,
+		dropdown: <LinesIcon className="text-primary" fill="currentColor" size={24} />,
+		github: <GithubIcon className="text-slate-800 dark:text-white" fill="currentColor" size={24} />,
+		discord: <DiscordIcon className="text-[#7289da]" fill="currentColor" size={24} />,
+		egghead: <SiEgghead className="text-primary" fill="currentColor" size={24} />,
 		partner: <PartnerIcon className="text-primary text-bold" fill="currentColor" size={24} />,
 	};
+
 	return (
-		<NextUINavbar maxWidth="lg" position="sticky" className="top-0 w-[100%] z-50 bg-white dark:bg-black/90 border-b border-gray-200 dark:border-gray-800">
+		<NextUINavbar maxWidth="xl" position="sticky" className="top-0 w-[100%] z-50 border border-gray-300 dark:border-neutral-800">
 			<NavbarContent className="basis-1/5 sm:basis-full ml-2 gap-2 justify-center items-center text-bold text-base">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<Link className="flex justify-start items-center gap-1" href="/">
-						<p className="text-2xl font-bold text-primary-300">JoKeR</p>
-						{/* <Tooltip className="flex flex-col items-center text-center p-2 space-y-2 justify-center"
-								content={
-									<div className="flex flex-col items-center text-center p-2 space-y-2 justify-center border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
-										<p className="text-sm font-bold text-success-300">Zap-Hosting</p>
-										<p className="text-sm font-normal text-default-600">You found an easter egg!</p>
-										<p className="text-sm font-normal text-default-600">Use code&nbsp;
-											<Link isExternal href="https://zap-hosting.com/joker">
-												<Code color="success">eqsource-10</Code>
-											</Link>
-											&nbsp;for 20% off!</p>
-									</div>
-								}>
-							</Tooltip> */}
+						<h1 className="text-2xl font-bold text-primary-300">JoKeR</h1>
 					</Link>
 				</NavbarBrand>
-					<ul className="hidden lg:flex gap-4 justify-start ml-2 text-bold text-xl">
-						{siteConfig.navItems.map((item) => (
-							<NavbarItem key={item.href}>
-								<Link
-									className={clsx(
-										linkStyles({ color: "foreground" }),
-										"data-[active=true]:text-primary data-[active=true]:font-medium data-[active=true]:border-white data-[active=true]:border-b-2"
-									)}
-									color="foreground"
-									href={item.href}
-								>
-									{item.label}
-								</Link>
-							</NavbarItem>
-						))}
-					</ul>
-					<Dropdown className="sm:hidden lg:flex gap-4 justify-start ml-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
-						<NavbarItem>
-							<DropdownTrigger>
-								<Button
-									key="dropdown"
-									disableRipple
-									className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-									endContent={icons.dropdown}
-									radius="sm"
-									variant="light"
-								>
-									Other
-								</Button>
-							</DropdownTrigger>
+				<div className="hidden lg:flex gap-4 justify-start ml-2 text-bold text-xl">
+					{siteConfig.navItems.map((item) => (
+						<NavbarItem key={item.href}>
+							<Link
+								className={clsx(
+									linkStyles({ color: "foreground" }),
+									"data-[active=true]:text-primary data-[active=true]:font-medium data-[active=true]:border-white data-[active=true]:border-b-2"
+								)}
+								color="foreground"
+								href={item.href}
+							>
+								{item.label}
+							</Link>
 						</NavbarItem>
-						<DropdownMenu
-							aria-label="Other Options"
-							className="w-[300px] text-bold text-base"
-							itemClasses={{
-								base: "gap-2",
+					))}
+				</div>
+				<Dropdown className="sm:hidden lg:flex gap-4 justify-start ml-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+					<NavbarItem className="hidden lg:flex">
+						<DropdownTrigger>
+							<Button
+								key="dropdown"
+								disableRipple
+								className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+								endContent={icons.dropdown}
+								radius="sm"
+								variant="light"
+							>
+								Other
+							</Button>
+						</DropdownTrigger>
+					</NavbarItem>
+					<DropdownMenu
+						aria-label="Other Options"
+						className="w-[300px] text-bold text-base"
+						itemClasses={{
+							base: "gap-2",
+						}}>
+						<DropdownItem
+							key="profile"
+							description='Tom "JoKeR" area to manage the site'
+							startContent={icons.profile}
+							onClick={() => {
+								window.location.href = "/user-profile";
 							}}>
-							<DropdownItem
-								key="profile"
-								description='Tom "JoKeR" area to manage the site'
-								startContent={icons.profile}
-								onClick={() => {
-									window.location.href = "/user-profile";
-								}}>
-								Dashboard
-							</DropdownItem>
-							<DropdownItem
-								key="analytics"
-								description="Real-time Analytics for your app."
-								startContent={icons.analytics}
-								onClick={() => {
-									window.location.href = "/analytics";
-								}}>
-								Analytics
-							</DropdownItem>
-							<DropdownItem
-								key="partners"
-								description="Our partners and sponsors."
-								startContent={icons.partner}
-								onClick={() => {
-									window.location.href = "/partners";
-								}}>
-								Partners
-							</DropdownItem>
-						</DropdownMenu>
-					</Dropdown>
+							Dashboard
+						</DropdownItem>
+						<DropdownItem
+							key="analytics"
+							description="Real-time Analytics for your app."
+							startContent={icons.analytics}
+							onClick={() => {
+								window.location.href = "/analytics";
+							}}>
+							Analytics
+						</DropdownItem>
+						<DropdownItem
+							key="partners"
+							description="Our partners and sponsors."
+							startContent={icons.partner}
+							onClick={() => {
+								window.location.href = "/partners";
+							}}>
+							Partners
+						</DropdownItem>
+					</DropdownMenu>
+				</Dropdown>
 			</NavbarContent>
+				<NavbarContent>
+					<NavbarItem className="hidden sm:flex gap-2 left-50">
+						<DiscordWidget />
+					</NavbarItem>
+                </NavbarContent>
 			<NavbarContent
 				className="hidden sm:flex basis-1/5 sm:basis-full"
 				justify="end">
 				<NavbarItem className="hidden sm:flex gap-2">
 					<Link isExternal href={siteConfig.links.discord} aria-label="Discord">
-						<SiDiscord className="text-default-500" />
+						{icons.discord}
 					</Link>
 					<Link isExternal href={siteConfig.links.github} aria-label="Github">
-						<FiGithub className="text-default-500" />
+						{icons.github}
 					</Link>
 					<ThemeSwitch />
 				</NavbarItem>
 				<Skeleton className="hidden sm:flex" isLoaded={false} />
-				<OrganizationSwitcher />
-				<UserButton />
+				{/* <OrganizationSwitcher />
+				<UserButton /> */}
 			</NavbarContent>
 
 			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+				<Link isExternal href={siteConfig.links.discord} aria-label="Discord">
+					{icons.discord}
+				</Link>
 				<Link isExternal href={siteConfig.links.github} aria-label="Github">
-					<FiGithub className="text-default-500" />
+					{icons.github}
 				</Link>
 				<ThemeSwitch />
 				<NavbarMenuToggle />
