@@ -11,6 +11,14 @@ const Spotify = () => {
   
   
   if (!user || !user.spotify) return null;
+
+  // todo: implement a way to slice song is more than 35 characters and place "..."
+  if (user.spotify.song.length > 20) {
+    user.spotify.song = user.spotify.song.slice(0, 15) + "...";
+  }
+  if (user.spotify.artist.length > 20) {
+    user.spotify.artist = user.spotify.artist.slice(0, 15) + "...";
+  }
   
   return (
     <motion.div
