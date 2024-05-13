@@ -17,7 +17,7 @@ import { ThemeSwitch } from "@/src/components/theme-switch";
 import { UserButton } from "@clerk/nextjs";
 import { OrganizationSwitcher } from "@clerk/nextjs";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem, Button, User, Skeleton, Divider, Link, Tooltip, Code } from "@nextui-org/react";
-import { ProfileIcon, AnalyticsIcon, LinesIcon, PartnerIcon, DiscordIcon, GithubIcon } from "@/src/components/Icons";
+import { ProfileIcon, AnalyticsIcon, LinesIcon, PartnerIcon, DiscordIcon, GithubIcon, BookIcon } from "@/src/components/Icons";
 import DiscordWidget from "@/src/components/DiscordWidget";
 
 
@@ -37,10 +37,11 @@ export default function Navbar() {
 		discord: <DiscordIcon className="text-[#7289da]" fill="currentColor" size={24} />,
 		egghead: <SiEgghead className="text-primary" fill="currentColor" size={24} />,
 		partner: <PartnerIcon className="text-primary text-bold" fill="currentColor" size={24} />,
+		guestbook: <BookIcon className="text-primary text-bold" fill="currentColor" size={18} />,
 	};
 
 	return (
-		<NextUINavbar maxWidth="xl" position="sticky" className="top-0 w-[100%] z-50 border border-gray-300 dark:border-neutral-800">
+		<NextUINavbar maxWidth="xl" position="sticky" className="top-0 w-[100%] z-50 border border-zinc-500 dark:border-zinc-800">
 			<NavbarContent className="basis-1/5 sm:basis-full ml-2 gap-2 justify-center items-center text-bold text-base">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<Link className="flex justify-start items-center gap-1" href="/">
@@ -95,7 +96,7 @@ export default function Navbar() {
 						</DropdownItem>
 						<DropdownItem
 							key="analytics"
-							description="Real-time Analytics for your app."
+							description="View the analytics of the site."
 							startContent={icons.analytics}
 							onClick={() => {
 								window.location.href = "/analytics";
@@ -111,6 +112,15 @@ export default function Navbar() {
 							}}>
 							Partners
 						</DropdownItem>
+						{/* <DropdownItem
+							key="guestbook"
+							description="Sign my guestbook."
+							startContent={icons.guestbook}
+							onClick={() => {
+								window.location.href = "/guestbook";
+							}}>
+							Guestbook
+						</DropdownItem> */}
 					</DropdownMenu>
 				</Dropdown>
 			</NavbarContent>
@@ -120,9 +130,9 @@ export default function Navbar() {
 				<NavbarItem className="hidden sm:flex gap-2">
 					<Skeleton className="hidden sm:flex" isLoaded={false} />
 					<DiscordWidget />
-					<Link isExternal href={siteConfig.links.discord} aria-label="Discord">
+					{/* <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
 						{icons.discord}
-					</Link>
+					</Link> */}
 					<Link isExternal href={siteConfig.links.github} aria-label="Github">
 						{icons.github}
 					</Link>
