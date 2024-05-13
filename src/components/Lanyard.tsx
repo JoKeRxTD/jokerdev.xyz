@@ -46,11 +46,13 @@ const UserStatus = ({ status }: { status: string }) => {
 const LanyardCard = () => {
     const { data: activity } = useLanyard(DiscordID);
 
-    // todo: if activity is null, return null
-    if (!activity || !activity.discord_user) return null;
-    
-    // todo: map all activity data// if offline don't show card
+    // todo: if there is no activity don't show card
+    if (!activity ||!activity.discord_user) return null;
+
+    // todo: if offline don't show card
     if (activity.discord_status === 'offline') return null;
+
+    if (!activity['discord_status']) return null;
 
     const activityNameData = activity.activities.map((activity) => activity.name);
     const activityStateData = activity.activities.map((activity) => activity.state);
@@ -76,6 +78,13 @@ const LanyardCard = () => {
                     <div className="flex flex-col ml-2">
                         <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{activity?.discord_user?.global_name}</p>
                         <UserStatus status={activity?.discord_status} />
+                    </div>
+                    <div className="flex flex-col ml-2 w-[205px]"> 
+                        <div className='text-center items-center justify-center border border-gray-300 dark:border-neutral-800 dark:bg-zinc-800/30 dark:border-opacity-50 rounded-md'>
+                                <p className='text-gray-800 dark:text-gray-100 text-md p-2'>
+                                Discord Badges 👀
+                                </p>
+                        </div>
                     </div>
                 </div>
                 <div className="flex flex-col items-center justify-center mt-2 bottom-0 right-0 pl-8 pt-2 text-2/xl">
