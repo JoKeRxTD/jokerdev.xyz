@@ -11,7 +11,7 @@ const LanyardCard = () => {
     // if (!data || !data.discord_user) return null;
 
     // todo: if activity is null, return null
-    if (!activity || !activity.discord_user) return;
+    if (!activity || !activity.discord_user) return  null;
     // todo: map all activity data
 
     const activityNameData = activity.activities.map((activity) => activity.name);
