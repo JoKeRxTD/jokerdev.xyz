@@ -7,12 +7,13 @@ import { useState } from "react";
 import SupportCard from "@/src/components/SupportCard";
 import {BackgroundBeams} from "@/src/components/Header-BG";
 import Spotify from "@/src/components/Spotify";
+import LanyardCard from "@/src/components/Lanyard";
 
 export default function Header() {
     const [index, setIndex] = useState<number>(0);
-    
+
     return (
-        <section className={`relative flex flex-col items-center justify-center h-[450px] w-full overflow-hidden`}
+        <section className={`relative flex flex-col items-center justify-center h-[400px] w-full overflow-hidden`}
             style={{ transition: "opacity 0.5s ease-in-out" }}>
                 <BackgroundBeams />
                 <div>
@@ -42,7 +43,7 @@ export default function Header() {
                             &nbsp;for more info.
                         </p>
                     </div>
-                    <SupportCard />
+                    <LanyardCard/>
                     <Spotify/>
                 </div>
             </section>
