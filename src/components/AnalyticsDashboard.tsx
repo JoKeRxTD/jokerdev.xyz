@@ -55,6 +55,24 @@ const AnalyticsDashboard = ({
     )
   }, 0)
 
+  type CustomTooltipTypeBar = {
+    payload: any;
+    active: boolean | undefined;
+    label: any;
+  };
+  
+  const customTooltip = (props: CustomTooltipTypeBar) => {
+    const { payload, active } = props;
+    if (!active || !payload) return null;
+    return (
+      <div className="border rounded-md p-3 bg-white dark:bg-zinc-800 dark:border-neutral-800">
+        <p className="text-sm">{payload[0].payload.name}</p>
+        <p className="text-sm">
+          {payload[0].name}: {payload[0].value} 👋
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className='flex flex-col gap-6'>
@@ -124,7 +142,7 @@ const AnalyticsDashboard = ({
         {timeseriesPageviews ? (
           <BarChart
             allowDecimals={false}
-            colors={['zinc-800']}
+            colors={['blue']}
             showAnimation
             data={timeseriesPageviews.map((day) => ({
               name: day.date,
@@ -134,7 +152,8 @@ const AnalyticsDashboard = ({
             }))}
             categories={['Visitors']}
             index='name'
-          />
+            customTooltip={customTooltip}
+            />
 
         ) : null}
       </Card>
