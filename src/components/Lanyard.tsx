@@ -132,24 +132,24 @@ const LanyardCard = () => {
                 </div>
                 <div className="flex flex-col flex-grow justify-center mx-2 p-1/2 text-2/xl">
                     <div className="flex flex-col p-2 mb-2 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border">
-                        {notSpotify.length > 0 ? (
+                        {notSpotify?.length > 0 ? (
                             <div className='flex flex-row mt-2 mb-2'>
                                 <Tooltip
-                                    key={notSpotify[0].name}
-                                    content={notSpotify[0].name}
+                                    key={notSpotify[0]?.name}
+                                    content={notSpotify[0]?.name}
                                     color='default'
                                     className='z-11 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border'
                                 >
                                     <img
-                                        src={`https://media.discordapp.net/external/${notSpotify[0].assets?.large_image.replace("mp:external/", "")}`}
+                                        src={`https://media.discordapp.net/external/${notSpotify[0]?.assets?.large_image.replace("mp:external/", "")}`}
                                         alt="Discord Avatar"
                                         className="p-1 border w-12 h-12 rounded-md border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                                     />
                                 </Tooltip>
                                 <div className="flex flex-col">
-                                    <p className="text-zinc-600 dark:text-white font-semibold text-md">{notSpotify[0].name}</p>
-                                    <p className="text-zinc-600 dark:text-white font-semibold text-sm">{notSpotify[0].details}</p>
-                                    <p className="text-zinc-600 dark:text-white font-semibold text-sm">{notSpotify[0].state}</p>
+                                    <p className="text-zinc-600 dark:text-white font-semibold text-md">{notSpotify[0]?.name}</p>
+                                    <p className="text-zinc-600 dark:text-white font-semibold text-sm">{notSpotify[0]?.details}</p>
+                                    <p className="text-zinc-600 dark:text-white font-semibold text-sm">{notSpotify[0]?.state}</p>
                                 </div>
                             </div>
                         ) : (
