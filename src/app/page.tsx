@@ -7,6 +7,9 @@ import Skills from "@/src/components/Skills"
 import { motion } from "framer-motion";
 import Github  from "@/src/components/Github";
 import Spotify from "@/src/components/Spotify";
+
+
+
 const Home = () => {
 	return (
 		<ScrollShadow hideScrollBar className="w-full h-full">
@@ -16,11 +19,12 @@ const Home = () => {
 				exit={{ opacity: 0, scale: 0.95 }}
 				transition={{ ease: "easeOut", duration: 0.15 }}
 				className="w-full h-full">
-				<div className="text-center items-center justify-center py-1 space-y-1 md:space-y-1">
+				<div className="text-center items-center justify-center py-1 space-y-1 md:space-y-1 lg:space-y-24">
+				
 					<Header />
-					{/* <Spotify/> */}
 					<Divider/>
 					<Skills />
+					
 					<Divider/>
 					<Github/>
 				</div>
