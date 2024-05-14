@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-'use client'
+
 import { useLanyard } from 'use-lanyard';
 import { motion } from 'framer-motion';
 import React from 'react';
 import { Badges } from '@/public/badges/BadgesEncoded';
 import { Tooltip } from "@nextui-org/react";
+import { Link } from "@nextui-org/react";
 
 const DiscordID = '116730818822537225';
 
@@ -21,25 +22,25 @@ const UserStatus = ({ status }: { status: string }) => {
 
     if (activity.discord_status === 'online') {
         return (
-            <div className={`inline-flex items-center justify-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${OnlineStatus}`}>
+            <div className={`inline-flex items-center justify-center rounded-md px-2 py-1 text-xs ring-1 ring-inset ${OnlineStatus}`}>
                 Online
             </div>
         )
     } else if (activity.discord_status === 'idle') {
         return (
-            <div className={`inline-flex items-center justify-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${IdleStatus}`}>
+            <div className={`inline-flex items-center justify-center rounded-md px-1 py-1 text-xs ring-1 ring-inset ${IdleStatus}`}>
                 Idle
             </div>
         )
     } else if (activity.discord_status === 'dnd') {
         return (
-            <div className={`inline-flex items-center justify-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${DNDStatus}`}>
+            <div className={`inline-flex items-center justify-center rounded-md px-2 py-1 text-xs ring-1 ring-inset ${DNDStatus}`}>
                 Do Not Disturb
             </div>
         )
     } else {
         return (
-            <div className={`inline-flex items-center justify-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${OfflineStatus}`}>
+            <div className={`inline-flex items-center justify-center rounded-md px-2 py-1 text-xs ring-1 ring-inset ${OfflineStatus}`}>
                 Offline
             </div>
         )
@@ -67,37 +68,41 @@ export const DiscordBadges = (flag: number): string[] => {
     return flags;
 };
 
+const NoActivity = () => {
+    return (
+        <div className="flex flex-col justify-center items-center">
+            <p className="text-zinc-600 dark:text-white font-semibold text-sm">Not doing anything right now.</p>
+        </div>
+    )
+}
+
 const LanyardCard = () => {
     const { data: activity } = useLanyard(DiscordID);
 
-    // todo: if there is no activity don't show card
+    // todo: if there is no activity return Not doing anything right now. in a div
     if (!activity || !activity.discord_user) return null;
 
-    // todo: if offline don't show card
-    if (activity.discord_status === 'offline') return null;
 
     // todo: if activity 0 is spotify then get activity path 1
-    const notspotify = activity.activities.filter(a => a.type!== 2);
+    const notSpotify = activity.activities.filter(a => a.type !== 2);
 
 
     let flags: string[] = DiscordBadges(activity.discord_user.public_flags);
-    if (activity.discord_user.avatar && activity.discord_user.avatar.includes("a_")) flags.push("Nitro");   
-
+    if (activity.discord_user.avatar && activity.discord_user.avatar.includes("a_")) flags.push("Nitro");
 
     return (
         <motion.div
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5, easing: [0, 0.5, 0.28, 0.99] }}
-            className="hidden lg:flex lg:flex-row lg:fixed lg:bottom-15 lg:right-7 lg:w-[400px] lg:h-[180px] border rounded-md border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+            className="hidden lg:flex lg:flex-row lg:fixed lg:bottom-15 lg:right-7 lg:w-[395px] lg:h-[200px] border border-zinc-800 dark:border-zinc-800 dark:bg-zinc-800/30 dark:border-opacity-50 rounded-md bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
         >
-            <div className="flex flex-col">
-                {/* <p className="text-zinc-600 dark:text-white font-semibold text-sm">My Discord Activity</p> */}
-                <div className="flex flex-row right-0 top-0 pt-4 pl-4">
+            <div className="flex flex-col flex-grow justify-center mx-2 p-1/2 text-2/xl">
+                <div className="flex flex-row right-0 top-0 pt-2 pl-2">
                     <img
                         src={`https://cdn.discordapp.com/avatars/${activity?.discord_user?.id}/${activity?.discord_user?.avatar}.gif`}
                         alt="Discord Avatar"
-                        className="rounded-lg w-12 h-12 border border-zinc-600 dark:border-neutral-800 dark:bg-zinc-800/30 dark:border-opacity-50"
+                        className="ring-1 ring-inset rounded-lg w-12 h-12 border border-zinc-600 dark:border-neutral-800 dark:bg-zinc-800/30 dark:border-opacity-50"
                         width={30}
                         height={30}
                     />
@@ -105,8 +110,8 @@ const LanyardCard = () => {
                         <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{activity?.discord_user?.global_name}</p>
                         <UserStatus status={activity?.discord_status} />
                     </div>
-                    <div className="flex flex-col ml-2 w-[200px]">
-                        <div className='text-center items-center justify-center border border-gray-300 dark:border-neutral-800 dark:bg-zinc-800/30 dark:border-opacity-50 rounded-md'>
+                    <div className="flex flex-col ml-2 mt-2 w-[198px]">
+                        <div className='text-center items-center justify-center border border-zinc-800 dark:border-zinc-800 dark:bg-zinc-800/30 dark:border-opacity-50 rounded-md'>
                             <p className='text-gray-800 dark:text-gray-100 text-md p-2'>
                                 {flags.map(v => (
                                     <Tooltip
@@ -116,27 +121,45 @@ const LanyardCard = () => {
                                         className='z-11 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border'
                                     >
                                         <img
-                                                src={`data:image/png;base64,${Badges[v]}`}
-                                                className='w-5 h-5 inline-block mx-1'
-                                            /> 
+                                            src={`data:image/png;base64,${Badges[v]}`}
+                                            className='w-5 h-5 inline-block mx-1'
+                                        />
                                     </Tooltip>
                                 ))}
                             </p>
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col justify-center mt-2 pl-4 pt-1/2 text-2/xl">
-                    {notspotify.map(a => (
-                        <div key={a.id} className="flex flex-col p-2 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border">
-                            <p className="text-gray-800 dark:text-gray-100 font-semibold text-md">{a.name}</p>
-                            <p className="text-gray-800 dark:text-gray-100 font-semibold text-md ml-2">{a.state}</p>
-                            <p className="text-gray-800 dark:text-gray-100 font-semibold text-md ml-2">{a.details}</p>
-                            {/* <p className="text-gray-800 dark:text-gray-100 font-semibold text-md ml-2">{a.assets?.large_text}</p>
-                            <p className="text-gray-800 dark:text-gray-100 font-semibold text-md ml-2">{a.assets?.small_text}</p>
-                            <p className="text-gray-800 dark:text-gray-100 font-semibold text-md ml-2">{a.assets?.large_image}</p>
-                            <p className="text-gray-800 dark:text-gray-100 font-semibold text-md ml-2">{a.assets?.small_image}</p> */}
-                        </div>
-                    ))}
+                <div className="flex flex-col flex-grow justify-center mx-2 p-1/2 text-2/xl">
+                    <div className="flex flex-col p-2 mb-2 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border">
+                        {notSpotify.length > 0 ? (
+                            <div className='flex flex-row mt-2 mb-2'>
+                                <Tooltip
+                                    key={notSpotify[0].name}
+                                    content={notSpotify[0].name}
+                                    color='default'
+                                    className='z-11 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border'
+                                >
+                                    <img
+                                        src={`https://media.discordapp.net/external/${notSpotify[0].assets?.large_image.replace("mp:external/", "")}`}
+                                        alt="Discord Avatar"
+                                        className="p-1 border w-12 h-12 rounded-md border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+                                    />
+                                </Tooltip>
+                                <div className="flex flex-col">
+                                    <p className="text-zinc-600 dark:text-white font-semibold text-md">{notSpotify[0].name}</p>
+                                    <p className="text-zinc-600 dark:text-white font-semibold text-sm">{notSpotify[0].details}</p>
+                                    <p className="text-zinc-600 dark:text-white font-semibold text-sm">{notSpotify[0].state}</p>
+                                </div>
+                            </div>
+                        ) : (
+                            <NoActivity />
+                        )}
+                    </div>
+
+                </div>
+                <div className="mb-1 text-[10px]">
+                    Powered by <a href="https://lanyard.cnrad.dev" target="_blank" rel="noreferrer" className="text-blue-500 dark:text-blue-400">Lanyard</a>
                 </div>
             </div>
         </motion.div>
