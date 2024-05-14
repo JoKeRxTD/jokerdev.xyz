@@ -83,7 +83,7 @@ function GithubAPI() {
           Check out my <a href="https://github.com/JoKeRxTD" className="underline decoration-wavy decoration-2 decoration-green-800 font-bold">Github</a> for more projects.
         </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 flex-wrap w-full gap-2 p-2 justify-center ">
+      <div className="grid grid-cols-1 lg:grid-cols-3 flex-wrap w-full gap-4 p-2 justify-center ">
         {reposData?.map((repo: any) => (
           <Card key={repo.id} className='max-w-sm w-full sm:w-1/2 lg:w-full justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
             <CardHeader className="text-center justify-center items-center text-2xl text-primary-300 font-bold">
