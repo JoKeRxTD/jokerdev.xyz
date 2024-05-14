@@ -1,8 +1,11 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import { useLanyard } from 'use-lanyard';
 import { motion } from 'framer-motion';
-import { parse } from 'date-fns'
+import React from 'react';
+import { Badges } from '@/public/badges/BadgesEncoded';
+import { Tooltip } from "@nextui-org/react";
 
 const DiscordID = '116730818822537225';
 
@@ -43,16 +46,40 @@ const UserStatus = ({ status }: { status: string }) => {
     }
 }
 
+// show dicord bagdes based on public_flags int
+export const DiscordBadges = (flag: number): string[] => {
+    let flags: string[] = [];
+
+    // In the order they appear on profiles
+    if (flag & 1) flags.push("Discord_Employee"); // 1 << 0
+    if (flag & 262144) flags.push("Discord_Certified_Moderator"); // 1 << 18
+    if (flag & 2) flags.push("Partnered_Server_Owner"); // 1 << 1
+    if (flag & 4) flags.push("HypeSquad_Events"); // 1 << 2
+    if (flag & 64) flags.push("House_Bravery"); // 1 << 6
+    if (flag & 128) flags.push("House_Brilliance"); // 1 << 7
+    if (flag & 256) flags.push("House_Balance"); // 1 << 8
+    if (flag & 8) flags.push("Bug_Hunter_Level_1"); // 1 << 3
+    if (flag & 16384) flags.push("Bug_Hunter_Level_2"); // 1 << 14
+    if (flag & 4194304) flags.push("Active_Developer"); // 1 << 22
+    if (flag & 131072) flags.push("Early_Verified_Bot_Developer"); // 1 << 17
+    if (flag & 512) flags.push("Early_Supporter"); // 1 << 9
+
+    return flags;
+};
+
 const LanyardCard = () => {
     const { data: activity } = useLanyard(DiscordID);
 
     // todo: if there is no activity don't show card
-    if (!activity ||!activity.discord_user) return null;
+    if (!activity || !activity.discord_user) return null;
 
     // todo: if offline don't show card
     if (activity.discord_status === 'offline') return null;
 
     if (!activity['discord_status']) return null;
+
+    let flags: string[] = DiscordBadges(activity.discord_user.public_flags);
+    if (activity.discord_user.avatar && activity.discord_user.avatar.includes("a_")) flags.push("Nitro");
 
     const activityNameData = activity.activities.map((activity) => activity.name);
     const activityStateData = activity.activities.map((activity) => activity.state);
@@ -79,11 +106,23 @@ const LanyardCard = () => {
                         <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{activity?.discord_user?.global_name}</p>
                         <UserStatus status={activity?.discord_status} />
                     </div>
-                    <div className="flex flex-col ml-2 w-[205px]"> 
+                    <div className="flex flex-col ml-2 w-[205px]">
                         <div className='text-center items-center justify-center border border-gray-300 dark:border-neutral-800 dark:bg-zinc-800/30 dark:border-opacity-50 rounded-md'>
-                                <p className='text-gray-800 dark:text-gray-100 text-md p-2'>
-                                Discord Badges 👀
-                                </p>
+                            <p className='text-gray-800 dark:text-gray-100 text-md p-2'>
+                                {flags.map(v => (
+                                    <Tooltip
+                                        key={v}
+                                        content={v.split("_").join(" ")}
+                                        color='default'
+                                        className='z-11 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border'
+                                    >
+                                        <img
+                                                src={`data:image/png;base64,${Badges[v]}`}
+                                                className='w-5 h-5 inline-block mx-1'
+                                            /> 
+                                    </Tooltip>
+                                ))}
+                            </p>
                         </div>
                     </div>
                 </div>
