@@ -76,21 +76,20 @@ const LanyardCard = () => {
     // todo: if offline don't show card
     if (activity.discord_status === 'offline') return null;
 
-    if (!activity['discord_status']) return null;
+    // todo: if activity 0 is spotify then get activity path 1
+    const notspotify = activity.activities.filter(a => a.type!== 2);
+
 
     let flags: string[] = DiscordBadges(activity.discord_user.public_flags);
-    if (activity.discord_user.avatar && activity.discord_user.avatar.includes("a_")) flags.push("Nitro");
+    if (activity.discord_user.avatar && activity.discord_user.avatar.includes("a_")) flags.push("Nitro");   
 
-    const activityNameData = activity.activities.map((activity) => activity.name);
-    const activityStateData = activity.activities.map((activity) => activity.state);
-    const activityDetailsData = activity.activities.map((activity) => activity.details);
 
     return (
         <motion.div
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5, easing: [0, 0.5, 0.28, 0.99] }}
-            className="hidden lg:flex lg:flex-row lg:fixed lg:bottom-15 lg:right-7 lg:w-[400px] lg:h-[170px] border rounded-md border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+            className="hidden lg:flex lg:flex-row lg:fixed lg:bottom-15 lg:right-7 lg:w-[400px] lg:h-[180px] border rounded-md border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
         >
             <div className="flex flex-col">
                 {/* <p className="text-zinc-600 dark:text-white font-semibold text-sm">My Discord Activity</p> */}
@@ -106,7 +105,7 @@ const LanyardCard = () => {
                         <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{activity?.discord_user?.global_name}</p>
                         <UserStatus status={activity?.discord_status} />
                     </div>
-                    <div className="flex flex-col ml-2 w-[205px]">
+                    <div className="flex flex-col ml-2 w-[200px]">
                         <div className='text-center items-center justify-center border border-gray-300 dark:border-neutral-800 dark:bg-zinc-800/30 dark:border-opacity-50 rounded-md'>
                             <p className='text-gray-800 dark:text-gray-100 text-md p-2'>
                                 {flags.map(v => (
@@ -126,22 +125,18 @@ const LanyardCard = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col items-center justify-center mt-2 bottom-0 right-0 pl-8 pt-2 text-2/xl">
-                    <p>
-                        {activityNameData.map((activityName, index) => (
-                            <p key={index} className="text-gray-800 dark:text-gray-100 text-lg">{activityName}</p>
-                        ))}
-                    </p>
-                    <p>
-                        {activityStateData.map((activityState, index) => (
-                            <p key={index} className="text-gray-800 dark:text-gray-100 text-md">{activityState}</p>
-                        ))}
-                    </p>
-                    <p>
-                        {activityDetailsData.map((activityDetails, index) => (
-                            <p key={index} className="text-gray-800 dark:text-gray-100 text-md">{activityDetails}</p>
-                        ))}
-                    </p>
+                <div className="flex flex-col justify-center mt-2 pl-4 pt-1/2 text-2/xl">
+                    {notspotify.map(a => (
+                        <div key={a.id} className="flex flex-col p-2 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border">
+                            <p className="text-gray-800 dark:text-gray-100 font-semibold text-md">{a.name}</p>
+                            <p className="text-gray-800 dark:text-gray-100 font-semibold text-md ml-2">{a.state}</p>
+                            <p className="text-gray-800 dark:text-gray-100 font-semibold text-md ml-2">{a.details}</p>
+                            {/* <p className="text-gray-800 dark:text-gray-100 font-semibold text-md ml-2">{a.assets?.large_text}</p>
+                            <p className="text-gray-800 dark:text-gray-100 font-semibold text-md ml-2">{a.assets?.small_text}</p>
+                            <p className="text-gray-800 dark:text-gray-100 font-semibold text-md ml-2">{a.assets?.large_image}</p>
+                            <p className="text-gray-800 dark:text-gray-100 font-semibold text-md ml-2">{a.assets?.small_image}</p> */}
+                        </div>
+                    ))}
                 </div>
             </div>
         </motion.div>
