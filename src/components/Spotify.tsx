@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useLanyard } from "use-lanyard";
 import { useState, useEffect } from "react"
-import LanyardAPI from "../utils/Lanyard";
+// import LanyardAPI from "../utils/Lanyard";
 import {Progress} from "@nextui-org/progress";
 
 const DiscordID = '116730818822537225';
@@ -77,16 +77,16 @@ const Spotify = () => {
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.5, easing: [0, 0.5, 0.28, 0.99] }}
-      className="hidden lg:flex lg:flex-col lg:fixed lg:w-[390px] lg:h-[200px] lg:bottom-[100px] lg:left-2 items-center justify-center p-2 gap-2 w-120 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+      className="hidden lg:flex lg:flex-col lg:fixed lg:w-[390px] lg:h-[200px] lg:bottom-[100px] lg:left-2 items-center justify-center p-2 gap-2 w-120 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border bg-gradient-to-b from-zinc-200 dark:bg-zinc-800/30 dark:from-inherit lg:bg-gray-200 lg:dark:bg-zinc-800/30"
     >
       <div className="flex flex-col items-center justify-center gap-1">
             <SpotifyStatus />
         <div className="flex flex-col items-center justify-center">
-            <div className="flex flex-row items-center px-4 justify-center gap-4 w-[350px] h-[100px] border border-zinc-300 rounded-lg bg-zinc-200 dark:border-zinc-800 dark:bg-zinc-800/30 lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+            <div className="flex flex-row items-center px-4 justify-center gap-4 w-[350px] h-[100px] border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border bg-zinc-200  dark:bg-zinc-800/30 lg:bg-gray-200 lg:dark:bg-zinc-800/30">
               <img
                 src={user.spotify.album_art_url ?? ""}
                 alt="Spotify Album Art"
-                className="w-16 h-16 rounded-md border border-zinc-300 dark:border-zinc-800 lg:rounded-xl lg:border"
+                className="w-16 h-16 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border"
               />
               <div className="flex flex-col items-center justify-center">
                 <p className="text-zinc-600 dark:text-white font-semibold text-sm">{user.spotify.artist}</p>
@@ -101,7 +101,7 @@ const Spotify = () => {
             <Progress
               color="success"
               value={progress}
-              className="w-[90%] h-2 border border-zinc-300 rounded-lg dark:border-zinc-800 lg:rounded-xl lg:border"
+              className="w-[90%] h-2 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border"
             />
           </div>
         </div>
