@@ -70,8 +70,8 @@ export const DiscordBadges = (flag: number): string[] => {
 
 const NoActivity = () => {
     return (
-        <div className="flex flex-col justify-center items-center">
-            <p className="text-zinc-600 dark:text-white font-semibold text-sm">Not doing anything right now.</p>
+        <div className="flex flex-col justify-center items-center pt-10 pb-10 p-1">
+            <p className="text-zinc-600 dark:text-white font-semibold text-lg">Not doing anything right now.</p>
         </div>
     )
 }
@@ -79,13 +79,13 @@ const NoActivity = () => {
 const LanyardCard = () => {
     const { data: activity } = useLanyard(DiscordID);
 
-    // todo: if there is no activity return Not doing anything right now. in a div
     if (!activity || !activity.discord_user) return null;
 
-
-    // todo: if activity 0 is spotify then get activity path 1
     const notSpotify = activity.activities.filter(a => a.type !== 2);
 
+    const CallOfDuty = activity.activities.filter(a => a.name === "Call of Duty®: MWIII");
+
+    const CustomStatus = activity.activities.filter(a => a.type === 4);
 
     let flags: string[] = DiscordBadges(activity.discord_user.public_flags);
     if (activity.discord_user.avatar && activity.discord_user.avatar.includes("a_")) flags.push("Nitro");
@@ -95,9 +95,9 @@ const LanyardCard = () => {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5, easing: [0, 0.5, 0.28, 0.99] }}
-            className="hidden lg:flex lg:flex-row lg:fixed lg:bottom-15 lg:right-7 lg:w-[395px] lg:h-[200px] border border-zinc-800 dark:border-zinc-800 dark:bg-zinc-800/30 dark:border-opacity-50 rounded-md bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+            className="hidden lg:flex lg:flex-row lg:grow lg:fixed lg:bottom-15 lg:right-7 lg:w-[395px] lg:h-[200px] border border-zinc-800 dark:border-zinc-800 dark:bg-zinc-800/30 dark:border-opacity-50 rounded-md bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
         >
-            <div className="flex flex-col flex-grow justify-center mx-2 p-1/2 text-2/xl">
+            <div className="flex flex-col grow justify-center mx-2 mt-2 p-1/2 text-2/xl">
                 <div className="flex flex-row right-0 top-0 pt-2 pl-2">
                     <img
                         src={`https://cdn.discordapp.com/avatars/${activity?.discord_user?.id}/${activity?.discord_user?.avatar}.gif`}
@@ -110,7 +110,7 @@ const LanyardCard = () => {
                         <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{activity?.discord_user?.global_name}</p>
                         <UserStatus status={activity?.discord_status} />
                     </div>
-                    <div className="flex flex-col ml-2 mt-2 w-[198px]">
+                    <div className="flex flex-col ml-2 mt-2 w-[190px]">
                         <div className='text-center items-center justify-center border border-zinc-800 dark:border-zinc-800 dark:bg-zinc-800/30 dark:border-opacity-50 rounded-md'>
                             <p className='text-gray-800 dark:text-gray-100 text-md p-2'>
                                 {flags.map(v => (
@@ -130,27 +130,57 @@ const LanyardCard = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col flex-grow justify-center mx-2 p-1/2 text-2/xl">
-                    <div className="flex flex-col p-2 mb-2 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border">
+                <div className="flex flex-col justify-center mx-2 p-1 text-2/xl w-[355px] h-[500px]">
+                    <div className="flex flex-col px-2 mb-2 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border">
                         {notSpotify?.length > 0 ? (
-                            <div className='flex flex-row mt-2 mb-2'>
+                            <div className='flex flex-row mt-2 mb-2 justify-center'>
                                 <Tooltip
                                     key={notSpotify[0]?.name}
                                     content={notSpotify[0]?.name}
                                     color='default'
                                     className='z-11 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border'
                                 >
-                                    <img
-                                        src={`https://media.discordapp.net/external/${notSpotify[0]?.assets?.large_image.replace("mp:external/", "")}`}
-                                        alt="Discord Avatar"
-                                        className="p-1 border w-12 h-12 rounded-md border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
-                                    />
+                                    {/* if not spotify then get activity path 1 if CallOfDuty then get activity path 0 */}
+                                    <div className='flex flex-row'>
+                                        {CustomStatus?.length > 0 ? (
+                                            <img
+                                                src={`https://cdn.discordapp.com/emojis/${CustomStatus[0]?.emoji?.id}.png`}
+                                                alt="Discord Avatar"
+                                                className="rounded-full w-8 h-8"
+                                            />
+                                        ) : CallOfDuty?.length > 0 ? (
+                                            <img
+                                                src={`https://cdn.discordapp.com/app-assets/${CallOfDuty[0]?.application_id}/${CallOfDuty[0]?.assets?.large_image}.png`}
+                                                alt="Discord Avatar"
+                                                className="ring-1 ring-inset rounded-lg w-12 h-12 border border-zinc-600 dark:border-neutral-800 dark:bg-zinc-800/30 dark:border-opacity-50"
+                                            />
+                                        ) : (
+                                            <img
+                                                src={`https://media.discordapp.net/external/${notSpotify[0]?.assets?.large_image.replace("mp:external/", "")}`}
+                                                alt="Discord Avatar"
+                                                className="ring-1 ring-inset rounded-lg w-12 h-12 border border-zinc-600 dark:border-neutral-800 dark:bg-zinc-800/30 dark:border-opacity-50"
+                                            />
+                                        )}
+                                    </div>
                                 </Tooltip>
-                                <div className="flex flex-col">
-                                    <p className="text-zinc-600 dark:text-white font-semibold text-md">{notSpotify[0]?.name}</p>
-                                    <p className="text-zinc-600 dark:text-white font-semibold text-sm">{notSpotify[0]?.details}</p>
-                                    <p className="text-zinc-600 dark:text-white font-semibold text-sm">{notSpotify[0]?.state}</p>
-                                </div>
+                                {CustomStatus?.length > 0 ? (
+                                    <div className='flex justify-center text-center items-center pl-2'>
+                                        {/* <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{CustomStatus[0]?.name}</p> */}
+                                        <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{CustomStatus[0]?.state}</p>
+                                    </div>
+                                ) : CallOfDuty?.length > 0 ? (
+                                    <div>
+                                        <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{CallOfDuty[0]?.name}</p>
+                                        <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{CallOfDuty[0]?.state}</p>
+                                        <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{CallOfDuty[0]?.details}</p>
+                                    </div>
+                                ) : (
+                                    <div className='flex flex-col justify-center text-center items-center'>
+                                        <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{notSpotify[0]?.name}</p>
+                                        <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{notSpotify[0]?.state}</p>
+                                        <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{notSpotify[0]?.details}</p>
+                                    </div>
+                                )}
                             </div>
                         ) : (
                             <NoActivity />
