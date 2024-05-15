@@ -2,50 +2,115 @@
 'use client'
 import { motion } from "framer-motion";
 import { useLanyard } from "use-lanyard";
-import Image from "next/image";
-import {useState} from "react"
+import { useState, useEffect } from "react"
+import LanyardAPI from "../utils/Lanyard";
+import {Progress} from "@nextui-org/progress";
 
+const DiscordID = '116730818822537225';
+
+function msToMinSeconds(millis: number) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = Number(((millis % 60000) / 1000).toFixed(0));
+  return seconds == 60
+    ? minutes + 1 + ":00"
+    : minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+}
+
+const SpotifyStatus = () => {
+  const { data: user } = useLanyard(DiscordID);
+  // todo: if activity is null, return null
+  if (!user || !user.discord_user) return null;
+
+  const Listening = 'bg-green-900/25 text-green-400 ring-green-400/25 dark:bg-green-900/25 dark:text-green-400 dark:ring-green-400/25';
+  const NotListening = 'bg-gray-900/25 text-gray-400 ring-gray-400/25 dark:bg-gray-900/25 dark:text-gray-400 dark:ring-gray-400/25';
+
+  if (user.spotify) {
+    return (
+        <div className={`mb-1 inline-flex items-center justify-center rounded-md px-2 py-1 text-xs ring-1 ring-inset ${Listening}`}>
+          Listening to Spotify
+        </div>
+    );
+  } else {
+    return (
+        <div className={`mb-1 inline-flex items-center justify-center rounded-md px-2 py-1 text-xs ring-1 ring-inset ${NotListening}`}>
+          Not Listening to Spotify
+        </div>
+    );
+  }
+}
 
 const Spotify = () => {
-  const { data: user } = useLanyard("116730818822537225");
-  
-  
-  if (!user || !user.spotify) return null;
+  const { data: user } = useLanyard(DiscordID);
+
+  const [currentTime, setCurrentTime] = useState(new Date().getTime());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date().getTime());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!user ||!user.spotify) return null;
+
+  const ListeningValue = user.listening_to_spotify; //! True or false
+
+  const songLength = user.spotify.timestamps.end - user.spotify.timestamps.start;
+  const timeElapsed = currentTime - user.spotify.timestamps.start;
+  const progress = (timeElapsed / songLength) * 100;
 
   // todo: implement a way to slice song is more than 35 characters and place "..."
-  if (user.spotify.song.length > 20) {
-    user.spotify.song = user.spotify.song.slice(0, 15) + "...";
+  if (user.spotify.song.length > 45) {
+    user.spotify.song = user.spotify.song.slice(0, 35) + "...";
   }
-  if (user.spotify.artist.length > 20) {
-    user.spotify.artist = user.spotify.artist.slice(0, 15) + "...";
+
+  if (user.spotify.artist.length > 35) {
+    user.spotify.artist = user.spotify.artist.slice(0, 25) + "...";
   }
-  
+
+  if (user.spotify.album.length > 35) {
+    user.spotify.album = user.spotify.album.slice(0, 30) + "...";
+  }
+
   return (
     <motion.div
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.5, easing: [0, 0.5, 0.28, 0.99] }}
-      className="hidden lg:flex lg:flex-row lg:fixed lg:bottom-15 lg:left-2 items-center justify-center p-2 gap-2 w-120 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+      className="hidden lg:flex lg:flex-col lg:fixed lg:w-[390px] lg:h-[200px] lg:bottom-[100px] lg:left-2 items-center justify-center p-2 gap-2 w-120 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
     >
-      <div className="flex flex-row items-center justify-center">
-          <img
-            src={user.spotify.album_art_url ?? ""} 
-            alt="Spotify Album Art"
-            className="w-12 h-12 rounded-md"
-            width={48}
-            height={48}
-          />
-        <div className="flex flex-col ml-2">
-          <p className="text-zinc-600 dark:text-white font-semibold text-sm">{user.spotify.song}</p>
-          <p className="text-zinc-600 dark:text-white font-semibold text-sm">{user.spotify.artist}</p>
+      <div className="flex flex-col items-center justify-center gap-1">
+            <SpotifyStatus />
+        <div className="flex flex-col items-center justify-center">
+            <div className="flex flex-row items-center px-4 justify-center gap-4 w-[350px] h-[100px] border border-zinc-300 rounded-lg bg-zinc-200 dark:border-zinc-800 dark:bg-zinc-800/30 lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+              <img
+                src={user.spotify.album_art_url ?? ""}
+                alt="Spotify Album Art"
+                className="w-16 h-16 rounded-md border border-zinc-300 dark:border-zinc-800 lg:rounded-xl lg:border"
+              />
+              <div className="flex flex-col items-center justify-center">
+                <p className="text-zinc-600 dark:text-white font-semibold text-sm">{user.spotify.artist}</p>
+                <p className="text-zinc-600 dark:text-white font-semibold text-sm">{user.spotify.album}</p>
+                <p className="text-zinc-600 dark:text-white font-semibold text-sm">{user.spotify.song}</p>
+              </div>
+            </div>
+            <div className="flex flex-col items-center justify-center w-full">
+            <p className="text-zinc-600 dark:text-white font-semibold text-sm">
+              {msToMinSeconds(timeElapsed)} - {msToMinSeconds(songLength - timeElapsed)}
+            </p>
+            <Progress
+              color="success"
+              value={progress}
+              className="w-[90%] h-2 border border-zinc-300 rounded-lg dark:border-zinc-800 lg:rounded-xl lg:border"
+            />
+          </div>
         </div>
-      </div>
-      <div className="flex flex-row items-center justify-center ml-4">
-        <motion.div
-          className="w-3 h-3 rounded-full mr-1"
-          style={{ background: "rgba(100, 200, 100)" }}
-        />
-        <p className="text-zinc-600 dark:text-white font-semibold text-sm">Listening to Spotify</p>
+        <div className="mb-1 text-[10px]">
+          Powered by{" "}
+          <a href="https://lanyard.cnrad.dev" target="_blank" rel="noreferrer" className="text-blue-500 dark:text-blue-400">
+            Lanyard
+          </a>
+        </div>
       </div>
     </motion.div>
   );
