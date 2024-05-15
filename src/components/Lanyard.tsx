@@ -97,12 +97,12 @@ const LanyardCard = () => {
             transition={{ duration: 0.5, delay: 0.5, easing: [0, 0.5, 0.28, 0.99] }}
             className="hidden lg:flex lg:flex-row lg:grow lg:fixed lg:bottom-15 lg:right-7 lg:w-[395px] lg:h-[200px] border border-zinc-800 dark:border-zinc-800 dark:bg-zinc-800/30 dark:border-opacity-50 rounded-md bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
         >
-            <div className="flex flex-col grow justify-center mx-2 mt-2 p-1/2 text-2/xl">
-                <div className="flex flex-row right-0 top-0 pt-2 pl-2">
+            <div className="flex flex-col grow justify-center mx-2 mt-3 p-1/2 text-2/xl">
+                <div className="flex flex-row right-0 top-0 mt-2 ml-3">
                     <img
                         src={`https://cdn.discordapp.com/avatars/${activity?.discord_user?.id}/${activity?.discord_user?.avatar}.gif`}
                         alt="Discord Avatar"
-                        className="ring-1 ring-inset rounded-lg w-12 h-12 border border-zinc-600 dark:border-neutral-800 dark:bg-zinc-800/30 dark:border-opacity-50"
+                        className="ring-1 ring-inset rounded-md w-12 h-12 border border-zinc-600 dark:border-neutral-800 dark:bg-zinc-800/30 dark:border-opacity-50"
                         width={30}
                         height={30}
                     />
@@ -110,7 +110,7 @@ const LanyardCard = () => {
                         <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{activity?.discord_user?.global_name}</p>
                         <UserStatus status={activity?.discord_status} />
                     </div>
-                    <div className="flex flex-col ml-2 mt-2 w-[190px]">
+                    <div className="flex flex-col ml-2 mt-1 w-[185px]">
                         <div className='text-center items-center justify-center border border-zinc-800 dark:border-zinc-800 dark:bg-zinc-800/30 dark:border-opacity-50 rounded-md'>
                             <p className='text-gray-800 dark:text-gray-100 text-md p-2'>
                                 {flags.map(v => (
