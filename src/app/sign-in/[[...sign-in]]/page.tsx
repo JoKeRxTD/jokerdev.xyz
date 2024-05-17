@@ -3,8 +3,18 @@ import * as Clerk from '@clerk/elements/common';
 import * as SignIn from '@clerk/elements/sign-in';
 import { Image } from "@nextui-org/image";
 import { DiscordIcon, GithubIcon, TwitchIcon } from "@/src/components/Icons";
+import { useUser } from "@clerk/nextjs";
+import { useState } from "react";
+
 
 export default function SignInPage() {
+  const { isLoaded, isSignedIn, user } = useUser();
+  const [isLoading, setIsLoading] = useState(false);
+
+  if (isLoaded && isSignedIn) {
+    return <div className="text-center">You are already signed in as {user.fullName}</div>;
+  }
+
   return (
     <div className="grid w-full flex-grow content-center items-center px-4 sm:justify-center">
       <SignIn.Root>
@@ -17,59 +27,36 @@ export default function SignInPage() {
             <h1 className="mt-4 text-xl font-medium tracking-tight text-zinc-800 dark:text-white">Sign in</h1>
           </div>
           <Clerk.GlobalError className="block text-sm text-rose-400" />
-          <Clerk.Field name="identifier" className="group/field relative">
-            <Clerk.Label className="absolute left-2 top-0 -translate-y-1/2 bg-zinc-950 px-2 font-mono text-xs/4 text-white before:absolute before:inset-0 before:-z-10 before:bg-black/50 group-focus-within/field:text-zinc-300 group-data-[invalid]/field:text-rose-400">
-              Email address
-            </Clerk.Label>
-            <Clerk.Input
-              type="text"
-              required
-              className="w-full rounded-lg bg-transparent px-4 py-2.5 text-sm text-white outline-none ring-1 ring-inset ring-white/20 hover:ring-white/30 focus:shadow-[0_0_6px_0] focus:shadow-zinc-500/20 focus:ring-[1.5px] focus:ring-zinc-300 data-[invalid]:shadow-rose-400/20 data-[invalid]:ring-rose-400"
-            />
-            <Clerk.FieldError className="mt-2 block text-xs text-rose-400" />
-          </Clerk.Field>
-          <Clerk.Field name="password" className="group/field relative">
-            <Clerk.Label className="absolute left-2 top-0 -translate-y-1/2 bg-zinc-950 px-2 font-mono text-xs/4 text-white before:absolute before:inset-0 before:-z-10 before:bg-black/50 group-focus-within/field:text-zinc-300 group-data-[invalid]/field:text-rose-400">
-              Password
-            </Clerk.Label>
-            <Clerk.Input
-              type="password"
-              required
-              className="w-full rounded-lg bg-transparent px-4 py-2.5 text-sm text-white outline-none ring-1 ring-inset ring-white/20 hover:ring-white/30 focus:shadow-[0_0_6px_0] focus:shadow-zinc-500/20 focus:ring-[1.5px] focus:ring-zinc-300 data-[invalid]:shadow-rose-400/20 data-[invalid]:ring-rose-400"
-            />
-            <Clerk.FieldError className="mt-2 block text-xs text-rose-400" />
-          </Clerk.Field>
-          {/* clerk login provider (discord, github, twitch) */}
           <div className="grid grid-cols-3 gap-1">
-            <Clerk.Loading scope="provider:discord">
-              {(isLoading ) => (
-                  <Clerk.Connection name="discord" disabled={isLoading}>
-                          <div className="grid p-1 place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"><DiscordIcon className='text-[#7289da]'/></div>
-                  </Clerk.Connection>
-                    )}
-            </Clerk.Loading>
-            <Clerk.Loading scope="provider:github">
-              {(isLoading) => (
-                  <Clerk.Connection name="github" disabled={isLoading}>
-                          <div className="grid p-1 place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"><GithubIcon className='text-[#2b3137] dark:text-[#fafbfc]'/></div>
-                  </Clerk.Connection>
-                    )}
-            </Clerk.Loading>
-            <Clerk.Loading scope="provider:twitch">
-              {(isLoading) => (
-                  <Clerk.Connection name="twitch" disabled={isLoading}>
-                          <div className="grid p-1 place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"><TwitchIcon className='text-[#6441a4]'/></div>
-                  </Clerk.Connection>
-                    )}
-            </Clerk.Loading>
+            <Clerk.Connection name="discord">
+                <Clerk.Connection name="discord" disabled={isLoading}>
+                  <div className="grid p-1 w-[100px] place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+                    <DiscordIcon className='text-[#7289da]' />
+                  </div>
+                </Clerk.Connection>
+            </Clerk.Connection>
+            <Clerk.Connection name="github">
+                <Clerk.Connection name="github" disabled={isLoading}>
+                  <div className="grid p-1 w-[100px] place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+                    <GithubIcon className='text-[#2b3137] dark:text-[#fafbfc]' />
+                  </div>
+                </Clerk.Connection>
+            </Clerk.Connection>
+            <Clerk.Connection name="twitch">
+                <Clerk.Connection name="twitch" disabled={isLoading}>
+                  <div className="grid p-1 w-[100px] place-items-center rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+                    <TwitchIcon className='text-[#6441a4]' />
+                  </div>
+                </Clerk.Connection>
+            </Clerk.Connection>
           </div>
-          <div className="grid place-items-center">
+          {/* <div className="grid place-items-center">
             <SignIn.Action
               submit
               className="relative isolate w-[50%] p-2 rounded-lg border border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md md:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
               Sign In
             </SignIn.Action>
-          </div>
+          </div> */}
           <p className="text-center text-sm text-zinc-800 dark:text-white">
             No account?{' '}
             <a
