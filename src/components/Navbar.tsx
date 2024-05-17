@@ -37,7 +37,7 @@ export default function Navbar() {
 		discord: <DiscordIcon className="text-[#7289da]" fill="currentColor" size={24} />,
 		egghead: <SiEgghead className="text-primary" fill="currentColor" size={24} />,
 		partner: <PartnerIcon className="text-primary text-bold" fill="currentColor" size={24} />,
-		guestbook: <BookIcon className="text-primary text-bold" fill="currentColor" size={18} />,
+		guestbook: <BookIcon className="text-primary text-bold" fill="currentColor" size={12} />,
 	};
 
 	return (
@@ -130,14 +130,12 @@ export default function Navbar() {
 				<NavbarItem className="hidden sm:flex gap-2">
 					<Skeleton className="hidden sm:flex" isLoaded={false} />
 					<DiscordWidget />
-					{/* <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
-						{icons.discord}
-					</Link> */}
 					<Link isExternal href={siteConfig.links.github} aria-label="Github">
 						{icons.github}
 					</Link>
 					<ThemeSwitch />
 					<UserButton />
+					<OrganizationSwitcher/>
 				</NavbarItem>
 			</NavbarContent>
 
@@ -149,6 +147,7 @@ export default function Navbar() {
 					{icons.github}
 				</Link>
 				<ThemeSwitch />
+				<OrganizationSwitcher/>
 				<NavbarMenuToggle />
 			</NavbarContent>
 
