@@ -31,7 +31,7 @@ export default function Header() {
                     className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                     />
                 <div className="text-gray-800 dark:text-gray-100 mt-2 sm:gap-2 lg:gap-1 sm:text-base lg:text-large">
-                        I am a passionate self taught <Code color="primary" size="md" className="text-center font-bold">Fullstack Web Developer</Code> & <Code color="primary" size="md" className="text-center font-bold">Discord Bot Developer</Code> from <Code color="primary" size="md" className="text-center font-bold">EU/UK</Code>
+                        I am a passionate self taught <Code color="primary" size="md" className="text-center font-bold">Fullstack Web Developer</Code> & <Code color="primary" size="md" className="text-center font-bold">Discord App Developer</Code> from <Code color="primary" size="md" className="text-center font-bold">EU/UK</Code>
                 </div>
                 <div className="sm:mt-2 lg:mt-4 flex flex-col gap-3">
                     <div className="flex flex-row items-center justify-center space-x-1 sm:text-base lg:text-2xl">
