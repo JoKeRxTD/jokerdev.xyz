@@ -26,7 +26,7 @@ const DiscordWidget = () => {
       <Link href={data.instant_invite} target="_blank" rel="noreferrer" className="lg:flex lg:flex-row max-w-[35vh] gap-2 items-center text-center justify-center">
         <p className="inline-flex relative">
           <DiscordIcon className="animate-ping absolute inline-flex h-full p-1 w-full rounded-full bg-green-400 opacity-75 dark:bg-green-300 text-zinc-600 dark:text-white"/>
-          <DiscordIcon className="relative inline-flex rounded-full h-6 w-6 bg-green-300 dark:bg-green-400 text-zinc-600 dark:text-white"/>
+          <DiscordIcon className="relative inline-flex rounded-full h-6 w-6 bg-green-300 dark:bg-green-700 text-zinc-400 dark:text-zinc-700"/>
         </p>
         <p className="text-green-600 dark:text-green-400 font-display text-lg ">{data.presence_count}</p> <span className="text-zinc-600 dark:text-white">Online Members</span>
       </Link>
