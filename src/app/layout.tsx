@@ -10,6 +10,7 @@ import type { Viewport } from 'next';
 import { ClerkProvider } from '@clerk/nextjs'
 import { dark } from '@clerk/themes';
 import { Inter as FontSans } from "next/font/google"
+import { Toaster } from '../components/ui/toaster'
 
 import { cn } from "../utils/cn";
 
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
 				height: 1080,
 			},
 		],
-		locale: "en-US",
+		locale: "en-GB",
 		type: "website",
 	},
 	robots: {
@@ -87,6 +88,7 @@ export default function RootLayout({
 						<div className="relative flex flex-col h-screen items-center">
 							<Navbar />
 							<main className="container mx-auto max-w-5xl pt-12 px-3 flex-grow">
+								<Toaster />
 								{children}
 							</main>
 							<Footer />
