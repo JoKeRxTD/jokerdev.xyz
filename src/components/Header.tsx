@@ -33,14 +33,14 @@ export default function Header() {
             <div className="text-gray-800 dark:text-gray-100 mt-2 sm:gap-2 lg:gap-1 sm:text-base lg:text-large">
                 I am a passionate self taught <Code color="primary" size="md" className="text-center font-bold">Fullstack Web Developer</Code> & <Code color="primary" size="md" className="text-center font-bold">Discord App Developer</Code> from <Code color="primary" size="md" className="text-center font-bold">EU/UK</Code>
             </div>
-            <div className="sm:mt-2 lg:mt-4 flex flex-col gap-3">
+            <div className="sm:mt-2 lg:mt-3 flex flex-col gap-2">
                 <div className="flex flex-col items-center justify-center gap-4 sm:text-base lg:text-2xl">
                     <p className="text-center text-gray-800 lg:mt-4 dark:text-gray-100 sm:gap-2 lg:gap-1 sm:text-base lg:text-large">
-                        You can read a little about me <Link href="/about"><p className="underline decoration-wavy font-bold decoration-2 decoration-purple-800">here</p></Link>
+                        You can read a little about me <Link href="/about"><p className="underline decoration-wavy font-bold decoration-2 decoration-purple-800 text-gray-800 lg:mt-4 dark:text-gray-100">here</p></Link>
                     </p>
-                    <p className="p-1 text-gray-800 dark:text-gray-100 sm:text-base lg:text-large">
-                        I am <a className="underline decoration-wavy font-bold decoration-2 decoration-yellow-800 ">available</a> for hire,&nbsp;
-                            <Link className="underline decoration-wavy font-bold decoration-2 decoration-blue-800" href="/contact">
+                    <p className="text-gray-800 dark:text-gray-100 sm:text-base lg:text-large">
+                        I am <a className="underline decoration-wavy font-bold decoration-2 decoration-yellow-800">available</a> for hire,&nbsp;
+                            <Link className="underline decoration-wavy font-bold decoration-2 decoration-blue-800 text-gray-800 lg:mt-4 dark:text-gray-100" href="/contact">
                                 Contact
                             </Link>
                             &nbsp;me for more info.
