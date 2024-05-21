@@ -1,11 +1,14 @@
-# Build
-[![Netlify Status](https://api.netlify.com/api/v1/badges/851db577-e644-4c91-9fb2-3a1cb0b926f6/deploy-status)](https://app.netlify.com/sites/funny-bombolone-136075/deploys)
-
 # Portfolio Website Template
 
 This is my Porfoilio website built with Next.js and NextUI. It is a template that you can use to build your own website.
 This was created from the template provided by [nextui-org](https://github.com/nextui-org/next-app-template).
 You can preview the website [PREVIEW](https://jokerdev.xyz).
+
+# Build
+[![Netlify Status](https://api.netlify.com/api/v1/badges/851db577-e644-4c91-9fb2-3a1cb0b926f6/deploy-status)](https://app.netlify.com/sites/funny-bombolone-136075/deploys)
+
+# Star
+<img style='border-radius: 10px;' src="https://cdn.jokerdev.xyz/img/dev_bo4h5gr1.png" alt="star" />
 
 ## Technologies Used
 
@@ -15,7 +18,7 @@ You can preview the website [PREVIEW](https://jokerdev.xyz).
 - [Tailwind CSS](https://tailwindcss.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Framer Motion](https://www.framer.com/motion/)
-- [Clerk](clerk.com/)
+- [Clerk](https://clerk.com/)
 
 ## How to Use
 
