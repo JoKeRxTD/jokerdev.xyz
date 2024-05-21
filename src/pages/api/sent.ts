@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-// import { MessageFormData } from "../../types";
 
+// import { MessageFormData } from "../../types";
 
 type Data = {
   name: string;
@@ -10,7 +10,7 @@ type Data = {
 };
 
 // Rate limit mechanism
-const rateLimit = 5000; // 5 seconds
+const rateLimit = 15 * 60 * 1000; // 15 minutes in milliseconds
 let lastRequestTime = 0;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -34,7 +34,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
   lastRequestTime = currentTime;
 
-  await axios.post(process.env.DISCORD_WEBHOOK_URL as string, {
+  await axios
+    .post(process.env.DISCORD_WEBHOOK_URL as string, {
       embeds: [
         {
           color: 3553598,
@@ -50,8 +51,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ],
     })
     .then((response) => {
-      if (response.data.err)
-        return res.status(500).json({ result: "DISCORD_API_ERROR" });
+      if (response.data.err) return res.status(500).json({ result: "DISCORD_API_ERROR" });
       return res.status(200).json({ result: "Success" });
     });
 }
