@@ -65,9 +65,6 @@ function SectionAnimation() {
 }
 
 const Home = () => {
-	const [skillsRef, skillsInView] = useInView({ threshold: 0 });
-	const [githubRef, githubInView] = useInView({ threshold: 0 });
-
 	return (
 		<ScrollShadow hideScrollBar className="w-full h-full">
 			<SectionAnimation />
