@@ -8,19 +8,33 @@ import SupportCard from "@/src/components/SupportCard";
 import { BackgroundBeams } from "@/src/components/Header-BG";
 import Spotify from "@/src/components/Spotify";
 import LanyardCard from "@/src/components/Lanyard";
+import { motion } from "framer-motion";
 
 export default function Header() {
     const [index, setIndex] = useState<number>(0);
+    const text = `Tom`;
 
     return (
         <section className={`relative flex flex-col gap-12 items-center justify-center sm:h-[300px] lg:h-[750px] w-full overflow-hidden mb-4`}
             style={{ transition: "opacity 0.5s ease-in-out" }}>
             {/* <BackgroundBeams /> */}
-            <div>
-                <div className="text-gray-800 dark:text-gray-100 sm:text-base lg:text-2xl">
-                    Hi, I&apos;m
-                </div>
-                <span className="text-6xl font-bold text-primary-200">Tom</span>
+            <div className="font-bold text-center text-gray-800 dark:text-gray-100 sm:text-5xl lg:text-7xl">
+                Hello, I`m&nbsp;
+                {text.split("").map((letter, index) => (
+                    <motion.span
+                        key={index}
+                        initial={{ opacity: 1 }}
+                        animate={{ opacity: 0 }}
+                        transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            delay: index * 0.3,
+                        }}
+                        style={{ color: letter === 'T' || letter === 'o' || letter === 'm' ? "blue" : "inherit" }}
+                    >
+                        {letter}
+                    </motion.span>
+                ))}
             </div>
             <Image
                 isBlurred
@@ -41,10 +55,10 @@ export default function Header() {
                     </span>
                     <span className="text-gray-800 dark:text-gray-100 sm:text-base lg:text-2xl">
                         I am <a className="underline decoration-wavy font-bold decoration-2 decoration-yellow-800 sm:text-base lg:text-3xl">available</a> for hire,&nbsp;
-                            <Link className="underline decoration-wavy font-bold decoration-2 decoration-blue-800 text-gray-800 lg:mt-4 dark:text-gray-100 sm:text-base lg:text-3xl" href="/contact">
-                                Contact
-                            </Link>
-                            &nbsp;me for more info.
+                        <Link className="underline decoration-wavy font-bold decoration-2 decoration-blue-800 text-gray-800 lg:mt-4 dark:text-gray-100 sm:text-base lg:text-3xl" href="/contact">
+                            Contact
+                        </Link>
+                        &nbsp;me for more info.
                     </span>
                 </div>
                 <LanyardCard />
