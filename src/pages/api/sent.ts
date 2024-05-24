@@ -15,6 +15,7 @@ let lastRequestTime = 0;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const data = req.body as Data;
+  const currentTime = Date.now();
 
   if (!data) return res.status(500).json({ result: "Nice try :)" });
 
@@ -26,27 +27,51 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(500).json({ result: "EMAIL_TOO_LONG" });
   if (data.name.length > 500)
     return res.status(500).json({ result: "NAME_TOO_LONG" });
+  if (currentTime - lastRequestTime < rateLimit)
+    return res.status(429).json({ result: "TOO_FAST" });
+
 
   // Check rate limit
-  const currentTime = Date.now();
   if (currentTime - lastRequestTime < rateLimit) {
     return res.status(429).json({ result: "RATE_LIMIT_EXCEEDED" });
   }
   lastRequestTime = currentTime;
 
+  const setColor = 3447003;
+
   await axios
     .post(process.env.DISCORD_WEBHOOK_URL as string, {
       embeds: [
         {
-          color: 3553598,
-          title: "Email: " + data.email,
-          author: {
-            name: "Name: " + data.name,
-          },
+          title: "Contact Form",
+          description: "New message from the contact form.",
+          fields: [
+            {
+              name: "Name: ",
+              value: data.name,
+            },
+            {
+              name: "Email: ",
+              value: data.email,
+            },
+            {
+              name: "Message: ",
+              value: data.message,
+            },
+            {
+              name: "Date: ",
+              value: new Date().toLocaleString(),
+            },
+            {
+              name: "IP Address: ",
+              value: req.headers["x-forwarded-for"] ?? req.socket.remoteAddress ?? "unknown!?",
+            }
+          ],
+          color: setColor, 
           footer: {
             name: req.headers["x-forwarded-for"] ?? req.socket.remoteAddress ?? "unknown!?",
           },
-          description: "Message: " + data.message + "\n\n" + "Date: " + new Date().toLocaleString(),
+
         },
       ],
     })
