@@ -14,18 +14,11 @@ function SectionAnimation() {
 	const [githubRef, githubInView] = useInView({ threshold: 0 });
 	const [inView, setInView] = useState(false);
 	
+	// Add condition to setInView based on screen size
 	useEffect(() => {
-		if (skillsInView) {
-			setInView(true);
-        }
-    }, [skillsInView]);
-	
-	useEffect(() => {
-		if (githubInView) {
-			setInView(true);
-		}
-	}, [githubInView]);
-	
+		const isMobile = window.innerWidth <= 640;
+		setInView(isMobile ? skillsInView && githubInView : skillsInView || githubInView);
+	}, [skillsInView, githubInView]);
 
 	return (
 		<motion.div
@@ -38,26 +31,9 @@ function SectionAnimation() {
 			<div className="text-center items-center justify-center py-1 space-y-1 md:space-y-1 lg:space-y-16 lg:gap-4">
 				<Header />
 				<Divider />
-				{/* if inView false motion section if true all section are inView */}
-				<motion.div
-					ref={skillsRef}
-					initial={{ x: 1000 }}
-					animate={inView ? { x: 0 } : { x: 1000 }}
-					transition={{ duration: 1 }}
-					className="w-full"
-				>
 					<Skills />
-				</motion.div>
 				<Divider />
-				<motion.div
-					ref={githubRef}
-					initial={{ x: -1000 }}
-					animate={inView ? { x: 0 } : { x: -1000 }}
-					transition={{ duration: 1 }}
-					className="w-full"
-				>
 					<Github />
-				</motion.div>
 				<Divider />
 			</div>
 		</motion.div>
