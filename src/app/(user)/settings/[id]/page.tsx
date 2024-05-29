@@ -4,7 +4,7 @@ import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
 import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
 import { auth } from "@/src/lib/auth";
-import DeletePostButton from "@/src/components/DeletePostButton";
+// import DeletePostButton from "@/src/components/DeletePostButton";
 
 export default async function Page({ params }: { params: { id: string } }) {
   // get the post from the database

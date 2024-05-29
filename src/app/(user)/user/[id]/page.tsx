@@ -6,7 +6,7 @@ import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
 import { auth } from "@/src/lib/auth";
 import DeleteUserButton from "@/src/components/DeleteUserButton";
-import EditUser from "@/src/components/EditUser";
+// import EditUser from "@/src/components/EditUser";
 import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar";
 import { Image } from "@nextui-org/image";
 import { processFlags } from '@/src/utils/flags';
