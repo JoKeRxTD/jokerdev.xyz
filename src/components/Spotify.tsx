@@ -3,8 +3,9 @@
 import { motion } from "framer-motion";
 import { useLanyard } from "use-lanyard";
 import { useState, useEffect } from "react"
-// import LanyardAPI from "../utils/Lanyard";
+// import LanyardAPI from "@/src/utils/Lanyard";
 import {Progress} from "@nextui-org/progress";
+import { classNames } from "@/src/utils/classNames";
 
 const DiscordID = '116730818822537225';
 
@@ -50,6 +51,15 @@ const Spotify = () => {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  // reload Spotify component ONLY every 4 minutes
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     window.location.reload();
+  //   }, 4 * 60 * 1000);
+  //   return () => clearInterval(interval);
+  // }, []);
+  
 
   if (!user ||!user.spotify) return null;
 
@@ -107,7 +117,7 @@ const Spotify = () => {
         </div>
         <div className="mb-1 text-[10px]">
           Powered by{" "}
-          <a href="https://lanyard.cnrad.dev" target="_blank" rel="noreferrer" className="text-blue-500 dark:text-blue-400">
+          <a href="https://github.com/Phineas/lanyard" target="_blank" rel="noreferrer" className="text-blue-500 dark:text-blue-400">
             Lanyard
           </a>
         </div>

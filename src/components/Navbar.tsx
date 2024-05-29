@@ -11,23 +11,57 @@ import {
 import { FiGithub } from "react-icons/fi";
 import { SiDiscord, SiEgghead } from "react-icons/si";
 import clsx from "clsx";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@../../../config/site";
 import { link as linkStyles } from "@nextui-org/theme";
 import { ThemeSwitch } from "@/src/components/theme-switch";
-import { UserButton } from "@clerk/nextjs";
-import { OrganizationSwitcher } from "@clerk/nextjs";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem, Button, User, Skeleton, Divider, Link, Tooltip, Code } from "@nextui-org/react";
+import { User, Skeleton, Divider, Link, Tooltip, Code } from "@nextui-org/react";
 import { ProfileIcon, AnalyticsIcon, LinesIcon, PartnerIcon, DiscordIcon, GithubIcon, BookIcon } from "@/src/components/Icons";
-import DiscordWidget from "@/src/components/DiscordWidget";
+import { Avatar, AvatarImage, AvatarFallback } from "@/src/components/ui/avatar";
+import { useSession } from "next-auth/react"
+import { SignIn, SignOut } from "@/src/components/SignInOut";
+import { Button } from "@/src/components/ui/button";
+import {
+	DropdownMenu,
+	DropdownMenuTrigger,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuCheckboxItem,
+	DropdownMenuRadioItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuShortcut,
+	DropdownMenuGroup,
+	DropdownMenuPortal,
+	DropdownMenuSub,
+	DropdownMenuSubContent,
+	DropdownMenuSubTrigger,
+	DropdownMenuRadioGroup,
+} from "@/src/components/ui/dropdown-menu"
+
+// import UserButton from "@/src/components/UserButton"
 
 
 // list of items to place in drop down with label & link
-const navDropdown = [
-	{ label: "Profile", href: "/user-profile" },
-	{ label: "Analytics", href: "/analytics" },
-];
+
 
 export default function Navbar() {
+	const { data: session } = useSession();
+	const user = session?.user;
+	const profile = session?.profile;
+
+	const navDropdown = [
+		{ label: "Profile", href: `/user/${session?.user?.discordId}` },
+		{ label: "Analytics", href: "/analytics" },
+		{ label: "Partners", href: "/partners" },
+		{ label: "Guestbook", href: "/guestbook" },
+	];
+
+	const userDropdown = [
+		{ label: "Profile", href: `/user/${session?.user?.discordId}` },
+		{ label: "Settings", href: "/settings" },
+	];
+
+
 
 	const icons = {
 		profile: <ProfileIcon className="text-primary" fill="currentColor" size={24} />,
@@ -37,11 +71,57 @@ export default function Navbar() {
 		discord: <DiscordIcon className="text-[#7289da]" fill="currentColor" size={24} />,
 		egghead: <SiEgghead className="text-primary" fill="currentColor" size={24} />,
 		partner: <PartnerIcon className="text-primary text-bold" fill="currentColor" size={24} />,
-		guestbook: <BookIcon className="text-primary text-bold" fill="currentColor" size={12} />,
+		guestbook: <BookIcon className="text-orange-800 dark:text-orange-400 text-bold" fill="currentColor" size={24} />,
 	};
 
+	const UserBar = () => {
+		if (profile) {
+			return (
+				<div className="flex gap-2 justify-center items-center content-center">
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<Avatar className="w-8 h-8">
+								{session?.profile.image && (
+									<AvatarImage
+										src={`${session?.profile.image}`}
+										alt={`${session?.profile.username}`}
+									/>
+								)}
+								<AvatarFallback>{session?.profile?.username}</AvatarFallback>
+							</Avatar>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent>
+							<DropdownMenuLabel>{session?.profile?.username}</DropdownMenuLabel>
+							<DropdownMenuSeparator />
+							{userDropdown.map((item, index) => (
+								<DropdownMenuCheckboxItem
+									key={`${item.label}-${index}`}
+									onClick={() => {
+										window.location.href = item.href;
+									}}
+								>
+									{item.label}
+								</DropdownMenuCheckboxItem>
+							))}
+							<DropdownMenuSeparator />
+							<DropdownMenuCheckboxItem>
+								<SignOut />
+							</DropdownMenuCheckboxItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
+				</div>
+			);
+		}
+		return (
+			<div className="flex-wrap gap-2 justify-center items-center content-center">
+				<SignIn />
+			</div>
+		);
+	}
+
+
 	return (
-		<NextUINavbar maxWidth="xl" position="sticky" className="top-0 w-[100%] z-50 border border-zinc-500 dark:border-zinc-800">
+		<NextUINavbar maxWidth="xl" position="sticky" className="z-50 ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
 			<NavbarContent className="basis-1/5 sm:basis-full ml-2 gap-2 justify-center items-center text-bold text-base">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<Link className="flex justify-start items-center gap-1" href="/">
@@ -62,84 +142,55 @@ export default function Navbar() {
 								{item.label}
 							</Link>
 						</NavbarItem>
-					))}
+					))}	
 				</div>
-				<Dropdown className="sm:hidden lg:flex gap-4 justify-start ml-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+				<div className="hidden lg:flex gap-4 justify-start ml-2 text-bold text-xl">
+				<DropdownMenu>
 					<NavbarItem className="hidden lg:flex">
-						<DropdownTrigger>
+						<DropdownMenuTrigger asChild>
 							<Button
 								key="dropdown"
-								disableRipple
-								className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-								endContent={icons.dropdown}
-								radius="sm"
-								variant="light"
+								variant="link"
+								className="p-0 text-zinc-800 dark:text-zinc-400 bg-transparent data-[hover=true]:bg-transparent"
 							>
-								Other
+								Other {icons.dropdown}
 							</Button>
-						</DropdownTrigger>
-					</NavbarItem>
-					<DropdownMenu
-						aria-label="Other Options"
-						className="w-[300px] text-bold text-base"
-						itemClasses={{
-							base: "gap-2",
-						}}>
-						<DropdownItem
-							key="profile"
-							description='Tom "JoKeR" area to manage the site'
-							startContent={icons.profile}
-							onClick={() => {
-								window.location.href = "/user-profile";
-							}}>
-							Dashboard
-						</DropdownItem>
-						<DropdownItem
-							key="analytics"
-							description="View the analytics of the site."
-							startContent={icons.analytics}
-							onClick={() => {
-								window.location.href = "/analytics";
-							}}>
-							Analytics
-						</DropdownItem>
-						<DropdownItem
-							key="partners"
-							description="My partners and sponsors."
-							startContent={icons.partner}
-							onClick={() => {
-								window.location.href = "/partners";
-							}}>
-							Partners
-						</DropdownItem>
-						{/* <DropdownItem
-							key="guestbook"
-							description="Sign my guestbook."
-							startContent={icons.guestbook}
-							onClick={() => {
-								window.location.href = "/guestbook";
-							}}>
-							Guestbook
-						</DropdownItem> */}
+						</DropdownMenuTrigger>
+						</NavbarItem>
+						<DropdownMenuContent
+							aria-label="Other Options"
+							className="text-bold text-base"
+							>
+							<DropdownMenuSeparator />
+							{navDropdown.map((item, index) => (
+								<DropdownMenuItem
+									key={`${item.label}-${index}`}
+									onClick={() => {
+										window.location.href = item.href;
+									}
+								}>
+									{item.label}
+								</DropdownMenuItem>
+							))}
+						</DropdownMenuContent>
 					</DropdownMenu>
-				</Dropdown>
+				</div>
+
 			</NavbarContent>
 			<NavbarContent
 				className="hidden sm:flex basis-1/5 sm:basis-full"
 				justify="end">
-				<NavbarItem className="hidden sm:flex gap-2">
+				<NavbarItem className="hidden sm:flex justify-center gap-2">
 					<Skeleton className="hidden sm:flex" isLoaded={false} />
-					<DiscordWidget />
 					<Link isExternal href={siteConfig.links.github} aria-label="Github">
 						{icons.github}
 					</Link>
 					<ThemeSwitch />
-					<UserButton />
-					<OrganizationSwitcher/>
+					<UserBar />
 				</NavbarItem>
 			</NavbarContent>
 
-			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+			<NavbarContent className="sm:hidden basis-1 pl-4 justify-center" justify="end">
 				<Link isExternal href={siteConfig.links.discord} aria-label="Discord">
 					{icons.discord}
 				</Link>
@@ -147,8 +198,8 @@ export default function Navbar() {
 					{icons.github}
 				</Link>
 				<ThemeSwitch />
-				<OrganizationSwitcher/>
 				<NavbarMenuToggle />
+				<UserBar />
 			</NavbarContent>
 
 			<NavbarMenu>

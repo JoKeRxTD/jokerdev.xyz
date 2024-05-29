@@ -12,38 +12,9 @@ import { cn } from '../utils/cn';
 import { classNames } from '../utils/classNames';
 import { Badge } from "../components/ui/badge"
 
-
-
-
 const stats = "https://api.github-star-counter.workers.dev/user/jokerxtd" // {"stars":12,"forks":4}
-const repos = "https://api.github.com/users/jokerxtd/repos?type=owner&per_page=100"
+const repos = "https://api.github.com/users/jokerxtd/repos?type=owner&per_page=250"
 
-// Languages object to display the language of the repository (Name = Language, borderColor = Hex Color)
-const Languages: Languages = {
-  TypeScript: "TypeScript",
-  Python: "Python",
-  Lua: "LUA",
-  JavaScript: "JavaScript",
-  HTML: "HTML",
-  CSS: "CSS",
-  Md: "MD",
-  Vue: "VUE",
-  Ejs: "EJS",
-  Readme: "Readme",
-  Rd: "RD",
-  Svelte: "Svelte",
-  MDX: "MDX",
-  PHP: "PHP",
-  SCSS: "SCSS",
-  Handlebars: "Handlebars",
-  Markdown: "Markdown",
-  Rust: "Rust",
-  Null: "N/A",
-}
-
-type Languages = {
-  [key: string]: string;
-};
 
 const queryClient = new QueryClient()
 
@@ -54,27 +25,6 @@ export default function Github() {
     </QueryClientProvider>
   )
 }
-
-//? Languages Ring Colors
-const TypeScript = "bg-blue-500/25 text-blue-500 ring-blue-500/25";
-const Python = "bg-blue-500/25 text-blue-500 ring-blue-500/25";
-const Lua = "bg-blue-500/25 text-blue-500 ring-blue-500/25";
-const JavaScript = "bg-yellow-500/25 text-yellow-500 ring-yellow-500/25";
-const HTML = "bg-red-500/25 text-red-500 ring-red-500/25";
-const CSS = "bg-indigo-500/25 text-indigo-500 ring-indigo-500/25";
-const Md = "bg-black/25 text-black ring-black/25";
-const Vue = "bg-gray-500/25 text-gray-500 ring-gray-500/25";
-const Ejs = "bg-pink-500/25 text-pink-500 ring-pink-500/25";
-const Readme = "bg-black/25 text-black ring-black/25";
-const Rd = "bg-black/25 text-black ring-black/25";
-const Svelte = "bg-red-500/25 text-red-500 ring-red-500/25";
-const MDX = "bg-black/25 text-black ring-black/25";
-const PHP = "bg-blue-500/25 text-blue-500 ring-blue-500/25";
-const SCSS = "bg-purple-500/25 text-purple-500 ring-purple-500/25";
-const Handlebars = "bg-yellow-500/25 text-yellow-500 ring-yellow-500/25";
-const Markdown = "bg-black/25 text-black ring-black/25";
-const Rust = "bg-black/25 text-black ring-black/25";
-const Null = "bg-black/25 text-black ring-black/25";
 
 //? Github API Component
 function GithubAPI() {
@@ -106,51 +56,51 @@ function GithubAPI() {
     },
   })
 
-  const ArchiedBadge = ({ archived }: { archived: boolean, classNames: string }) => {
+  const ArchiedBadge = ({ archived }: { archived: boolean }) => {
     if (archived) {
       return (
-        <Code className="text-xs font-bold bg-orange-500/25 text-orange-500 ring-orange-500/25 ring-1 ring-inset text-[12px]">
+        <Badge variant="RepoArchived">
           Archived
-        </Code>
+        </Badge>
       )
     }
     return null
   }
 
-  const LanguagesRing = ({ language }: { language: string }) => {
+  const BadgeLanguages: { [key: string]: { name: string } } = {
+    "TypeScript": { name: "Typescript"},
+    "Python": { name: "Python"},
+    "Lua": { name: "Lua"},
+    "JavaScript": { name: "Javascript"},
+    "HTML": { name: "HTML"},
+    "CSS": { name: "CSS"},
+    "Md": { name: "Markdown"},
+    "Vue": { name: "Vue"},
+    "Ejs": { name: "EJS"},
+    "Readme": { name: "Readme"},
+    "Rd": { name: "Rd"},
+    "Svelte": { name: "Svelte"},
+    "MDX": { name: "MDX"},
+    "PHP": { name: "PHP"},
+    "SCSS": { name: "SCSS"},
+    "Handlebars": { name: "Handlebars"},
+    "Markdown": { name: "Markdown"},
+    "Rust": { name: "Rust"},
+    "Null": { name: "Null"},
+  };
+
+  const LanguageBadge = ({ language }: { language: string }) => {
     return (
-      // if language = null raplace with N/A
-      <Code color="default" className={classNames(
-        language == "TypeScript" && TypeScript,
-        language == "Python" && Python,
-        language == "Lua" && Lua,
-        language == "JavaScript" && JavaScript,
-        language == "HTML" && HTML,
-        language == "CSS" && CSS,
-        language == "Md" && Md,
-        language == "Vue" && Vue,
-        language == "Ejs" && Ejs,
-        language == "Readme" && Readme,
-        language == "Rd" && Rd,
-        language == "Svelte" && Svelte,
-        language == "MDX" && MDX,
-        language == "PHP" && PHP,
-        language == "SCSS" && SCSS,
-        language == "Handlebars" && Handlebars,
-        language == "Markdown" && Markdown,
-        language == "Rust" && Rust,
-        language == Null && Null,
-        "ring-1 ring-inset text-[12px] font-semibold"
-      )}>
-        {Languages[language] || Languages["Null"]}
-      </Code>
-    )
-  }
+      <Badge variant={BadgeLanguages[language]?.name as any}>
+        {language}
+      </Badge>
+    );
+  };
 
   const Title = ({ title }: { title: string }) => {
-    if (title.length > 25) {
+    if (title.length > 20) {
       return (
-        <h1 className="font-semibold text-blue-500">{title.slice(0, 8) + "..."}</h1>
+        <h1 className="font-semibold text-blue-500 sm:text-md">{title.slice(0, 12) + "..."}</h1>
       )
     }
     return (
@@ -167,7 +117,14 @@ function GithubAPI() {
         className="w-3 h-3 rounded-full mr-1"
       />
       <div className='flex flex-col items-center justify-center gap-2 text-center'>
-        <div className="text-5xl font-extrabold text-center items-center justify-center text-primary-300">Github Repositories</div>
+        <motion.span
+          className="text-5xl font-extrabold text-center items-center justify-center text-primary-300"
+          initial={{ color: "blue" }}
+          animate={{ color: "blue" }}
+          transition={{ duration: 0.5 }}
+        >
+          Github Repositories
+        </motion.span>
         <div className="text-center p-4 text-base lg:text-lg">
           Here are some of my public github repositories<br />You can use these to build your own applications from just like this <a className="font-bold decoration-wavy decoration-2 underline decoration-sky-800" href="/">website</a>.
         </div>
@@ -184,14 +141,18 @@ function GithubAPI() {
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 flex-wrap w-full gap-4 p-2 justify-center ">
+
         {isPendingRepos && <div>Loading...</div>}
+
         {reposData?.map((repo: any) => (
-          <Card key={repo.id} className="w-full h-full border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border bg-gradient-to-b from-zinc-200 dark:bg-zinc-800/30 dark:from-inherit lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+          <Card key={repo.id} className="w-full h-full p-2 ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
             <CardHeader>
               <div className="flex flex-row items-center justify-center text-center gap-2">
-                <a href={repo.html_url} target="_blank" rel="noreferrer" className="font-bold text-primary-300 hover:text-primary-400"><Title title={repo.name} /></a>
-                <LanguagesRing language={repo.language} />
-                <ArchiedBadge archived={repo.archived} classNames="text-xs font-bold" />
+                <a href={repo.html_url} target="_blank" rel="noreferrer" className="font-bold text-primary-300 hover:text-primary-400">
+                  <Title title={repo.name} />
+                </a>
+                <LanguageBadge language={repo.language} />
+                <ArchiedBadge archived={repo.archived}/>
               </div>
             </CardHeader>
             <CardBody>

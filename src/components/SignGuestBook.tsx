@@ -1,0 +1,128 @@
+
+'use client'
+import { findPostByUser, createPost } from "../actions/actions";
+import React from "react";
+import {Divider} from "@nextui-org/react";
+import { useState } from 'react';
+import {Button} from "@nextui-org/button";
+import {ImSpinner2} from "react-icons/im";
+import { RiSendPlane2Fill } from 'react-icons/ri';
+import { useSession } from "next-auth/react"
+import { SignIn, SignOut } from "@/src/components/SignInOut"
+
+export default function SignGuestBook() {
+    const [error, setError] = useState('');
+    const [sending, setSending] = useState(false);
+
+    const { data: session } = useSession()
+    const auth = useSession();
+
+    if (!session?.user) {
+        return (
+            <div className="flex flex-col items-center content-center w-[45vh] h-full gap-2 p-2 border rounded-md border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+                <span className="text-md font-bold text-center text-blue-500 dark:text-blue-800 mx-2 underline decoration-from-font underline-offset-1 decoration-blue-500 dark:decoration-blue-800">
+                    You must be signed in to sign the guestbook.
+                </span>
+                <SignIn/>
+            </div>
+        )
+    }
+
+    const user = session?.user;
+    const profile = session?.profile;
+
+    const username = profile?.username!;
+    const discordId = profile?.id!;
+    if (!username) {
+        return "Invalid username";
+    }
+    if (!discordId) {
+        return "Invalid discordId";
+    }
+    
+    async function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        const form = e.target as HTMLFormElement;
+        const formData = new FormData(form);
+        setSending(true);
+        const checkUser = await CheckUser(session?.user?.name!);
+        if (checkUser) {
+            setError("You have already signed the guestbook.");
+            setSending(false);
+            return;
+        }
+        try {
+            await createPost(formData);
+            form.reset();
+            setError('');
+        } catch (error) {
+            console.error(error);
+            setError("An error occurred, please try again.");
+        }
+        setSending(false);
+    }
+
+    
+    async function CheckUser(user: string) {
+        const checkUser = await findPostByUser(user);
+        if (checkUser.length > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    return (
+        <div className="flex-wrap w-[45vh] h-full gap-2 p-2 rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
+                <span className="text-4xl font-bold text-center text-blue-500 dark:text-blue-800 mx-2 underline decoration-from-font underline-offset-1 decoration-blue-500 dark:decoration-blue-800">
+                    Guestbook
+                </span>
+            <form
+                onSubmit={handleSubmit}
+                className="flex flex-col mx-auto gap-2 my-5 justify-center items-center"
+            >
+                <input
+                    name="username"
+                    value={username}
+                    className=" p-2 w-auto h-8 text-center inline-flex items-center justify-center rounded-md text-sm ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:bg-zinc-900/50 hover:text-zinc-400 hover:ring-zinc-400/50 dark:hover:bg-zinc-900/50 dark:hover:text-zinc-400 dark:hover:ring-zinc-400/50 transition-colors duration-90 ease-in-out"
+                    readOnly
+                    required
+                />
+                <input
+                    name="discordId"
+                    value={discordId}
+                    className=" p-2 w-auto h-8 text-center inline-flex items-center justify-center rounded-md text-sm ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:bg-zinc-900/50 hover:text-zinc-400 hover:ring-zinc-400/50 dark:hover:bg-zinc-900/50 dark:hover:text-zinc-400 dark:hover:ring-zinc-400/50 transition-colors duration-90 ease-in-out"
+                    readOnly
+                    required
+                />
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="Enter the title..."
+                    className=" px-3 w-[20vh] h-10 text-zinc-800 dark:text-zinc-400 border rounded-md border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+                    required
+                />
+                <textarea
+                    name="body"
+                    placeholder="Enter your message here..."
+                    className="px-3 py-2 w-[40vh] h-full text-zinc-800 dark:text-zinc-400  border rounded-md border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+                    rows={4}
+                    required
+                />
+                <Button
+                    type="submit"
+                    className="inline-flex items-center justify-center rounded-md text-sm ring-1 ring-inset bg-green-900/25 text-green-800 ring-green-400/25 dark:bg-green-900/25 dark:text-green-400 dark:ring-green-400/25 hover:bg-green-900/50 hover:text-green-400 hover:ring-green-400/50 dark:hover:bg-green-900/50 dark:hover:text-green-400 dark:hover:ring-green-400/50 transition-colors duration-90 ease-in-out">
+                    Post
+                    {sending ? <ImSpinner2 className="animate-spin mx-2" /> : <RiSendPlane2Fill className="mx-2" />}
+                </Button>
+                <Divider/>
+                <span className="font-bold text-blue-500 dark:text-blue-800 mx-2 underline decoration-from-font underline-offset-1 decoration-blue-500 dark:decoration-blue-800 text-medium text-center">
+                    This is a guestbook, please be respectful.
+                </span>
+                <Divider/>
+                {/* error */}
+                {error && <span className="text-red-500 dark:text-red-800">{error}</span>}
+            </form>
+        </div>
+    );
+}

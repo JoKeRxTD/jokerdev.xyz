@@ -1,8 +1,15 @@
-import { NextRequest, NextResponse } from 'next/server';
+import NextAuth from 'next-auth';
+import authConfig from '@/auth.config';
 import { analytics } from '@/src/utils/analytics';
-import { clerkMiddleware } from "@clerk/nextjs/server";
 
-export default clerkMiddleware((auth, req) => {
+const { auth } = NextAuth(authConfig);
+
+export default auth((req) => {
+  if (!req.auth) {
+    const url = req.url.replace(req.nextUrl.pathname, '/');
+    return Response.redirect(url);
+  }
+
   if (req.nextUrl.pathname === '/') {
     try {
       analytics.track('pageview', {
@@ -14,9 +21,9 @@ export default clerkMiddleware((auth, req) => {
       console.error(err);
     }
   }
-  return NextResponse.next();
+
 });
 
 export const config = {
-  matcher: ["/((?!.+.[w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
-};
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+}

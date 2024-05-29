@@ -1,10 +1,11 @@
 import { Link } from "@nextui-org/link";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
 import { Image } from "@nextui-org/image"
-import { Button } from "@nextui-org/react";
+import { Button } from "@/src/components/ui/button";
 import { useState } from "react";
 import { Code } from "@nextui-org/react";
 import { ButtonHTMLAttributes, ReactElement } from "react";
+import {Badge} from "@/src/components/ui/badge";
 
 interface LinkButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     iconRight?: ReactElement;
@@ -79,11 +80,11 @@ export default function PartnerCard() {
     // set border based on id
     const borderStyle = (id: string) => {
         if (id === "zaphosting") {
-            return "border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30";
+            return "ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400";
         } else if (id === "wolfshield") {
-            return "border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30";
+            return "ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400";
         } else if (id === "jokerdev") {
-            return "border rounded-xl border-blue-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-blue-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30";
+            return "ring-1 ring-inset bg-zinc-900/25 text-blue-800 ring-blue-400/25 dark:bg-zinc-900/25 dark:text-blue-400 dark:ring-blue-400/25 hover:text-blue-400 dark:hover:text-blue-400";
         } else {
             return "border-gray-300";
         }
@@ -91,51 +92,50 @@ export default function PartnerCard() {
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 flex-wrap w-full gap-4 p-4 justify-center">
-            {PartnerCards.map((PartnerCard) => (
+            {PartnerCards.map((partner) => (
                 <Card
-                    key={PartnerCard.title}
-                    shadow="md"
-                    className={borderStyle(PartnerCard.id)}
-                >
-                   <CardHeader className="text-center justify-center items-center text-2xl text-primary-300 font-bold">
-                        <h2 className="items-center text-center">{PartnerCard.title}</h2>
+                key={partner.title}
+                shadow="md"
+                className={`flex flex-col gap-2 p-2 rounded-md ${borderStyle(partner.id)}`}
+            >
+                    <CardHeader className="text-center justify-center items-center text-2xl text-primary-300 font-bold">
+                        <h2>{partner.title}</h2>
                     </CardHeader>
                     <CardBody className="items-center text-center space-y-2 p-1 justify-between">
                         <Image
                             isBlurred
-                            src={PartnerCard.image}
-                            alt={PartnerCard.title}
+                            src={partner.image}
+                            alt={partner.title}
                             width={150}
                             height={150}
-                            className="p-1 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+                            className="p-1 rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25"
                         />
-                        <p>{PartnerCard.description}</p>
-                        <p>
+                        <span>{partner.description}</span>
+                        <span className="text-xs gap-1 justify-around items-center flex flex-row">
                             Tags:{" "}
-                            {PartnerCard.tags.map((tag, index) => (
-                                <Code key={index} color="primary" className="mx-1">
+                            {partner.tags.map((tag, index) => (
+                                <Badge key={index} variant="default" className="text-xs">
                                     {tag.toString()}
-                                </Code>
+                                </Badge>
                             ))}
-                        </p>
+                        </span>
                     </CardBody>
                     <CardFooter className="flex flex-row justify-center gap-2 ">
-                        {PartnerCard.links.map((link) => (
-                            <Button
-                                key={link.title}
-                                color="default"
-                                className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
-                                onClick={() => setShow(!show)}
-                                href={link.link}>
+                        {partner.links.map((link) => (
+                            <>
                             <Link
-                                isExternal
-                                color="foreground"
-                                className="text-center p-1"
                                 href={link.link}
-                            >
-                                {link.title}
+                                isExternal
+                                color="foreground">
+                                <Button
+                                    key={link.title}
+                                    variant="default"
+                                    className="text-sm p-4 h-5 w-20"
+                                >
+                                    {link.title}
+                                </Button>
                             </Link>
-                            </Button>
+                            </>
                         ))}
                     </CardFooter>
                 </Card>

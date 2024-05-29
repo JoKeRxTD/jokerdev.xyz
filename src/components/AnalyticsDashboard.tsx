@@ -154,7 +154,6 @@ const AnalyticsDashboard = ({
             index='name'
             customTooltip={customTooltip}
             />
-
         ) : null}
       </Card>
       <Divider />

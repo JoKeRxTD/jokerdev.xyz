@@ -1,51 +1,39 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-'use client'
 import { useLanyard } from 'use-lanyard';
 import { motion } from 'framer-motion';
 import React from 'react';
-import { Badges } from '@/public/badges/BadgesEncoded';
+import { Badges } from '../../public/badges/BadgesEncoded';
 import { Tooltip } from "@nextui-org/react";
 import { Link } from "@nextui-org/react";
+import { Badge } from "@/src/components/ui/badge";
+import { Image } from "@nextui-org/react";
+
 
 const DiscordID = '116730818822537225';
 
-const UserStatus = ({ status }: { status: string }) => {
+
+const UserStatusBadge = ({ status }: { status: string }) => {
     const { data: activity } = useLanyard(DiscordID);
     // todo: if activity is null, return null
     if (!activity || !activity.discord_user) return null;
+    const currentStatus = activity.discord_status as "online" | "idle" | "dnd" | "offline";
 
-    const OnlineStatus = 'bg-green-900/25 text-green-400 ring-green-400/25 dark:bg-green-900/25 dark:text-green-400 dark:ring-green-400/25'
-    const IdleStatus = 'bg-orange-900/25 text-orange-400 ring-orange-400/25 dark:bg-orange-900/25 dark:text-orange-400 dark:ring-orange-400/25'
-    const DNDStatus = 'bg-red-900/25 text-red-400 ring-red-400/25 dark:bg-red-900/25 dark:text-red-400 dark:ring-red-400/25'
-    const OfflineStatus = 'bg-gray-900/25 text-gray-400 ring-gray-400/25 dark:bg-gray-900/25 dark:text-gray-400 dark:ring-gray-400/25'
+    const statusMap = {
+        online: "Online",
+        idle: "Idle",
+        dnd: "Do Not Disturb",
+        offline: "Offline",
+    };
 
-    if (activity.discord_status === 'online') {
-        return (
-            <div className={`inline-flex items-center justify-center rounded-md px-2 py-1 text-xs ring-1 ring-inset ${OnlineStatus}`}>
-                Online
-            </div>
-        )
-    } else if (activity.discord_status === 'idle') {
-        return (
-            <div className={`inline-flex items-center justify-center rounded-md px-1 py-1 text-xs ring-1 ring-inset ${IdleStatus}`}>
-                Idle
-            </div>
-        )
-    } else if (activity.discord_status === 'dnd') {
-        return (
-            <div className={`inline-flex items-center justify-center rounded-md px-2 py-1 text-xs ring-1 ring-inset ${DNDStatus}`}>
-                Do Not Disturb
-            </div>
-        )
-    } else {
-        return (
-            <div className={`inline-flex items-center justify-center rounded-md px-2 py-1 text-xs ring-1 ring-inset ${OfflineStatus}`}>
-                Offline
-            </div>
-        )
-    }
+    return (
+        <Badge variant={currentStatus}>
+            {statusMap[currentStatus]}
+        </Badge>
+    );
 }
+
+            
 
 // show dicord bagdes based on public_flags int
 export const DiscordBadges = (flag: number): string[] => {
@@ -97,7 +85,7 @@ const LanyardCard = () => {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5, easing: [0, 0.5, 0.28, 0.99] }}
-            className="hidden lg:flex lg:flex-row lg:grow lg:fixed lg:bottom-[100px] lg:right-7 lg:w-[390px] lg:h-[200px] border border-zinc-800 dark:border-zinc-800 dark:bg-zinc-800/30 dark:border-opacity-50 rounded-md bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+            className="hidden lg:flex lg:flex-row lg:grow lg:fixed lg:bottom-[100px] rounded-md lg:right-7 lg:w-[390px] lg:h-[200px] ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400"
         >
             <div className="flex flex-col grow justify-center mx-2 mt-3 p-1/2 text-2/xl">
                 <div className="flex flex-row right-0 top-0 mt-2 ml-3">
@@ -105,29 +93,29 @@ const LanyardCard = () => {
                         key={activity?.discord_user?.username}
                         content={activity?.discord_user?.username}
                         color='default'
-                        className='z-11 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border'
+                        className='z-11 rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'
                     >
-                        <img
+                        <Image
                             src={`https://cdn.discordapp.com/avatars/${activity?.discord_user?.id}/${activity?.discord_user?.avatar}.gif`}
                             alt="Discord Avatar"
-                            className="ring-1 ring-inset rounded-md w-12 h-12 border border-zinc-600 dark:border-neutral-800 dark:bg-zinc-800/30 dark:border-opacity-50"
-                            width={30}
-                            height={30}
+                            className="rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400"
+                            height={50}
+                            width={50}
                         />
                     </Tooltip>
                     <div className="flex flex-col ml-2 justify-center text-center">
                         <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{activity?.discord_user?.global_name}</p>
-                        <UserStatus status={activity?.discord_status} />
+                        <UserStatusBadge status={activity?.discord_status} />
                     </div>
-                    <div className="flex flex-col ml-2 mt-1 w-[185px]">
-                        <div className='text-center items-center justify-center border border-zinc-800 dark:border-zinc-800 dark:bg-zinc-800/30 dark:border-opacity-50 rounded-md'>
+                    <div className="flex flex-col ml-2 mt-1 w-[180px]">
+                        <div className='text-center items-center justify-center rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'>
                             <p className='text-gray-800 dark:text-gray-100 text-md p-2'>
                                 {flags.map(v => (
                                     <Tooltip
                                         key={v}
                                         content={v.split("_").join(" ")}
                                         color='default'
-                                        className='z-11 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border'
+                                        className='z-11 rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'
                                     >
                                         <img
                                             src={`data:image/png;base64,${Badges[v]}`}
@@ -139,15 +127,15 @@ const LanyardCard = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col justify-center mx-2 p-1 text-2/xl w-[355px] h-[500px]">
-                    <div className="flex flex-col px-2 mb-2 gap-2 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border">
+                <div className="flex flex-col justify-center mx-2 p-1 text-2/xl w-[355px] h-[510px]">
+                    <div className="flex flex-col px-2 mb-2 gap-2 rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
                         {notSpotify?.length > 0 ? (
                             <div className='flex flex-row mt-2 mb-2 gap-2'>
                                 <Tooltip
                                     key={notSpotify[0]?.name}
                                     content={notSpotify[0]?.name}
                                     color='default'
-                                    className='z-11 border rounded-md border-zinc-800  backdrop-blur-2xl dark:border-zinc-800 lg:rounded-md lg:border'
+                                    className='z-11 rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'
                                 >
                                     {/* if not spotify then get activity path 1 if CallOfDuty then get activity path 0 */}
                                     <div className='flex flex-row'>
@@ -161,24 +149,24 @@ const LanyardCard = () => {
                                             <img
                                                 src={`https://cdn.discordapp.com/app-assets/${CallOfDuty[0]?.application_id}/${CallOfDuty[0]?.assets?.large_image}.png`}
                                                 alt="Discord Avatar"
-                                                className="ring-1 ring-inset rounded-lg w-12 h-12 mr-6 border border-zinc-600 dark:border-neutral-800 dark:bg-zinc-800/30 dark:border-opacity-50"
+                                                className=" rounded-lg w-12 h-12 mr-6 ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400"
                                             />
                                         ) : (
                                             <img
                                                 src={`https://media.discordapp.net/external/${notSpotify[0]?.assets?.large_image.replace("mp:external/", "")}`}
                                                 alt="Discord Avatar"
-                                                className="ring-1 ring-inset rounded-lg w-12 h-12 border border-zinc-600 dark:border-neutral-800 dark:bg-zinc-800/30 dark:border-opacity-50"
+                                                className="rounded-lg w-12 h-12 ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400"
                                             />
                                         )}
                                     </div>
                                 </Tooltip>
                                 {CustomStatus?.length > 0 ? (
-                                    <div className='flex justify-center text-center items-center pl-2'>
+                                    <div className='flex justify-center text-center items-center'>
                                         {/* <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{CustomStatus[0]?.name}</p> */}
                                         <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{CustomStatus[0]?.state}</p>
                                     </div>
                                 ) : CallOfDuty?.length > 0 ? (
-                                    <div>
+                                    <div className='flex flex-col justify-center text-center items-center'>
                                         <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{CallOfDuty[0]?.name}</p>
                                         <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{CallOfDuty[0]?.state}</p>
                                         <p className='text-zinc-600 dark:text-white font-semibold text-sm'>{CallOfDuty[0]?.details}</p>
@@ -198,7 +186,7 @@ const LanyardCard = () => {
                     <div className="text-[10px] text-center justify-center">
                         <p className='text-zinc-600 dark:text-white font-semibold text-[10px]'>
                             Powered by{" "}
-                            <Link href="https://lanyard.cnrad.dev" className='text-[10px]' color="primary">
+                            <Link href="https://github.com/Phineas/lanyard" className='text-[10px]' color="primary">
                                 Lanyard
                             </Link>
                         </p>

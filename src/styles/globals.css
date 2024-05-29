@@ -1,6 +1,6 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
   @layer base {
     :root {
@@ -66,6 +66,7 @@
     }
   }
 
+
   html,
 body {
   padding: 0;
@@ -108,11 +109,15 @@ a {
   transform: rotate(360deg);
 }
 
-  /* @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-    }
-  } */
+.ping {
+  @apply inline-flex h-3 w-3 relative;
+}
+.outer {
+  @apply animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75;
+}
+.inner {
+  @apply relative inline-flex rounded-full h-3 w-3 bg-green-500;
+}
+.num {
+  @apply text-green-500 text-lg;
+}

@@ -13,7 +13,7 @@ export default function AccessDenied() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ ease: "easeOut", duration: 0.15 }}
             >
-                <Card className="sm:w-[60vh] lg:w-[65vh] sm:h-[35vh] lg:h-[30vh] text-center justify-center items-center flex flex-col border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+                <Card className="sm:w-[60vh] lg:w-[65vh] sm:h-[35vh] lg:h-[30vh] text-center justify-center items-center flex flex-col ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
                     <CardHeader className="flex flex-col text-center justify-center items-center text-2xl text-primary-300 font-bold">
                     <div className="text-center pb-2">
                         <p className="text-5xl font-extrabold text-center items-center justify-center text-blue-500 dark:text-blue-800">Access Denied</p>
