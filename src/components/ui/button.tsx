@@ -9,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        outline:
-          "border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30",
-        secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+        default: "ring-1 ring-inset bg-gray-900/25 text-gray-800 ring-gray-400/25 dark:bg-gray-900/25 dark:text-gray-400 dark:ring-gray-400/25 hover:bg-gray-900/50 hover:text-gray-400 hover:ring-gray-400/50 dark:hover:bg-gray-900/50 dark:hover:text-gray-400 dark:hover:ring-gray-400/50",
+        destructive: "ring-1 ring-inset bg-red-900/25 text-red-800 ring-red-400/25 dark:bg-red-900/25 dark:text-red-400 dark:ring-red-400/25 hover:bg-red-900/50 hover:text-red-400 hover:ring-red-400/50 dark:hover:bg-red-900/50 dark:hover:text-red-400 dark:hover:ring-red-400/50",
+        secondary: "ring-1 ring-inset bg-secondary/25 text-secondary ring-secondary/25 dark:bg-secondary/25 dark:text-secondary dark:ring-secondary/25 hover:bg-secondary/50 hover:text-secondary hover:ring-secondary/50 dark:hover:bg-secondary/50 dark:hover:text-secondary dark:hover:ring-secondary/50",
+        outline: "ring-1 ring-inset bg-transparent text-gray-800 ring-gray-800/25 dark:text-gray-400 dark:ring-gray-400/25 hover:text-gray-400 dark:hover:text-gray-400",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        PostBackButton: "ring-1 ring-inset bg-green-900/25 text-green-800 ring-green-400/25 dark:bg-green-900/25 dark:text-green-400 dark:ring-green-400/25 hover:bg-green-900/50 hover:text-green-400 hover:ring-green-400/50 dark:hover:bg-green-900/50 dark:hover:text-green-400 dark:hover:ring-green-400/50",
+        JokerBlueButton: "ring-1 ring-inset bg-blue-900/25 text-blue-800 ring-blue-400/25 dark:bg-blue-900/25 dark:text-blue-400 dark:ring-blue-400/25 hover:bg-blue-900/50 hover:text-blue-400 hover:ring-blue-400/50 dark:hover:bg-blue-900/50 dark:hover:text-blue-400 dark:hover:ring-blue-400/50",
+        // discord button with the same style as PostBackButton but using the color "#5865F2"
+        Discord: "ring-1 ring-inset bg-[#5865F2]/25 text-[#5865F2] ring-[#5865F2]/25 dark:bg-[#5865F2]/25 dark:text-[#5865F2] dark:ring-[#5865F2]/25 hover:bg-[#5865F2]/50 hover:text-[#5865F2] hover:ring-[#5865F2]/50 dark:hover:bg-[#5865F2]/50 dark:hover:text-[#5865F2] dark:hover:ring-[#5865F2]/50",
       },
       size: {
         default: "h-4 px-2 rounded-md text-base",
