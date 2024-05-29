@@ -46,7 +46,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <span>{createdAt}</span>
           <div className="flex flex-row justify-center items-center gap-2">
             {/* delete button */}
-            {isOwner && <DeletePostButton id={post.id} />}
+            {/* {isOwner && <DeletePostButton id={post.id} />} */}
             {/* go back one button that works within a /guestbook/[id] */}
             <Link href="/guestbook">
               <Button variant="Discord" className="p-4 h-5 w-20 inline-flex items-center justify-center content-center rounded-md">
