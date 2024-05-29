@@ -14,7 +14,7 @@ import * as React from "react";
 import { useSession } from "next-auth/react"
 import { SignIn, SignOut } from "@/src/components/SignInOut"
 
-export default function DeletePostButton({ id, className }: { id: number, className: string }) {
+export default function DeletePostButton({ id, className }: { id: string, className: string }) {
     const { data: session } = useSession()
     const { toast } = useToast()
     const [isPending, setIsPending] = useState(false);
@@ -39,7 +39,7 @@ export default function DeletePostButton({ id, className }: { id: number, classN
         const checkUsers = await checkUser(username || '');
         if (checkUsers) {
             try {
-                await deletePost(id);
+                await deletePost(parseInt(id));
                 toast({
                     title: 'Success',
                     description: 'Post deleted successfully',

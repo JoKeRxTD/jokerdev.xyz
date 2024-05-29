@@ -52,8 +52,8 @@ export default async function MeProfilePage({ params }: { params: { id: string }
     1: "Nitro Classic",
     2: "Nitro",
   };
-  const nitro = nitroType[premium_type];
-  const userFlags: string[] = processFlags(flags, nitro);
+  const nitro = nitroType[premium_type!];
+  const userFlags: string[] = processFlags(flags!, nitro);
 
   const flagCodeToName = {
     "07742a794bed8ec43505775550b2635e43828c57": "Partner",
@@ -70,7 +70,8 @@ export default async function MeProfilePage({ params }: { params: { id: string }
     "18ca50e1d7abebd32825eb9957ce04354caf0fce": "Bug Hunter",
   };
   const flagNames = userFlags.map((flag) => flagCodeToName[flag]);
-
+  const isOwner = userId === discordId;
+  
   return (
     <div className="text-center items-center justify-center content-center">
       <Card className="flex flex-col text-center items-center justify-center content-center w-[520px] h-[75vh] rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
@@ -139,7 +140,7 @@ export default async function MeProfilePage({ params }: { params: { id: string }
               Back
             </Button>
           </Link>
-          <DeleteUserButton id={id} />
+          {isOwner && <DeleteUserButton id={discordId as string} className="w-20 flex items-center justify-center rounded-md p-4 h-5 w-22 ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400" />}
         </CardFooter>
       </Card>
     </div>

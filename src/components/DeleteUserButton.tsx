@@ -25,8 +25,8 @@ export default function DeleteUserButton({ id, className }: { id: string, classN
         return null;
     }
 
-    async function checkUserisOwner(userId: string) {
-        const checkUser = await CheckUserById(userId);
+    async function checkUserisOwner(discordId: string) {
+        const checkUser = await CheckUserById(discordId);
         if (checkUser) {
             return true;
         } else {
@@ -37,11 +37,11 @@ export default function DeleteUserButton({ id, className }: { id: string, classN
     
     async function onSubmit() {
         setIsPending(true);
-        const userId = session?.user?.id!;
-        const checkUsers = await checkUserisOwner(userId || '');
+        const discordId = session?.user?.id!;
+        const checkUsers = await checkUserisOwner(discordId || '');
         if (checkUsers) {
             try {
-                await deleteUser(id);
+                await deleteUser(discordId);
                 toast({
                     title: 'Success',
                     description: 'User deleted successfully',
