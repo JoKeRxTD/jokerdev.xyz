@@ -23,10 +23,10 @@ const providers: Provider[] = [
                 // check if img is png or gif
                 image: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png` || `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.gif`,
                 email: profile.email || null,
-                email_verified: profile.verified,
-                flags: profile.flags,
-                premium_type: profile.premium_type,
-                public_flags: profile.public_flags,
+                email_verified: profile.verified.toString(), // Convert boolean to string
+                flags: profile.flags.toString(), // Convert number to string
+                premium_type: profile.premium_type.toString(), // Convert number to string
+                public_flags: profile.public_flags.toString(), // Convert number to string
                 banner: `https://cdn.discordapp.com/banners/${profile.id}/${profile.banner}.png` || `https://cdn.discordapp.com/banners/${profile.id}/${profile.banner}.gif`,
                 role: "user",
                 createdAt: "",
