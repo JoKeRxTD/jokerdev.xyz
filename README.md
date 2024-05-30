@@ -13,12 +13,10 @@ You can preview the website [PREVIEW](https://jokerdev.xyz).
 ## Technologies Used
 
 - [Next.js 14](https://nextjs.org/docs/getting-started)
-- [NextUI](https://nextui.org/)
-- [ShadCN](https://ui.shadcn.com)
-- [Tailwind CSS](https://tailwindcss.com/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [AuthJS v5](https://authjs.dev) - [Discord 0Auth](https://discord.dev)
+- [NextUI](https://nextui.org/) & [ShadCN](https://ui.shadcn.com) with [Tailwind CSS](https://tailwindcss.com/)
 - [Framer Motion](https://www.framer.com/motion/)
-- [Clerk](https://clerk.com/)
 
 ## How to Use
 
@@ -44,7 +42,7 @@ npm install
 yarn install
 ```
 
-3. Run the development server:
+1. Deploy the project
 
 ```bash
 npm run dev
@@ -52,6 +50,21 @@ npm run dev
 yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-5. Start editing the files in the `src` directory.
-6. You can also change the theme by changing the `theme` variable in the `src/theme.ts` file.
+or build the project
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+1. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. You can start editing the files in the `src` directory.
+2. Start editing the files in the `src` directory.
+3. You can also change the `next.config.js` file to add your own configurations.
+4. You can also change the `public` directory to add your own images and other assets.
+5. You can also change the `styles` directory to add your own styles.
+6. You can also change the `components` directory to add your own components.
+
+## License
+
+You can use this at your own free will & edit how every you like for your own personal use, All I ask is that I am credited for the template. You can do this by linking back to my website, [jokerdev.xyz](https://jokerdev.xyz).
