@@ -24,7 +24,7 @@ export default async function GuestBook({ params }: { params: { id: string } }) 
   const isOwner = userId === post.discordId;
   
   return (
-    <main className="text-center items-center justify-center w-[500px]">
+    <main className="text-center items-center justify-center">
       <Card className="max-w-sm w-full sm:w-1/2 lg:w-full justify-around items-center flex flex-col rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
         <CardHeader>
           <CardTitle className="text-center justify-center items-center text-2xl text-primary-300 font-bold">
@@ -32,7 +32,7 @@ export default async function GuestBook({ params }: { params: { id: string } }) 
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col justify-center items-center gap-2">
-          <span className="text-center justify-center items-center text-lg text-gray-800 dark:text-gray-200">
+          <span className="text-center justify-center items-center text-sm text-gray-800 dark:text-gray-200">
             {post.body}
           </span>
         </CardContent>
@@ -43,10 +43,10 @@ export default async function GuestBook({ params }: { params: { id: string } }) 
           <span>{createdAt}</span>
           <div className="flex flex-row justify-center items-center gap-2">
             {/* delete button */}
-            {isOwner && <DeletePostButton id={post.id} className="w-20 flex items-center justify-center rounded-md p-4 h-5 w-22 ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400" />}
+            {isOwner && <DeletePostButton id={post.id} className="flex items-center justify-center rounded-md " />}
             {/* go back one button that works within a /guestbook/[id] */}
             <Link href="/guestbook">
-              <Button variant="Discord" className="p-4 h-5 w-20 inline-flex items-center justify-center content-center rounded-md">
+              <Button variant="blue" size="default" rounded="md">
                 Go Back
               </Button>
             </Link>

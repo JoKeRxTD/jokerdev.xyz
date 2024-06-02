@@ -67,12 +67,13 @@ export default function DeletePostButton({ id, className }: { id: string, classN
     return (
         <div className="flex flex-row items-center justify-center">
             <Button
-                size="sm"
+                size="default"
+                rounded="md"
                 variant="destructive"
                 onClick={onSubmit}
-                className="flex items-center justify-center p-4 h-5 w-20"
+                className="flex items-center justify-center"
             >
-                {isPending ? <ImSpinner2 className="animate-spin" /> : <BinIcon height={18} width={18} />}
+                {isPending ? <ImSpinner2 className="animate-spin" /> : <BinIcon height={16} width={16} />}
             </Button>
         </div>
     );
