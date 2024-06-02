@@ -137,7 +137,7 @@ const LanyardCard = () => {
                 <div className="flex flex-col justify-center mx-2 p-1 text-2/xl w-[355px] h-[510px]">
                     <div className="flex flex-col px-2 mb-2 gap-2 rounded-md ring-1 ring-inset text-zinc-800 ring-zinc-400/25  dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
                         {notSpotify?.length > 0 ? (
-                            <div className='flex flex-row mt-2 mb-2 gap-2'>
+                            <div className='flex flex-row mt-2 mb-2 gap-2 justify-center items-center'>
                                 <Tooltip
                                     key={notSpotify[0]?.name}
                                     content={notSpotify[0]?.name}

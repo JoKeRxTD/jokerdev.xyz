@@ -125,11 +125,12 @@ export default function PartnerCard() {
                             <>
                             <Link
                                 href={link.link}
-                                isExternal
-                                color="foreground">
+                                isExternal>
                                 <Button
                                     key={link.title}
-                                    variant="default"
+                                    variant="blue"
+                                    rounded="md"
+                                    size="default"
                                     className="text-sm p-4 h-5 w-20"
                                 >
                                     {link.title}

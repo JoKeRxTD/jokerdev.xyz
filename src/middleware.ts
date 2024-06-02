@@ -10,8 +10,7 @@ export default auth((req) => {
     return Response.redirect(url);
   }
   
-  let NextRequest = req as NextRequest;
-  if (req.nextUrl.pathname === '/') {
+  if (req.method === 'GET') {
     try {
       analytics.track('pageview', {
         page: '/',
@@ -23,8 +22,10 @@ export default auth((req) => {
       console.error(err);
     }
   }
-  console.log('auth middleware ran');
-  return NextResponse.next()
+
+  return NextResponse.next();
+
+  
 });
 
 export const config = {

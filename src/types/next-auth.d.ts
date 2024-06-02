@@ -145,6 +145,4 @@ declare module 'next-auth' {
 		username: string;
 		discordId: string;
 	}
-
-	
 }
