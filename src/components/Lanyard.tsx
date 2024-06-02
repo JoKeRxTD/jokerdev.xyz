@@ -63,14 +63,6 @@ export const DiscordBadges = (flag: number): string[] => {
     return flags;
 };
 
-const NoActivity = () => {
-    return (
-        <div className="flex flex-col justify-center items-center pt-10 pb-10 p-1">
-            <p className="text-zinc-600 dark:text-white font-semibold text-lg">Not doing anything right now.</p>
-        </div>
-    )
-}
-
 const LanyardCard = () => {
     const { data: activity } = useLanyard(DiscordID);
 
@@ -135,9 +127,9 @@ const LanyardCard = () => {
                     </div>
                 </div>
                 <div className="flex flex-col justify-center mx-2 p-1 text-lg w-[355px] h-[510px]">
-                    <div className="flex flex-col px-2 mb-2 gap-2 rounded-md ring-1 ring-inset text-zinc-800 ring-zinc-400/25  dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
+                    <div className="flex flex-col px-1 mb-1 gap-2 rounded-md ring-1 ring-inset text-zinc-800 ring-zinc-400/25  dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
                         {notSpotify?.length > 0 ? (
-                            <div className='flex flex-row mt-2 mb-2 gap-2 justify-center items-center'>
+                            <div className='flex flex-row mt-1 mb-1 gap-2 justify-center items-center'>
                                 <Tooltip
                                     key={notSpotify[0]?.name}
                                     content={notSpotify[0]?.name}
@@ -186,7 +178,9 @@ const LanyardCard = () => {
                                 )}
                             </div>
                         ) : (
-                            <NoActivity />
+                            <div className="flex flex-col justify-center items-center pt-8 pb-8 p-1">
+                                <p className="text-zinc-600 dark:text-white font-semibold text-lg">Not doing anything right now.</p>
+                            </div>
                         )}
                     </div>
                     <div className="text-[10px] text-center justify-center">
