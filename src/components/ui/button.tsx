@@ -40,6 +40,12 @@ const buttonVariants = cva(
         warning: "bg-yellow-500/25 text-yellow-500 ring-yellow-500/25 dark:bg-yellow-500/25 dark:text-yellow-500 dark:ring-yellow-500/25 hover:bg-yellow-500/50 hover:text-yellow-500 hover:ring-yellow-500/50 dark:hover:bg-yellow-500/50 dark:hover:text-yellow-500 dark:hover:ring-yellow-500/50",
         info: "bg-blue-500/25 text-blue-500 ring-blue-500/25 dark:bg-blue-500/25 dark:text-blue-500 dark:ring-blue-500/25 hover:bg-blue-500/50 hover:text-blue-500 hover:ring-blue-500/50 dark:hover:bg-blue-500/50 dark:hover:text-blue-500 dark:hover:ring-blue-500/50",
         neutral: "bg-gray-500/25 text-gray-500 ring-gray-500/25 dark:bg-gray-500/25 dark:text-gray-500 dark:ring-gray-500/25 hover:bg-gray-500/50 hover:text-gray-500 hover:ring-gray-500/50 dark:hover:bg-gray-500/50 dark:hover:text-gray-500 dark:hover:ring-gray-500/50",
+
+        zinc: "bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:bg-zinc-900/50 hover:text-zinc-400 hover:ring-zinc-400/50 dark:hover:bg-zinc-900/50 dark:hover:text-zinc-400 dark:hover:ring-zinc-400/50",
+        rose: "bg-rose-900/25 text-rose-800 ring-rose-400/25 dark:bg-rose-900/25 dark:text-rose-400 dark:ring-rose-400/25 hover:bg-rose-900/50 hover:text-rose-400 hover:ring-rose-400/50 dark:hover:bg-rose-900/50 dark:hover:text-rose-400 dark:hover:ring-rose-400/50",
+        sky: "bg-sky-900/25 text-sky-800 ring-sky-400/25 dark:bg-sky-900/25 dark:text-sky-400 dark:ring-sky-400/25 hover:bg-sky-900/50 hover:text-sky-400 hover:ring-sky-400/50 dark:hover:bg-sky-900/50 dark:hover:text-sky-400 dark:hover:ring-sky-400/50",
+        violet: "bg-violet-900/25 text-violet-800 ring-violet-400/25 dark:bg-violet-900/25 dark:text-violet-400 dark:ring-violet-400/25 hover:bg-violet-900/50 hover:text-violet-400 hover:ring-violet-400/50 dark:hover:bg-violet-900/50 dark:hover:text-violet-400 dark:hover:ring-violet-400/50",
+        
       },
       size: {
         default: "p-4 h-5 w-20 text-xs",
