@@ -6,24 +6,21 @@ import Link from "next/link";
 import { auth } from "@/src/lib/auth";
 import DeletePostButton from "@/src/components/DeletePostButton";
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function GuestBook({ params }: { params: { id: string } }) {
+  const user = await auth();
   // get the post from the database
   const post = await prisma.post.findUnique({
     where: {
       id: String(params.id),
     },
   });
-  const user = await auth();
   
   if (!post) {
     return <div className="text-center">Post not found</div>;
   }
 
   const createdAt = new Date(post.createdAt).toLocaleDateString();
-  
   const userId = user?.profile.id;
-  console.log(userId);
-  console.log(post.discordId)
   const isOwner = userId === post.discordId;
   
   return (
