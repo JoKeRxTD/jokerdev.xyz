@@ -20,9 +20,13 @@ type Users = {
     updatedAt: String
 }
 
+//  todo: user profile card iframe render GET userdata  <iframe src="https://jokerdev.xyz/api/user/[discordId]" className{cn{h-96 w-96}}></iframe> to display user profile
 
-// todo get all posts from database and sort into a json object with the structure of [id, title, body, createdAt, updatedAt, username, discordId] - all strings
-export function GET() {
+
+
+
+// todo get all users from database and sort into a json object with the structure of [id, title, body, createdAt, updatedAt, username, discordId] - all strings
+export async function GET() {
     return auth().then(async (user) => {
         if (!user) {
             return NextResponse.redirect("/login")
