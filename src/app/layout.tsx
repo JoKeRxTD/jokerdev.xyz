@@ -19,8 +19,7 @@ const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const viewport: Viewport = {
 	themeColor: [
-		{ media: '(prefers-color-scheme: light)', color: 'white' },
-		{ media: '(prefers-color-scheme: dark)', color: 'black' },
+		{ media: '(prefers-color-scheme: blue)', color: '3447003' },
 	],
 }
 
@@ -46,6 +45,7 @@ export const metadata: Metadata = {
 				height: 1080,
 			},
 		],
+		
 		locale: "en-GB",
 		type: "website",
 	},
