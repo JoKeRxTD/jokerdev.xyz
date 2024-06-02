@@ -6,8 +6,8 @@ export const siteConfig = {
 	lang: "en",
 	locale: "en_GB",
 	url: "https://jokerdev.xyz",
-	ogImg: "https://cdn.jokerdev.xyz/img/dev_ot2gslan.png",
-	twitterImg: "https://cdn.jokerdev.xyz/img/dev_ot2gslan.png",
+	ogImg: "https://cdn.jokerdev.xyz/img/dev_f0q2rhbn.jpeg",
+	twitterImg: "https://cdn.jokerdev.xyz/img/dev_f0q2rhbn.jpeg",
 	navItems: [
 		{
 			label: "Home",
@@ -129,7 +129,7 @@ export const siteConfig = {
 	embedConfig: {
 		title: "Tom \"JoKeR\"",
 		description: "This is the official website of Tom \"JoKeR\". Here you can find all the information about me, my projects, partners and my journey.",
-		thumbnail: "https://cdn.jokerdev.xyz/img/dev_ot2gslan.png",
+		thumbnail: "https://cdn.jokerdev.xyz/img/dev_f0q2rhbn.jpeg",
 		url: "https://jokerdev.xyz",
 		color: "#7289DA",
 		fields: [
@@ -161,7 +161,7 @@ export const siteConfig = {
 		timestamp: new Date(),
 		footer: {
 			text: "Tom \"JoKeR\"",
-			icon_url: "https://cdn.jokerdev.xyz/img/dev_ot2gslan.png",
+			icon_url: "https://cdn.jokerdev.xyz/img/dev_f0q2rhbn.jpeg",
 		},
 		
 	}
