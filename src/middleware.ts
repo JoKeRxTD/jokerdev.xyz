@@ -3,11 +3,13 @@ export { auth as middleware } from '@/src/lib/auth';
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function auth(req, res) {
-  // if (req.nextUrl.pathname !== '/') {
-  //   const url = req.url.replace(req.nextUrl.pathname, '/');
-  //   console.log('redirecting to', url);
-  //   return Response.redirect(url);
-  // }
+
+  if (req.nextUrl.pathname !== '/') {
+    const url = req.url.replace(req.nextUrl.pathname, '/');
+    console.log('redirecting to', url);
+    return Response.redirect(url);
+  }
+
   console.log('auth middleware called');
   if (req.nextUrl.pathname === '/') {
     try {
@@ -22,7 +24,7 @@ export async function auth(req, res) {
     }
   }
 
-  return res.next();
+  return NextResponse.next();
 }
 
 
