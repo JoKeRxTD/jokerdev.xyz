@@ -13,13 +13,16 @@ const scopes = ['identify', 'guilds', 'guilds.members.read', 'email', 'connectio
 const providers: Provider[] = [
     Discord({
         authorization: { params: { scope: scopes } },
+        allowDangerousEmailAccountLinking: true,
+        
         profile(profile: DiscordProfile) {
             return {
+                id: profile.id.toString(),
                 discordId: profile.id,
                 global_name: profile.global_name || null,
                 name: profile.global_name || null,
                 username: profile.username,
-                avatar: profile.avatar || "", // Assign an empty string if avatar is null
+                avatar: profile.avatar || "https://cdn.jokerdev.xyz/img/dev_xvazjawf.jpeg", // Assign an empty string if avatar is null
                 // check if img is png or gif
                 image: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`,
                 email: profile.email || null,
@@ -46,8 +49,8 @@ export const providerMap = providers.map((provider) => {
 })
 
 const authConfig = {
-    adapter: PrismaAdapter(prisma),
     providers,
+    adapter: PrismaAdapter(prisma),
     callbacks: {
         async session({ session, token }: { session: any, token: DefaultJWT }) {
             // console.log('session ~ token:', token);
@@ -136,12 +139,20 @@ const authConfig = {
             console.log(chalk.yellow("update user", JSON.stringify(message)))
             await updateUserRole(message.user.discordId!, message.user.role!)
         },
-        // async linkAccount(message) {
-        //     // console.log(chalk.blue("link account", JSON.stringify(message)))
-        // },
-        // async session(message) {
-        //     // console.log(chalk.cyan("session", JSON.stringify(message)))
-        // }
+        async linkAccount(message) {
+            console.log(chalk.blue("link account", JSON.stringify(message)))
+            // inplement the linkaccount function
+            const userExists = await checkUserExists(message.user.discordId!)
+            if (!userExists) {
+                await createUser(message.user)
+            } else {
+                console.log(chalk.red("User already exists"))
+            }
+        },
+        async session(message) {
+            // console.log(chalk.cyan("session", JSON.stringify(message)))
+            // implement the session function
+        }
     },
     // useSecureCookies: true,
 
