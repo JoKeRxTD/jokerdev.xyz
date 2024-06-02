@@ -26,8 +26,15 @@ const UserStatusBadge = ({ status }: { status: string }) => {
         offline: "Offline",
     };
 
+    const TextSize = {
+        online: `text-[12px] w-[6.2rem] p-[-1px] justify-center items-center`,
+        idle: `text-[12px] w-[6.2rem] p-[-1px] justify-center items-center`,
+        dnd: `text-[12px] w-[6.2rem] p-[-1px] justify-center items-center`,
+        offline: `text-[10px] w-[6.2rem] p-[-1px] justify-center items-center`,
+    }
+
     return (
-        <Badge variant={currentStatus}>
+        <Badge variant={currentStatus} className={`${TextSize[currentStatus]}`}>
             {statusMap[currentStatus]}
         </Badge>
     );
@@ -93,12 +100,12 @@ const LanyardCard = () => {
                         key={activity?.discord_user?.username}
                         content={activity?.discord_user?.username}
                         color='default'
-                        className='z-11 rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'
+                        className='z-11 rounded-md ring-1 ring-inset text-zinc-800 ring-zinc-400/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'
                     >
                         <Image
                             src={`https://cdn.discordapp.com/avatars/${activity?.discord_user?.id}/${activity?.discord_user?.avatar}.gif`}
                             alt="Discord Avatar"
-                            className="rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400"
+                            className="rounded-md ring-1 ring-inset text-zinc-800 ring-zinc-400/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400"
                             height={50}
                             width={50}
                         />
@@ -115,7 +122,7 @@ const LanyardCard = () => {
                                         key={v}
                                         content={v.split("_").join(" ")}
                                         color='default'
-                                        className='z-11 rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'
+                                        className='z-11 rounded-md ring-1 ring-inset text-zinc-800 ring-zinc-400/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'
                                     >
                                         <img
                                             src={`data:image/png;base64,${Badges[v]}`}
@@ -128,14 +135,13 @@ const LanyardCard = () => {
                     </div>
                 </div>
                 <div className="flex flex-col justify-center mx-2 p-1 text-2/xl w-[355px] h-[510px]">
-                    <div className="flex flex-col px-2 mb-2 gap-2 rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
+                    <div className="flex flex-col px-2 mb-2 gap-2 rounded-md ring-1 ring-inset text-zinc-800 ring-zinc-400/25  dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
                         {notSpotify?.length > 0 ? (
                             <div className='flex flex-row mt-2 mb-2 gap-2'>
                                 <Tooltip
                                     key={notSpotify[0]?.name}
                                     content={notSpotify[0]?.name}
-                                    color='default'
-                                    className='z-11 rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'
+                                    className='z-11 rounded-md ring-1 ring-inset text-zinc-800 ring-zinc-400/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'
                                 >
                                     {/* if not spotify then get activity path 1 if CallOfDuty then get activity path 0 */}
                                     <div className='flex flex-row'>
