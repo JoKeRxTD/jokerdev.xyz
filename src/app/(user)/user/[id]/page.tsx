@@ -132,13 +132,15 @@ export default async function MeProfilePage({ params }: { params: { id: string }
           {/* back button */}
           <Link href="/me">
             <Button
-              variant="JokerBlueButton"
-              className="p-4 h-5 w-20"
+              variant="destructive"
+              size="default"
+              rounded="md"
+              
             >
               Back
             </Button>
           </Link>
-          {isOwner && <DeleteUserButton id={discordId as string} className="w-20 flex items-center justify-center rounded-md p-4 h-5 w-22 ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400" />}
+          {isOwner && <DeleteUserButton id={discordId as string} className="flex items-center justify-center" />}
         </CardFooter>
       </Card>
     </div>
