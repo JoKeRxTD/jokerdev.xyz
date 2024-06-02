@@ -8,8 +8,9 @@ export function SignIn({
     return (
         <Button
             onClick={() => signIn(provider)}
-            variant="JokerBlueButton"
-            className="p-4 h-5 w-20"
+            variant="blue"
+            rounded="md"
+            size="default"
             {...props}
         >
             Sign In
@@ -22,7 +23,8 @@ export function SignOut(props: React.ComponentPropsWithRef<typeof Button>) {
         <Button
             onClick={() => signOut()}
             variant="destructive"
-            className="p-4 h-5 w-20"
+            rounded="md"
+            size="default"
             {...props}
         >
             Sign Out

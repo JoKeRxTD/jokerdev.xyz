@@ -18,7 +18,7 @@ export async function SignOutButton() {
                         <CardDescription>Click the button below to sign out</CardDescription>
                     </CardHeader>
                     <CardFooter>
-                        <Button variant="destructive" type="submit" className="p-4 h-5 w-20">
+                        <Button variant="destructive" rounded="md" size="sm" type="submit" className="p-4 h-5 w-20">
                             Sign out
                         </Button>
                     </CardFooter>
