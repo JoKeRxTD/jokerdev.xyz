@@ -14,10 +14,9 @@ export default function Footer() {
                 title="my personal discord server"
             >
                 <span className="text-default-600">Copyright © • 2022 Created By </span>
-                <p className="text-primary">JoKeR</p>
+                <span className="text-primary">JoKeR</span>
             </Link>
             <div className="flex flex-row flex-wrap justify-center items-center gap-1 p-1 text-zinc-200 dark:text-zinc-800/30">
-					{/* <Link isExternal href="https://discord.gg/HgasfQEJUr" aria-label="Discord"> */}
 					<Button
 						variant="flat"
 						color="primary"
@@ -26,9 +25,6 @@ export default function Footer() {
 					>
 						<DiscordIcon />
 					</Button>
-					{/* </Link> */}
-						
-					{/* <Link isExternal href="https://github.com/JoKeRxTD" aria-label="Github"> */}
 					<Button
 						variant="flat"
 						color="default"
@@ -37,8 +33,6 @@ export default function Footer() {
 					>
 						<GithubIcon />
 					</Button>
-					{/* </Link> */}
-					{/* <Link isExternal href="https://www.paypal.com/paypalme/VisionG?country.x=GB&locale.x=en_GB" aria-label="Support"> */}
 					<Button
 						variant="flat"
 						color="danger"
@@ -47,8 +41,6 @@ export default function Footer() {
 					>
 						<HeartFilledIcon />
 					</Button>
-					{/* </Link> */}
-					{/* <Link isExternal href="https://zap-hosting.com/joker" aria-label="Zap-Hosting"> */}
 					<Button
 						variant="flat"
 						color="success"
@@ -57,7 +49,6 @@ export default function Footer() {
 					>
 						<ZapHostingIcon />
 					</Button>
-					{/* </Link> */}
 				</div> 
         </footer>
     )
