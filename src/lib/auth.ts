@@ -1,12 +1,15 @@
 import NextAuth, { NextAuthConfig } from "next-auth"
 import { Secrets } from "next-auth"
+import type { Provider } from "next-auth/providers"
 import Discord, { DiscordProfile } from "next-auth/providers/discord"
 import type { DefaultJWT } from 'next-auth/jwt';
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/src/lib/db"
-import type { Provider } from "next-auth/providers"
 import chalk from "chalk"
 import { createUser, checkUserExists, updateUserRole } from "@/src/actions/actions";
+import { analytics } from "@/src/utils/analytics"
+import { NextRequest, NextResponse } from 'next/server'
+import { json } from "stream/consumers";
 
 const scopes = ['identify', 'guilds', 'guilds.members.read', 'email', 'connections'].join(' ');
 
@@ -21,13 +24,13 @@ const providers: Provider[] = [
                 username: profile.username,
                 avatar: profile.avatar || "", // Assign an empty string if avatar is null
                 // check if img is png or gif
-                image: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png` || `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.gif`,
+                image: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`,
                 email: profile.email || null,
                 email_verified: profile.verified.toString(), // Convert boolean to string
                 flags: profile.flags.toString(), // Convert number to string
                 premium_type: profile.premium_type.toString(), // Convert number to string
                 public_flags: profile.public_flags.toString(), // Convert number to string
-                banner: `https://cdn.discordapp.com/banners/${profile.id}/${profile.banner}.png` || `https://cdn.discordapp.com/banners/${profile.id}/${profile.banner}.gif`,
+                banner: `https://cdn.discordapp.com/banners/${profile.id}/${profile.banner}.png`,
                 role: "user",
                 createdAt: "",
                 updatedAt: ""
@@ -112,20 +115,19 @@ const authConfig = {
     },
     events: {
         async signIn(message) {
-            console.log(chalk.green("sign in", message))
+            // console.log(chalk.green("sign in", JSON.stringify(message)))
             const userExists = await checkUserExists(message.user.discordId!)
             if (!userExists) {
                 await createUser(message.user)
             } else {
                 console.log(chalk.yellow("User already exists"))
             }
-
         },
         async signOut(message) {
-            console.log(chalk.red("sign out", message))
+            console.log(chalk.red("sign out", JSON.stringify(message)))
         },
         async createUser(message) {
-            console.log(chalk.green("create user", message))
+            console.log(chalk.green("create user", JSON.stringify(message)))
             const userExists = await checkUserExists(message.user.discordId!)
             if (!userExists) {
                 await createUser(message.user)
@@ -134,20 +136,17 @@ const authConfig = {
             }
         },
         async updateUser(message) {
-            console.log(chalk.yellow("update user", message))
+            console.log(chalk.yellow("update user", JSON.stringify(message)))
             await updateUserRole(message.user.discordId!, message.user.role!)
-            
-
         },
         async linkAccount(message) {
-            console.log(chalk.blue("link account", message))
+            // console.log(chalk.blue("link account", JSON.stringify(message)))
         },
         async session(message) {
-            console.log(chalk.cyan("session", message))
-        },
+            // console.log(chalk.cyan("session", JSON.stringify(message)))
+        }
     },
-
-    // useSecureCookies: true,
+    useSecureCookies: true,
 
 } satisfies NextAuthConfig;
 

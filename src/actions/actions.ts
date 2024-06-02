@@ -173,7 +173,7 @@ export async function checkUserRole(discordId: string) {
     return user?.role;
 }
 
-// get all users
+// get all User data
 export async function getAllUsers() {
     const users = await prisma.user.findMany();
     return users;
