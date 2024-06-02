@@ -1,20 +1,9 @@
-"use client";
-import * as React from "react";
-import { NextUIProvider } from "@nextui-org/system";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { ThemeProviderProps } from "next-themes/dist/types";
+"use client"
 
-export interface ProvidersProps {
-	children: React.ReactNode;
-	themeProps?: ThemeProviderProps;
-}
+import * as React from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+import { type ThemeProviderProps } from "next-themes/dist/types"
 
-export function Providers({ children, themeProps }: ProvidersProps) {
-	return (
-		<NextUIProvider>
-			<NextThemesProvider {...themeProps}>
-				{children}
-			</NextThemesProvider>
-		</NextUIProvider>
-	);
+export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
 }
