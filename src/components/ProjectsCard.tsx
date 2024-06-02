@@ -44,7 +44,7 @@ const Projects: Project[] = [
         title: "JK:Development",
         description: "JK:Development is a development service that privides services for FiveM, Discord and more.",
         image: "/jk_dev2.png",
-        tags: ["LUA", "FiveM", "DiscordJS", "NodeJS"],
+        tags: ["LUA", "FiveM", "DiscordJS"],
         links: [
             {
                 title: "Store",
@@ -156,7 +156,9 @@ export default function ProjectsCard() {
                                 color="foreground">
                                 <Button
                                     key={link.title}
-                                    variant="default"
+                                    variant="blue"
+                                    size="sm"
+                                    rounded="md"
                                     className="text-sm p-4 h-5 w-20"
                                 >
                                     {link.title}

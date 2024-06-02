@@ -38,11 +38,6 @@ import {
 	DropdownMenuRadioGroup,
 } from "@/src/components/ui/dropdown-menu"
 
-// import UserButton from "@/src/components/UserButton"
-
-
-// list of items to place in drop down with label & link
-
 
 export default function Navbar() {
 	const { data: session } = useSession();
@@ -73,25 +68,24 @@ export default function Navbar() {
 		partner: <PartnerIcon className="text-primary text-bold" fill="currentColor" size={24} />,
 		guestbook: <BookIcon className="text-orange-800 dark:text-orange-400 text-bold" fill="currentColor" size={24} />,
 	};
-
 	const UserBar = () => {
 		if (profile) {
 			return (
 				<div className="flex gap-2 justify-center items-center content-center">
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
-							<Avatar className="w-8 h-8">
-								{session?.profile.image && (
-									<AvatarImage
-										src={`${session?.profile.image}`}
-										alt={`${session?.profile.username}`}
-									/>
-								)}
-								<AvatarFallback>{session?.profile?.username}</AvatarFallback>
-							</Avatar>
+						<Avatar className="w-8 h-8">
+							{session.profile.image_url && (
+								<AvatarImage
+									src={`${session.profile.image_url}`}
+									alt={`${session.profile.username}`}
+								/>
+							)}
+							<AvatarFallback>{session.profile.username}</AvatarFallback>
+						</Avatar>
 						</DropdownMenuTrigger>
 						<DropdownMenuContent>
-							<DropdownMenuLabel>{session?.profile?.username}</DropdownMenuLabel>
+							<DropdownMenuLabel>{session.profile.username}</DropdownMenuLabel>
 							<DropdownMenuSeparator />
 							{userDropdown.map((item, index) => (
 								<DropdownMenuCheckboxItem
@@ -121,7 +115,7 @@ export default function Navbar() {
 
 
 	return (
-		<NextUINavbar maxWidth="xl" position="sticky" className="z-50 ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
+		<NextUINavbar maxWidth="xl" position="sticky" className="z-50 gap-2 ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
 			<NavbarContent className="basis-1/5 sm:basis-full ml-2 gap-2 justify-center items-center text-bold text-base">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<Link className="flex justify-start items-center gap-1" href="/">
@@ -142,25 +136,21 @@ export default function Navbar() {
 								{item.label}
 							</Link>
 						</NavbarItem>
-					))}	
+					))}
 				</div>
-				<div className="hidden lg:flex gap-4 justify-start ml-2 text-bold text-xl">
-				<DropdownMenu>
-					<NavbarItem className="hidden lg:flex">
-						<DropdownMenuTrigger asChild>
-							<Button
-								key="dropdown"
-								variant="link"
-								className="p-0 text-zinc-800 dark:text-zinc-400 bg-transparent data-[hover=true]:bg-transparent"
-							>
-								Other {icons.dropdown}
-							</Button>
-						</DropdownMenuTrigger>
+				<div className="hidden lg:flex gap-4 text-bold text-xl">
+					<DropdownMenu>
+						<NavbarItem className="hidden lg:flex">
+							<DropdownMenuTrigger asChild>
+								<span className="flex gap-2 items-center content-center">
+									Other {icons.dropdown}
+								</span>
+							</DropdownMenuTrigger>
 						</NavbarItem>
 						<DropdownMenuContent
 							aria-label="Other Options"
 							className="text-bold text-base"
-							>
+						>
 							<DropdownMenuSeparator />
 							{navDropdown.map((item, index) => (
 								<DropdownMenuItem
@@ -168,7 +158,7 @@ export default function Navbar() {
 									onClick={() => {
 										window.location.href = item.href;
 									}
-								}>
+									}>
 									{item.label}
 								</DropdownMenuItem>
 							))}

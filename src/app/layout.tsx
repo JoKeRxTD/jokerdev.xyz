@@ -2,7 +2,6 @@ import "@/src/styles/globals.css";
 import { Metadata } from "next";
 import { siteConfig } from "../../config/site";
 // import { fontSans } from "@/config/fonts";
-import { Providers } from "./providers";
 import Navbar from "@/src/components/Navbar";
 import Footer from "@/src/components/Footer";
 import clsx from "clsx";
@@ -13,13 +12,16 @@ import { cn } from "@/src/utils/cn";
 import { Inter } from "next/font/google"
 import { SessionProvider } from "next-auth/react"
 import { Toaster, toast } from 'sonner'
+import { ThemeProvider } from "@/src/app/providers";
+
+
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const viewport: Viewport = {
 	themeColor: [
 		{ media: '(prefers-color-scheme: light)', color: 'white' },
 		{ media: '(prefers-color-scheme: dark)', color: 'black' },
-	],	
+	],
 }
 
 const fontSans = FontSans({
@@ -66,26 +68,35 @@ export const metadata: Metadata = {
 		shortcut: "/joker_new.png",
 	},
 };
+interface RootLayoutProps {
+	children: React.ReactNode;
+}
 
 
-export default function RootLayout({ children }: React.PropsWithChildren, session: any) {
+export default function RootLayout({ children }: RootLayoutProps, session: any) {
+
 	return (
 		<SessionProvider session={session}>
 			<html lang="en">
 				<body className={cn(
-					"min-h-screen bg-zinc-100 dark:bg-black text-black dark:text-gray-100 transition-colors duration-200 ease-in-out",
-					fontSans.variable)}
-				>
-					<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-							<div className="relative flex flex-col h-screen items-center">
-								<Navbar />
+					"min-h-screen bg-background font-sans antialiased",
+					fontSans.variable
+				)}>
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						<div className="relative flex flex-col h-screen items-center">
 								<main className="container mx-auto max-w-5xl pt-12 pb-8 px-3 flex-grow">
+								<Navbar />
 									<Toaster />
 									{children}
 								</main>
 								<Footer />
 							</div>
-						</Providers>
+					</ThemeProvider>
 				</body>
 			</html>
 		</SessionProvider>

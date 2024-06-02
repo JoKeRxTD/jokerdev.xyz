@@ -5,12 +5,13 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 import axios from 'axios'
-import { Card, CardHeader, CardBody, CardFooter, Button, Code } from "@nextui-org/react";
+import { Card, CardHeader, CardBody, CardFooter, Code, Link } from "@nextui-org/react";
 import { GithubIcon, Stars, Fork, OpenIssues } from "@/src/components/Icons";
 import { motion } from "framer-motion";
 import { cn } from '../utils/cn';
 import { classNames } from '../utils/classNames';
 import { Badge } from "../components/ui/badge"
+import {Button} from "../components/ui/button"
 
 const stats = "https://api.github-star-counter.workers.dev/user/jokerxtd" // {"stars":12,"forks":4}
 const repos = "https://api.github.com/users/jokerxtd/repos?type=owner&per_page=250"
@@ -145,33 +146,51 @@ function GithubAPI() {
         {isPendingRepos && <div>Loading...</div>}
 
         {reposData?.map((repo: any) => (
-          <Card key={repo.id} className="w-full h-full p-2 ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
-            <CardHeader>
-              <div className="flex flex-row items-center justify-center text-center gap-2">
-                <a href={repo.html_url} target="_blank" rel="noreferrer" className="font-bold text-primary-300 hover:text-primary-400">
-                  <Title title={repo.name} />
-                </a>
-                <LanguageBadge language={repo.language} />
-                <ArchiedBadge archived={repo.archived}/>
-              </div>
+          <Card key={repo.id} className="flex flex-col p-2 rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25">
+            <CardHeader className="text-center justify-center items-center text-2xl text-primary-300 font-bold">
+              <Link href={repo.html_url} isExternal>
+                {repo.name.length > 30 ? <Title title={repo.name} /> : repo.name}
+              </Link>
             </CardHeader>
-            <CardBody>
-                <p className="text-base left-[2rem] font-semibold text-zinc-800 dark:text-zinc-100">{repo.description}</p>
+            <CardBody className="items-center text-center space-y-2 p-1 justify-between">
+              <div className="flex flex-row items-center justify-center gap-1 text-center">
+                {/* <ArchiedBadge archived={repo.archived} />
+                <LanguageBadge language={repo.language} /> */}
+              </div>
+              <span>{repo.description}</span>
+              <span className="text-xs gap-1 justify-around items-center flex flex-row">
+                Tags:{" "}
+                <ArchiedBadge archived={repo.archived} />
+                <LanguageBadge language={repo.language} />
+              </span>
+              <div className="flex flex-row items-center justify-center gap-1 text-center">
+                <Link
+                  href={repo.html_url}
+                  isExternal
+                  color="foreground">
+                    <Button
+                      key={repo.name}
+                      variant="default"
+                      size="sm"
+                      rounded="md"
+                      className="text-sm p-2 h-auto w-auto"
+                    >
+                    <GithubIcon className='text-zinc-800 dark:text-zinc-100' height={12} />
+                  </Button>
+                </Link>
+              </div>
             </CardBody>
-            <CardFooter>
-              <div className="flex flex-row items-center text-center justify-center gap-1 text-[10px]">
-                <Code color="default" onClick={() => window.open(repo.html_url, "_blank")} className="flex flex-row items-center text-center justify-center gap-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30 cursor-pointer">
-                  <GithubIcon className='text-zinc-800 dark:text-zinc-100' height={12} />
-                </Code>
-                <Code color="default" className="flex flex-row items-center text-center justify-center gap-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
-                  {repo.stargazers_count}<Stars className='text-yellow-500' height={12} />
-                </Code>
-                <Code color="default" className="flex flex-row items-center text-center justify-center gap-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
-                  {repo.forks}<Fork className='text-zinc-800 text-md dark:text-white' height={12} />
-                </Code>
-                <Code color="default" className="flex flex-row items-center text-center justify-center gap-2 border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30">
+            <CardFooter className="flex flex-row justify-center">
+              <div className="flex flex-row items-center text-center justify-center gap-2 test-xs">
+                <div color="default" className="flex flex-row items-center text-center justify-center p-1 gap-2 font-bold">
+                  {repo.stargazers_count}<Stars className='text-yellow-500' height={12} /> | 
+                </div>
+                <div color="default" className="flex flex-row items-center text-center justify-center p-1 gap-2 font-bold">
+                  {repo.forks}<Fork className='text-zinc-800 text-md dark:text-white' height={12} /> | 
+                </div>
+                <div color="default" className="flex flex-row items-center text-center justify-center p-1 gap-2 font-bold">
                   {repo.open_issues}<OpenIssues className='text-orange-600' height={12} />
-                </Code>
+                </div>
               </div>
             </CardFooter>
           </Card>
