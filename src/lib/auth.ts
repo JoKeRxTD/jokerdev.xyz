@@ -7,9 +7,6 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/src/lib/db"
 import chalk from "chalk"
 import { createUser, checkUserExists, updateUserRole } from "@/src/actions/actions";
-import { analytics } from "@/src/utils/analytics"
-import { NextRequest, NextResponse } from 'next/server'
-import { json } from "stream/consumers";
 
 const scopes = ['identify', 'guilds', 'guilds.members.read', 'email', 'connections'].join(' ');
 
@@ -49,7 +46,7 @@ export const providerMap = providers.map((provider) => {
 })
 
 const authConfig = {
-    // adapter: PrismaAdapter(prisma),
+    adapter: PrismaAdapter(prisma),
     providers,
     callbacks: {
         async session({ session, token }: { session: any, token: DefaultJWT }) {
@@ -101,7 +98,7 @@ const authConfig = {
     },
     basePath: "/api/auth",
     secret: process.env.SECRET,
-    debug: false,
+    debug: true,
     logger: {
         error(message) {
             console.log(chalk.red(message))
@@ -139,14 +136,14 @@ const authConfig = {
             console.log(chalk.yellow("update user", JSON.stringify(message)))
             await updateUserRole(message.user.discordId!, message.user.role!)
         },
-        async linkAccount(message) {
-            // console.log(chalk.blue("link account", JSON.stringify(message)))
-        },
-        async session(message) {
-            // console.log(chalk.cyan("session", JSON.stringify(message)))
-        }
+        // async linkAccount(message) {
+        //     // console.log(chalk.blue("link account", JSON.stringify(message)))
+        // },
+        // async session(message) {
+        //     // console.log(chalk.cyan("session", JSON.stringify(message)))
+        // }
     },
-    useSecureCookies: true,
+    // useSecureCookies: true,
 
 } satisfies NextAuthConfig;
 
