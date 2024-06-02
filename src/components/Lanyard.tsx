@@ -180,7 +180,7 @@ const LanyardCard = () => {
                                 ) : (
                                     <div className='flex flex-col justify-center text-center items-center'>
                                         <p className='text-zinc-600 dark:text-white font-bold text-md'>{notSpotify[0]?.name}</p>
-                                        <p className='text-zinc-600 dark:text-white text-[14px]'>{notSpotify[0]?.details}</p>
+                                        <p className='text-zinc-600 dark:text-white text-[12px]'>{notSpotify[0]?.details}</p>
                                         <p className='text-zinc-600 dark:text-white text-[12px]'>{notSpotify[0]?.state}</p>
                                     </div>
                                 )}

@@ -120,8 +120,6 @@ export default async function MeProfilePage({ params }: { params: { id: string }
             <span>Created At: {createdAt}</span>
             <span>Updated At: {updatedAt}</span>
             <span>DiscordId: {discordId}</span>
-            {/* <span>userId: {userId}</span> */}
-            {/* <span>userIdCheck: {userIdCheck}</span> */}
             <span>CUID: {id}</span>
             <span>global_name: {global_name}</span>
             <span>Display Name: {name}</span>

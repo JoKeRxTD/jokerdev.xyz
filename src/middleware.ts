@@ -4,13 +4,13 @@ export { auth as middleware } from '@/src/lib/auth';
 import { NextRequest, NextResponse } from 'next/server'
 
 export default auth((req) => {
-  // if (!req.auth) {
-  //   const url = req.url.replace(req.nextUrl.pathname, '/');
-  //   console.log('redirecting to', url);
-  //   return Response.redirect(url);
-  // }
+  if (!req.auth) {
+    const url = req.url.replace(req.nextUrl.pathname, '/');
+    console.log('redirecting to', url);
+    return Response.redirect(url);
+  }
   
-  const NextRequest = req as NextRequest;
+  let NextRequest = req as NextRequest;
   if (req.nextUrl.pathname === '/') {
     try {
       analytics.track('pageview', {

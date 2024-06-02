@@ -1,7 +1,8 @@
 'use client'
-import { Card, CardHeader, CardBody, CardFooter, Code, Button, ScrollShadow } from "@nextui-org/react";
+import { Card, CardHeader, CardBody, CardFooter, Code, ScrollShadow, Link } from "@nextui-org/react";
 import { error } from "console";
 import { motion } from "framer-motion";
+import {Button} from "@/src/components/ui/button";
 
 export default function NotSignedIn() {
     const error = new Error("You must be signed in to view this page.");
@@ -29,13 +30,17 @@ export default function NotSignedIn() {
                         </div>
                     </CardBody>
                     <CardFooter className="flex flex-row items-center text-center justify-center gap-2">
-                        <Button
-                            color="default"
-                            className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
-                            onClick={() => { window.location.href = "/sign-in"; }}
-                        >
-                            Sign In
-                        </Button>
+                        <Link href="/login">
+                            <Button
+                                color="blue"
+                                size="default"
+                                rounded="md"
+                                
+                                
+                            >
+                                Sign In
+                            </Button>
+                        </Link>
                     </CardFooter>
                 </Card>
             </motion.div>

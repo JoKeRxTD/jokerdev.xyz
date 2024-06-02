@@ -42,8 +42,8 @@ import {
 export default function Navbar() {
 	const { data: session } = useSession();
 	const user = session?.user;
-	const profile = session?.profile;
-
+	// const profile = session?.profile;
+	
 	const navDropdown = [
 		{ label: "Profile", href: `/user/${session?.user?.discordId}` },
 		{ label: "Analytics", href: "/analytics" },
@@ -68,24 +68,48 @@ export default function Navbar() {
 		partner: <PartnerIcon className="text-primary text-bold" fill="currentColor" size={24} />,
 		guestbook: <BookIcon className="text-orange-800 dark:text-orange-400 text-bold" fill="currentColor" size={24} />,
 	};
-	const UserBar = () => {
-		if (profile) {
+	const FirstnLastLetterName = (name) => {
+		if (name) {
+			const splitName = name.split(" ");
+			const userName = splitName[0];
+		}
+		return name.charAt(0).toUpperCase() + name.charAt(name.length - 1).toUpperCase();
+	}
+	const userAvatar = (user, session) => {
+		if (session) {
 			return (
-				<div className="flex gap-2 justify-center items-center content-center">
+				<Avatar className="w-8 h-8">
+					{session.user?.image && (
+						<AvatarImage
+							src={`${session.user?.image}` || "/joker.jpg"}
+							alt={`${session.user?.username}`}
+						/>
+					)}
+					<AvatarFallback>
+						{FirstnLastLetterName(session.user?.username)}
+					</AvatarFallback>
+				</Avatar>
+			);
+		}
+		return (
+			<Avatar className="w-8 h-8">
+				<AvatarFallback>
+					{FirstnLastLetterName(session.user?.username)}
+				</AvatarFallback>
+			</Avatar>
+		);
+	}
+	
+	const UserBar = () => {
+		if (user) {
+			return (
+				<div className="flex-wrap gap-2 items-center content-center">
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
-						<Avatar className="w-8 h-8">
-							{session.profile.image_url && (
-								<AvatarImage
-									src={`${session.profile.image_url}`}
-									alt={`${session.profile.username}`}
-								/>
-							)}
-							<AvatarFallback>{session.profile.username}</AvatarFallback>
-						</Avatar>
+							{userAvatar(user, session)}
 						</DropdownMenuTrigger>
-						<DropdownMenuContent>
-							<DropdownMenuLabel>{session.profile.username}</DropdownMenuLabel>
+						<DropdownMenuContent className="text-bold text-base items-center content-center">
+							<DropdownMenuLabel>{session.user?.username}</DropdownMenuLabel>
 							<DropdownMenuSeparator />
 							{userDropdown.map((item, index) => (
 								<DropdownMenuCheckboxItem
