@@ -8,7 +8,7 @@ export function SignIn({
     return (
         <Button
             onClick={() => signIn(provider)}
-            variant="blue"
+            variant="green"
             rounded="md"
             size="default"
             {...props}

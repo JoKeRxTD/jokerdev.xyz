@@ -26,12 +26,12 @@ export default async function SignInPage() {
                 <CardDescription>Click the button below to sign in</CardDescription>
               </CardHeader>
               <CardFooter className="flex flex-row items-center content-center gap-2">
-                <Button variant="JokerBlueButton" type="submit" className="p-4 h-5 w-20">
+                <Button variant="green" type="submit" size="default" rounded="md">
                   {provider.name}
                 </Button>
-                <Button variant="destructive" className="p-4 h-5 w-20">
+                {/* <Button variant="destructive" size="default" rounded="md">
                   Back
-                </Button>
+                </Button> */}
               </CardFooter>
             </Card>
           </form>
@@ -53,12 +53,12 @@ export default async function SignInPage() {
               <CardDescription>Click the button below to sign out</CardDescription>
             </CardHeader>
             <CardFooter className="flex flex-row items-center content-center gap-2">
-              <Button variant="destructive" type="submit" className="p-4 h-5 w-20">
+              <Button variant="destructive" type="submit" size="default" rounded="md">
                 Sign out
               </Button>
-              <Button variant="destructive" className="p-4 h-5 w-20">
+              {/* <Button variant="bl" size="default" rounded="md">
                 Back
-              </Button>
+              </Button> */}
             </CardFooter>
           </Card>
         </form>

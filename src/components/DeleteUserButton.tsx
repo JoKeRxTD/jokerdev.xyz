@@ -68,12 +68,12 @@ export default function DeleteUserButton({ id, className }: { id: string, classN
     // return button if post belongs to user
     return (
         <div className="flex flex-row items-center justify-center">
-            <Tooltip content="Delete user" className="w-20 flex items-center justify-center rounded-md p-4 h-5 w-22 ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
+            <Tooltip content="Delete user" className="w-20 flex items-center justify-center rounded-md p-4 h-5 w-22 ring-1 ring-inset text-zinc-800 ring-zinc-400/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
                 <Button
-                    size="sm"
+                    size="default"
+                    rounded="md"
                     variant="destructive"
                     onClick={onSubmit}
-                    className="flex items-center justify-center p-4 h-5 w-20"
                 >
                     {isPending ? <ImSpinner2 className="animate-spin" /> : <BinIcon height={18} width={18} />}
                 </Button>

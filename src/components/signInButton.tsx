@@ -22,7 +22,7 @@ export async function SignInButton() {
                             <CardDescription>Click the button below to sign in</CardDescription>
                         </CardHeader>
                         <CardFooter>
-                            <Button variant="blue" rounded="md" type="submit" className="p-4 h-5 w-20">
+                            <Button variant="green" rounded="md" type="submit" className="p-4 h-5 w-20">
                                 {provider.name}
                             </Button>
                         </CardFooter>

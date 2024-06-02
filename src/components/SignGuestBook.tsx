@@ -129,7 +129,10 @@ export default function SignGuestBook() {
                             />
                             <Button
                                 type="submit"
-                                className="inline-flex items-center justify-center rounded-md text-sm ring-1 ring-inset bg-green-900/25 text-green-800 ring-green-400/25 dark:bg-green-900/25 dark:text-green-400 dark:ring-green-400/25 hover:bg-green-900/50 hover:text-green-400 hover:ring-green-400/50 dark:hover:bg-green-900/50 dark:hover:text-green-400 dark:hover:ring-green-400/50 transition-colors duration-90 ease-in-out">
+                                variant="green"
+                                size="default"
+                                rounded="md"
+                                className="inline-flex items-center justify-center">
                                 Post
                                 {sending ? <ImSpinner2 className="animate-spin mx-2" /> : <RiSendPlane2Fill className="mx-2" />}
                             </Button>
