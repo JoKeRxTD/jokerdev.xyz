@@ -121,6 +121,106 @@ export async function getUserByid(id: string) {
     return users.find((user: any) => user.id === id)
 }
 
+//! start of example data structure
+// {
+//   "user": {
+//     "id": "116730818822537225",
+//     "username": "jokerxtd",
+//     "global_name": "\u003CJoKeR/\u003E",
+//     "avatar": "a_cbb55ad2943f1fd0fde2f886a34eb311",
+//     "avatar_decoration_data": {
+//       "asset": "a_554b7c34f7b6c709f19535aacb128e7b",
+//       "sku_id": "1207047808838799410"
+//     },
+//     "discriminator": "0",
+//     "public_flags": 4325952,
+//     "clan": null,
+//     "flags": 4325952,
+//     "banner": "a_4e83137451cf4fb1fe76acfecaf0012b",
+//     "banner_color": "#040404",
+//     "accent_color": 263172,
+//     "bio": "***`\u003CJoKeR/\u003E - Developer EST 2015`***\n➥ **Portfolio** \u003C:NextJS:1097578602519871498\u003E \n*https://jokerdev.xyz*\n➥ **JK:Development** \u003C:Vip:1233665849605492798\u003E  \n*https://store.jokerdev.xyz*"
+//   },
+//   "user_profile": {
+//     "bio": "***`\u003CJoKeR/\u003E - Developer EST 2015`***\n➥ **Portfolio** \u003C:NextJS:1097578602519871498\u003E \n*https://jokerdev.xyz*\n➥ **JK:Development** \u003C:Vip:1233665849605492798\u003E  \n*https://store.jokerdev.xyz*",
+//     "accent_color": 263172,
+//     "pronouns": "jokerdev.xyz",
+//     "profile_effect": null,
+//     "banner": "a_4e83137451cf4fb1fe76acfecaf0012b",
+//     "theme_colors": [328965, 4934475],
+//     "popout_animation_particle_type": null,
+//     "emoji": null
+//   },
+//   "legacy_username": "JoKeR#0001",
+//   "connected_accounts": [
+//     {
+//       "type": "battlenet",
+//       "id": "CsGJoKeR#2634",
+//       "name": "CsGJoKeR#2634",
+//       "verified": true
+//     },
+//     {
+//       "type": "github",
+//       "id": "33557806",
+//       "name": "JoKeRxTD",
+//       "verified": true
+//     },
+//     {
+//       "type": "leagueoflegends",
+//       "id": "fAoRcJpQwbkptUQ_T93cFfaY8kt1qXJXBWu2xR7JrjM93UP3o6zuPCimBQ9KVIqwQlDgkf2cACZ_oA",
+//       "name": "vZia",
+//       "verified": true
+//     },
+//     {
+//       "type": "riotgames",
+//       "id": "fAoRcJpQwbkptUQ_T93cFfaY8kt1qXJXBWu2xR7JrjM93UP3o6zuPCimBQ9KVIqwQlDgkf2cACZ_oA",
+//       "name": "HeadEyez#0001",
+//       "verified": true
+//     },
+//     {
+//       "type": "steam",
+//       "id": "76561198024904754",
+//       "name": "JoKeR",
+//       "verified": true,
+//       "metadata": {
+//         "created_at": "2010-05-11T16:57:38",
+//         "game_count": "215",
+//         "item_count_dota2": "2",
+//         "item_count_tf2": "16"
+//       }
+//     },
+//     {
+//       "type": "twitch",
+//       "id": "58748161",
+//       "name": "jokeerxhd",
+//       "verified": true
+//     },
+//     {
+//       "type": "xbox",
+//       "id": "3064831910013526",
+//       "name": "JoKeeRxHD",
+//       "verified": true
+//     },
+//     {
+//       "type": "youtube",
+//       "id": "UCrQmJZuXR1G0ueq8Svmqsng",
+//       "name": "Dynamic_UK",
+//       "verified": true
+//     }
+//   ],
+//   "premium_since": "2023-04-08T13:13:48.353471+00:00",
+//   "premium_type": 2,
+//   "premium_guild_since": "2023-06-21T23:53:11.076000+00:00"
+// }
+//! end of example data structure
 
+// save the data structure provided above with the key ('dcdn::${discordId}`)
+export async function savedcdnUser(discordId: string, data: any) {
+    try {
+        await redis.hmset(`dcdn::${discordId}`, data)
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 

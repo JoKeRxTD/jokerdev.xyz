@@ -22,10 +22,24 @@ const providers: Provider[] = [
                 name: profile.name,
                 username: profile.username,
                 avatar: profile.avatar,
-                image: "https://cdn.discordapp.com/avatars/" + profile.id + "/" + profile.avatar + ".png",
+                avatar_decoration: profile.avatar_decoration,
+                banner: profile.banner,
+                banner_color: profile.banner_color,
                 email: profile.email,
-                email_verified: profile.verified,
+                email_verified: profile.email_verified,
                 role: "user",
+                accent_color: profile.accent_color,
+                flags: profile.flags,
+                bot: profile.bot,
+                display_name: profile.display_name,
+                premium_type: profile.premium_type,
+                public_flags: profile.public_flags,
+                image_url: profile.image_url,
+                locale: profile.locale,
+                mfa_enabled: profile.mfa_enabled,
+                system: profile.system,
+                verified: profile.verified,
+                
             };
         },
     }),
@@ -48,23 +62,24 @@ const authConfig = {
     callbacks: {
         async signIn(user) {
             if (user.profile?.email !== process.env.OWNER_EMAIL) return false;
-
+            
             return true;
         },
-        async session({ session, user }) {
-            // console.log(session);
-            // console.log(user);
+        async session({ session, user}) {
+            console.log(chalk.green("session"), session);
+            console.log(chalk.blue("user"), user);
+            session.user = user;
             return session;
         },
         authorized({ auth, request: { nextUrl } }) {
             let isLoggedIn = !!auth?.user;
-            let isOnDashboard = nextUrl.pathname.startsWith("/analytics");
+            let isOnAnalytics = nextUrl.pathname.startsWith("/analytics");
 
-            if (isOnDashboard) {
+            if (isOnAnalytics) {
                 if (isLoggedIn) return true;
                 return false; // Redirect unauthenticated users to login page
             } else if (isLoggedIn) {
-                //return Response.redirect(new URL("/protected", nextUrl));
+                //return Response.redirect(new URL("/isOnAnalytics", nextUrl));
                 return true;
             }
 

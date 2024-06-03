@@ -45,14 +45,14 @@ export default function Navbar() {
 	const userData = session?.user;
 	
 	const navDropdown = [
-		{ label: "Profile", href: `/user/[id]` },
+		{ label: "Profile", href: `/user/${userData?.discordId}` },
 		{ label: "Analytics", href: "/analytics" },
 		{ label: "Partners", href: "/partners" },
 		{ label: "Guestbook", href: "/guestbook" },
 	];
 
 	const userDropdown = [
-		{ label: "Profile", href: `/user/[id]` },
+		{ label: "Profile", href: `/user/${userData?.discordId}` },
 		{ label: "Settings", href: "/settings" },
 	];
 
