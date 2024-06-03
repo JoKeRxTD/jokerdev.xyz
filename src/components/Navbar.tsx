@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 import {
 	Navbar as NextUINavbar,
@@ -8,13 +9,12 @@ import {
 	NavbarItem,
 	NavbarMenuItem,
 } from "@nextui-org/navbar";
-import { FiGithub } from "react-icons/fi";
 import { SiDiscord, SiEgghead } from "react-icons/si";
 import clsx from "clsx";
 import { siteConfig } from "@../../../config/site";
 import { link as linkStyles } from "@nextui-org/theme";
 import { ThemeSwitch } from "@/src/components/theme-switch";
-import { User, Skeleton, Divider, Link, Tooltip, Code } from "@nextui-org/react";
+import { User, Skeleton, Divider, Link, Tooltip, Code, Image } from "@nextui-org/react";
 import { ProfileIcon, AnalyticsIcon, LinesIcon, PartnerIcon, DiscordIcon, GithubIcon, BookIcon } from "@/src/components/Icons";
 import { Avatar, AvatarImage, AvatarFallback } from "@/src/components/ui/avatar";
 import { useSession } from "next-auth/react"
@@ -40,19 +40,19 @@ import {
 
 
 export default function Navbar() {
-	const { data: session } = useSession();
-	const user = session?.user;
-	// const profile = session?.profile;
+	const {data: session} = useSession()
+
+	const userData = session?.user;
 	
 	const navDropdown = [
-		{ label: "Profile", href: `/user/${session?.user?.discordId}` },
+		{ label: "Profile", href: `/user/[id]` },
 		{ label: "Analytics", href: "/analytics" },
 		{ label: "Partners", href: "/partners" },
 		{ label: "Guestbook", href: "/guestbook" },
 	];
 
 	const userDropdown = [
-		{ label: "Profile", href: `/user/${session?.user?.discordId}` },
+		{ label: "Profile", href: `/user/[id]` },
 		{ label: "Settings", href: "/settings" },
 	];
 
@@ -68,74 +68,47 @@ export default function Navbar() {
 		partner: <PartnerIcon className="text-primary text-bold" fill="currentColor" size={24} />,
 		guestbook: <BookIcon className="text-orange-800 dark:text-orange-400 text-bold" fill="currentColor" size={24} />,
 	};
-	const FirstnLastLetterName = (name) => {
-		if (name) {
-			const splitName = name.split(" ");
-			const userName = splitName[0];
-		}
-		return name.charAt(0).toUpperCase() + name.charAt(name.length - 1).toUpperCase();
-	}
-	const userAvatar = (user, session) => {
+	
+
+	const UserBar = () => {
 		if (session) {
 			return (
-				<Avatar className="w-8 h-8">
-					{session.user?.image && (
-						<AvatarImage
-							src={`${session.user?.image}` || "/joker.jpg"}
-							alt={`${session.user?.username}`}
-						/>
-					)}
-					<AvatarFallback>
-						{FirstnLastLetterName(session.user?.username)}
-					</AvatarFallback>
-				</Avatar>
-			);
-		}
-		return (
-			<Avatar className="w-8 h-8">
-				<AvatarFallback>
-					{FirstnLastLetterName(session.user?.username)}
-				</AvatarFallback>
-			</Avatar>
-		);
-	}
-	
-	const UserBar = () => {
-		if (user) {
-			return (
-				<div className="flex-wrap gap-2 items-center content-center">
+				<div className="flex gap-2 items-center justify-center">
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
-							{userAvatar(user, session)}
+							<Avatar>
+								<AvatarImage src={`https://cdn.discordapp.com/avatars/${userData?.discordId}/${userData?.avatar}.png`} />
+								<AvatarFallback>{userData?.username}</AvatarFallback>
+							</Avatar>
 						</DropdownMenuTrigger>
-						<DropdownMenuContent className="text-bold text-base items-center content-center">
-							<DropdownMenuLabel>{session.user?.username}</DropdownMenuLabel>
+						<DropdownMenuContent
+							aria-label="User Options"
+							className="text-bold text-base"
+						>
 							<DropdownMenuSeparator />
 							{userDropdown.map((item, index) => (
-								<DropdownMenuCheckboxItem
+								<DropdownMenuItem
 									key={`${item.label}-${index}`}
 									onClick={() => {
 										window.location.href = item.href;
-									}}
-								>
+									}
+									}>
 									{item.label}
-								</DropdownMenuCheckboxItem>
+								</DropdownMenuItem>
 							))}
 							<DropdownMenuSeparator />
-							<DropdownMenuCheckboxItem>
+							<DropdownMenuItem>
 								<SignOut />
-							</DropdownMenuCheckboxItem>
+							</DropdownMenuItem>
 						</DropdownMenuContent>
 					</DropdownMenu>
 				</div>
 			);
 		}
-		return (
-			<div className="flex-wrap gap-2 justify-center items-center content-center">
-				<SignIn />
-			</div>
-		);
+		return <SignIn />;
 	}
+	
+
 
 
 	return (

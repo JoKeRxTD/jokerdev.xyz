@@ -1,19 +1,19 @@
 import { analytics } from '@/src/utils/analytics';
 export { auth as middleware } from '@/src/lib/auth';
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function auth(req, res) {
+// export default auth((req) => {
+//   if (!req.auth && req.nextUrl.pathname !== "/login") {
+//     const newUrl = new URL("/login", req.nextUrl.origin)
+//     return Response.redirect(newUrl)
+//   }
+// })
 
-  if (req.nextUrl.pathname !== '/') {
-    const url = req.url.replace(req.nextUrl.pathname, '/');
-    console.log('redirecting to', url);
-    return Response.redirect(url);
-  }
-
-  console.log('auth middleware called');
+export function auth(req, res) {
+  console.log('analytics middleware called');
   if (req.nextUrl.pathname === '/') {
     try {
-      await analytics.track('pageview', {
+      analytics.track('pageview', {
         page: '/',
         country: req.geo?.country,
       })
@@ -24,10 +24,10 @@ export async function auth(req, res) {
     }
   }
 
-  return NextResponse.next();
+  return res.next();
 }
 
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
 }

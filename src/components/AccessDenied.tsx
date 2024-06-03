@@ -1,5 +1,6 @@
 'use client'
-import { Card, CardHeader, CardBody, CardFooter, Code, Button, ScrollShadow } from "@nextui-org/react";
+import { Card, CardHeader, CardBody, CardFooter, Code, ScrollShadow } from "@nextui-org/react";
+import { Button } from "./ui/button";
 import { error } from "console";
 import { motion } from "framer-motion";
 
@@ -23,15 +24,18 @@ export default function AccessDenied() {
                     <CardBody className="flex flex-wrap items-center text-center space-y-2 pb-1 justify-between">
                         <div className="text-center pb-2">
                             <p className="text-center pb-2">
-                                <Code color="danger" size="sm" className="text-center font-bold text-zinc-800 dark:text-pink-600">{error.message}</Code>
+                                <div className="text-center font-bold ring-1 ring-inset bg-red-900/25 text-red-800 ring-red-400/25 dark:bg-red-900/25 dark:text-red-400 dark:ring-red-400/25">
+                                    {error.message}
+                                </div>
                             </p>
                             If you think this is a mistake, please contact me at <Code size="sm" className="text-zinc-800 dark:text-blue-600 font-bold cursor-pointer" color="primary" onClick={() => window.open("mailto:contact@jokerdev.xyz", "_blank")} >contact@jokerdev.xyz</Code>
                         </div>
                     </CardBody>
                     <CardFooter className="flex flex-row items-center text-center justify-center gap-2">
                         <Button
-                            color="default"
-                            className="border rounded-xl border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
+                            rounded="md"
+                            size="default"
+                            variant="destructive"
                             onClick={() => window.history.back()}
                         >
                             Go Back
@@ -42,5 +46,3 @@ export default function AccessDenied() {
         </ScrollShadow>
     );
 }
-
-// href="mailto:contact@jokerdev.xyz"

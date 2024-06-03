@@ -3,38 +3,30 @@ import { Secrets } from "next-auth"
 import type { Provider } from "next-auth/providers"
 import Discord, { DiscordProfile } from "next-auth/providers/discord"
 import type { DefaultJWT } from 'next-auth/jwt';
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import prisma from "@/src/lib/db"
+import { UpstashRedisAdapter } from "@auth/upstash-redis-adapter"
+import { Redis } from "@upstash/redis"
+import { type Adapter } from "next-auth/adapters";
 import chalk from "chalk"
-import { createUser, checkUserExists, updateUserRole } from "@/src/actions/actions";
+import { createUser, userExists, checkAdminRole, updateUser } from "@/src/actions/user";
 
-const scopes = ['identify', 'guilds', 'guilds.members.read', 'email', 'connections'].join(' ');
+const scopes = ['identify', 'guilds', 'email'].join(' ');
 
 const providers: Provider[] = [
     Discord({
         authorization: { params: { scope: scopes } },
         allowDangerousEmailAccountLinking: true,
-        
-        profile(profile: DiscordProfile) {
+        profile(profile: DiscordProfile): any {
             return {
-                id: profile.id.toString(),
                 discordId: profile.id,
-                global_name: profile.global_name || null,
-                name: profile.global_name || null,
+                global_name: profile.global_name,
+                name: profile.name,
                 username: profile.username,
-                avatar: profile.avatar || "https://cdn.jokerdev.xyz/img/dev_xvazjawf.jpeg", // Assign an empty string if avatar is null
-                // check if img is png or gif
-                image: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`,
-                email: profile.email || null,
-                email_verified: profile.verified.toString(), // Convert boolean to string
-                flags: profile.flags.toString(), // Convert number to string
-                premium_type: profile.premium_type.toString(), // Convert number to string
-                public_flags: profile.public_flags.toString(), // Convert number to string
-                banner: `https://cdn.discordapp.com/banners/${profile.id}/${profile.banner}.png`,
+                avatar: profile.avatar,
+                image: "https://cdn.discordapp.com/avatars/" + profile.id + "/" + profile.avatar + ".png",
+                email: profile.email,
+                email_verified: profile.verified,
                 role: "user",
-                createdAt: "",
-                updatedAt: ""
-            }
+            };
         },
     }),
 ]
@@ -48,60 +40,47 @@ export const providerMap = providers.map((provider) => {
     }
 })
 
+const redis = Redis.fromEnv();
+
 const authConfig = {
     providers,
-    adapter: PrismaAdapter(prisma),
+    adapter: UpstashRedisAdapter(redis) as Adapter,
     callbacks: {
-        async session({ session, token }: { session: any, token: DefaultJWT }) {
-            // console.log('session ~ token:', token);
-            if (session?.user) {
-                session.user.discordId = (token.profile as DiscordProfile).id;
-                session.user.avatar = (token.profile as DiscordProfile).avatar;
-                session.user.role = (token.profile as DiscordProfile).role;
-                session.user.image = (token.profile as DiscordProfile).image;
-                session.user.email = (token.profile as DiscordProfile).email;
-                session.user.email_verified = (token.profile as DiscordProfile).email_verified;
-                session.user.flags = (token.profile as DiscordProfile).flags;
-                session.user.premium_type = (token.profile as DiscordProfile).premium_type;
-                session.user.public_flags = (token.profile as DiscordProfile).public_flags;
-                session.user.banner = (token.profile as DiscordProfile).banner;
-                session.user.createdAt = (token.profile as DiscordProfile).createdAt;
-                session.user.updatedAt = (token.profile as DiscordProfile).updatedAt;
-                session.user.global_name = (token.profile as DiscordProfile).global_name;
-                session.user.name = (token.profile as DiscordProfile).name;
-                session.user.username = (token.profile as DiscordProfile).username;
+        async signIn(user) {
+            if (user.profile?.email !== process.env.OWNER_EMAIL) return false;
 
-            }
-            // Somewhat hacky implementation
-            session.profile = token.profile as DiscordProfile;
-            session.secrets = token.secrets as Secrets;
+            return true;
+        },
+        async session({ session, user }) {
+            // console.log(session);
+            // console.log(user);
             return session;
         },
-        async jwt({ token, profile, account }) {
-            if (account) {
-                token.secrets = {
-                    accessToken: account.access_token,
-                    refreshToken: account.refresh_token,
-                    tokenType: account.token_type,
-                    expires_at: account.expires_at
-                };
+        authorized({ auth, request: { nextUrl } }) {
+            let isLoggedIn = !!auth?.user;
+            let isOnDashboard = nextUrl.pathname.startsWith("/analytics");
+
+            if (isOnDashboard) {
+                if (isLoggedIn) return true;
+                return false; // Redirect unauthenticated users to login page
+            } else if (isLoggedIn) {
+                //return Response.redirect(new URL("/protected", nextUrl));
+                return true;
             }
-            if (profile) {
-                token.profile = profile;
-            }
-            // console.log('jwt ~ token:', token);
-            // console.log('jwt ~ profile:', profile);
-            // console.log('jwt ~ account:', account);
-            return token;
-        }
+
+            return true;
+        },
+    },
+    session: {
+        maxAge: 30 * 24 * 60 * 60,
     },
     pages: {
         signIn: "/login",
         signOut: "/logout",
     },
     basePath: "/api/auth",
-    secret: process.env.SECRET,
-    debug: true,
+    secret: process.env.AUTH_SECRET,
+    debug: false,
     logger: {
         error(message) {
             console.log(chalk.red(message))
@@ -113,49 +92,7 @@ const authConfig = {
             console.log(chalk.blue(message))
         },
     },
-    events: {
-        async signIn(message) {
-            // console.log(chalk.green("sign in", JSON.stringify(message)))
-            const userExists = await checkUserExists(message.user.discordId!)
-            if (!userExists) {
-                await createUser(message.user)
-            } else {
-                console.log(chalk.yellow("User already exists"))
-            }
-        },
-        async signOut(message) {
-            console.log(chalk.red("sign out", JSON.stringify(message)))
-        },
-        async createUser(message) {
-            console.log(chalk.green("create user", JSON.stringify(message)))
-            const userExists = await checkUserExists(message.user.discordId!)
-            if (!userExists) {
-                await createUser(message.user)
-            } else {
-                console.log(chalk.yellow("User already exists"))
-            }
-        },
-        async updateUser(message) {
-            console.log(chalk.yellow("update user", JSON.stringify(message)))
-            await updateUserRole(message.user.discordId!, message.user.role!)
-        },
-        async linkAccount(message) {
-            console.log(chalk.blue("link account", JSON.stringify(message)))
-            // inplement the linkaccount function
-            const userExists = await checkUserExists(message.user.discordId!)
-            if (!userExists) {
-                await createUser(message.user)
-            } else {
-                console.log(chalk.red("User already exists"))
-            }
-        },
-        async session(message) {
-            // console.log(chalk.cyan("session", JSON.stringify(message)))
-            // implement the session function
-        }
-    },
     // useSecureCookies: true,
-
 } satisfies NextAuthConfig;
 
 

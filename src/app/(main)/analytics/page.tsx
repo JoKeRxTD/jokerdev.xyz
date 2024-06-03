@@ -3,18 +3,21 @@ import { getDate } from '@/src/utils'
 import { analytics } from '@/src/utils/analytics'
 import AccessDenied from '@/src/components/AccessDenied';
 import NotSignedIn from "@/src/components/NotSignedIn";
-import {getUserByDiscordId, checkUserRole} from "@/src/actions/actions";
 import {auth} from "@/src/lib/auth";
 import { Button } from "@/src/components/ui/button"
 import { Link } from "@nextui-org/react";
 
 export default async function Page() {
   const session = await auth();
-  if (!session?.user) return <NotSignedIn />;
-  const checkUser = await getUserByDiscordId(session.user.discordId!);
-  if (!checkUser) return <AccessDenied />;
-  const role = await checkUserRole(session.user.discordId!);
-  if (role !== "admin") return <AccessDenied />;
+  
+  if (!session) {
+    return <NotSignedIn />;
+  }
+  const isAdmin = session?.user?.role === 'admin' 
+
+  if (!isAdmin) {
+    return <AccessDenied />;
+  } 
 
   const TRACKING_DAYS = 7
   const pageviews = await analytics.retrieveDays('pageview', TRACKING_DAYS)
