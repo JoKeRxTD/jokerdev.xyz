@@ -62,12 +62,12 @@ const authConfig = {
     callbacks: {
         async signIn(user) {
             if (user.profile?.email !== process.env.OWNER_EMAIL) return false;
-            
+
             return true;
         },
         async session({ session, user}) {
-            console.log(chalk.green("session"), session);
-            console.log(chalk.blue("user"), user);
+            // console.log(chalk.green("session"), session);
+            // console.log(chalk.blue("user"), user);
             session.user = user;
             return session;
         },
