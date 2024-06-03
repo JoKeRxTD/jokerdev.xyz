@@ -53,20 +53,20 @@ export default function Navbar() {
 
 	const userDropdown = [
 		{ label: "Profile", href: `/user/${userData?.discordId}` },
-		{ label: "Settings", href: "/settings" },
+		// { label: "Settings", href: "/settings" },
 	];
 
 
 
 	const icons = {
-		profile: <ProfileIcon className="text-primary" fill="currentColor" size={24} />,
-		analytics: <AnalyticsIcon className="text-warning" fill="currentColor" size={24} />,
-		dropdown: <LinesIcon className="text-primary" fill="currentColor" size={24} />,
-		github: <GithubIcon className="text-slate-800 dark:text-white" fill="currentColor" size={24} />,
-		discord: <DiscordIcon className="text-[#7289da]" fill="currentColor" size={24} />,
-		egghead: <SiEgghead className="text-primary" fill="currentColor" size={24} />,
-		partner: <PartnerIcon className="text-primary text-bold" fill="currentColor" size={24} />,
-		guestbook: <BookIcon className="text-orange-800 dark:text-orange-400 text-bold" fill="currentColor" size={24} />,
+		profile: <ProfileIcon className="text-primary" fill="currentColor" size={18} />,
+		analytics: <AnalyticsIcon className="text-warning" fill="currentColor" size={18} />,
+		dropdown: <LinesIcon className="text-primary" fill="currentColor" size={18} />,
+		github: <GithubIcon className="text-slate-800 dark:text-white" fill="currentColor" size={18} />,
+		discord: <DiscordIcon className="text-[#7289da]" fill="currentColor" size={18} />,
+		egghead: <SiEgghead className="text-primary" fill="currentColor" size={18} />,
+		partners: <PartnerIcon className="text-primary text-bold" fill="currentColor" size={18} />,
+		guestbook: <BookIcon className="text-orange-800 dark:text-orange-400 text-bold" fill="currentColor" size={18} />,
 	};
 	
 	let userBanner = userData?.banner;
@@ -77,6 +77,8 @@ export default function Navbar() {
 
 
 	const UserBar = () => {
+		// convert userDrown label to lowercase for icon matching
+		const userDropdownLabels = userDropdown.map((item) => item.label.toLowerCase());
 		if (session) {
 			return (
 				<div className="flex gap-2 items-center justify-center">
@@ -89,21 +91,23 @@ export default function Navbar() {
 						</DropdownMenuTrigger>
 						<DropdownMenuContent
 							aria-label="User Options"
-							className="text-bold text-base"
+							className="text-bold text-base ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25  dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400"
 						>
 							<DropdownMenuSeparator />
 							{userDropdown.map((item, index) => (
 								<DropdownMenuItem
 									key={`${item.label}-${index}`}
+									className="text-center justify-center items-center text-bold hover:bg-zinc-700/25 dark:hover:bg-zinc-700/25 cursor-pointer"
 									onClick={() => {
 										window.location.href = item.href;
 									}
 									}>
-									{item.label}
+									{/* icons | label */}
+									{icons[userDropdownLabels[index]]}&nbsp;{item.label}
 								</DropdownMenuItem>
 							))}
 							<DropdownMenuSeparator />
-							<DropdownMenuItem>
+							<DropdownMenuItem className="items-center justify-center text-center">
 								<SignOut />
 							</DropdownMenuItem>
 						</DropdownMenuContent>
@@ -116,10 +120,10 @@ export default function Navbar() {
 	
 
 
-
+	const navDropdownLabels = navDropdown.map((item) => item.label.toLowerCase());
 	return (
 		<NextUINavbar maxWidth="xl" position="sticky" className="z-50 gap-2 ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400">
-			<NavbarContent className="basis-1/5 sm:basis-full ml-2 gap-2 justify-center items-center text-bold text-base">
+			<NavbarContent className="basis-1/5 sm:basis-full ml-2 gap-4 justify-center items-center text-bold text-base">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<Link className="flex justify-start items-center gap-1" href="/">
 						<h1 className="text-2xl font-bold text-primary-300">JoKeR</h1>
@@ -152,17 +156,18 @@ export default function Navbar() {
 						</NavbarItem>
 						<DropdownMenuContent
 							aria-label="Other Options"
-							className="text-bold text-base"
+							className="text-bold text-base ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400"
 						>
 							<DropdownMenuSeparator />
 							{navDropdown.map((item, index) => (
 								<DropdownMenuItem
 									key={`${item.label}-${index}`}
+									className="text-center justify-center items-center text-bold hover:bg-zinc-700/25 dark:hover:bg-zinc-700/25 cursor-pointer"
 									onClick={() => {
 										window.location.href = item.href;
 									}
 									}>
-									{item.label}
+									{icons[navDropdownLabels[index]]}&nbsp;{item.label}
 								</DropdownMenuItem>
 							))}
 						</DropdownMenuContent>

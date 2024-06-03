@@ -38,13 +38,13 @@ function SectionAnimation() {
 					</div>
 				</div>
 				<Header />
-				<Divider />
+				{/* <Divider />
 				<Skills />
 				<Divider />
 				<Github />
 				<Divider />
 				<Diswidget />
-				<Divider />
+				<Divider /> */}
 			</div>
 		</motion.div>
 	);

@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 				height: 1080,
 			},
 		],
-		
+
 		locale: "en-GB",
 		type: "website",
 	},
@@ -79,26 +79,28 @@ export default function RootLayout({ children }: RootLayoutProps, session: any) 
 		<SessionProvider session={session}>
 			<html lang="en">
 				<body className={cn(
-					"min-h-screen bg-background font-sans antialiased",
+					"min-h-screen antialiased transition-colors duration-200 ease-in-out",
 					fontSans.variable
 				)}>
-					<ThemeProvider
-						attribute="class"
-						defaultTheme="system"
-						enableSystem
-						disableTransitionOnChange
-					>
-						<div className="relative flex flex-col h-screen items-center">
-								<main className="container mx-auto max-w-5xl pt-12 pb-8 px-3 flex-grow">
-								<Navbar />
-									<Toaster />
+					<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+						<main className="relative flex flex-col h-screen items-center">
+							<Navbar />
+								<div className="container mx-auto max-w-5xl flex-grow">
 									{children}
-								</main>
-								<Footer />
-							</div>
+									<Toaster />
+								</div>
+							<Footer />
+						</main>
 					</ThemeProvider>
 				</body>
 			</html>
 		</SessionProvider>
 	)
 }
+
+{/* 
+<section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+	<div className="inline-block text-center justify-center">
+		{children}
+	</div>
+</section> */}
