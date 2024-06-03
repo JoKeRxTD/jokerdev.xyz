@@ -10,11 +10,19 @@ import DeleteUserButton from "@/src/components/DeleteUserButton";
 // import EditUser from "@/src/components/EditUser";
 import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar";
 import { Image } from "@nextui-org/image";
-import { processFlags } from '@/src/utils/flags';
+import { Badges } from '../../../../../public/badges/BadgesEncoded';
 import { Tooltip } from "@nextui-org/react";
 import chalk from "chalk";
-import { Badges } from '../../../../../public/badges/BadgesEncoded';
 // import DiscordUserCard from "@/src/components/DiscordUserCard";
+
+type User = {
+  discordId: string;
+  username: string;
+  email: string;
+  avatar: string;
+  banner: string;
+  public_flags: number;
+};
 
 export const DiscordBadges = (flag: number): string[] => {
   let flags: string[] = [];
@@ -36,7 +44,7 @@ export const DiscordBadges = (flag: number): string[] => {
   return flags;
 };
 
-// TODO: Add user type 
+// User Profile
 export default async function MeProfilePage({ params }: { params: { id: string } }) {
   // get the post from the database
   const session = await auth();
@@ -52,44 +60,70 @@ export default async function MeProfilePage({ params }: { params: { id: string }
     return notFound();
   }
 
-  
+  // check if user has nitro return true or false
+  let nitroType = user.premium_type === 1 || user.premium_type === 2;
+  if (user.premium_type === 2) {
+    nitroType = true && user.premium_type === 2;
+  } else {
+    nitroType = false && user.premium_type === 0;
+  }
+
   let flags: string[] = DiscordBadges(user.public_flags);
   if (user.avatar && user.avatar.includes("a_")) flags.push("Nitro");
-  
+
+
+
   let userBanner = user.banner;
   if (userBanner?.includes("a_")) userBanner = `https://cdn.discordapp.com/banners/${user.discordId}/${userBanner}.gif?size=512` || `https://cdn.discordapp.com/banners/${user.discordId}/${userBanner}.png?size=512`;
 
+  let userAvatar = user.avatar;
+  if (userAvatar?.includes("a_")) userAvatar = `https://cdn.discordapp.com/avatars/${user.discordId}/${userAvatar}.gif?size=512` || `https://cdn.discordapp.com/avatars/${user.discordId}/${userAvatar}.png?size=512`;
 
   return (
     <div className="text-center items-center justify-center content-center">
       <Card className="w-full max-w-md ring-1 ring-inset ring-zinc-400/25 dark:ring-zinc-400/25 bg-zinc-900/25 dark:bg-zinc-900/25 text-zinc-800 dark:text-zinc-400">
-        <Image
-          src={`${userBanner}`}
-          alt="Banner"
-          width={512}
-          height={220}
-          className="pl-0.5 pr-0.5 pt-0.5 rounded-sm object-cover ring-1 ring-inset ring-zinc-400/25 dark:ring-zinc-400/25"
-        />
+        <div className="object-cover w-full h-40 bg-zinc-900/25 dark:bg-zinc-900/25 rounded-t-md ring-1 ring-inset ring-zinc-400/25 dark:ring-zinc-400/25">
+          <div>
+            <Image
+              src={`${userBanner}`}
+              alt="Banner"
+              width={512}
+              height={220}
+              className="pl-0.5 pr-0.5 pt-0.5 rounded-t-md object-cover"
+            />
+          </div>
+          <div>
+            <Image
+              src={`${userAvatar}`}
+              alt="Avatar"
+              width={75}
+              height={75}
+              className="rounded-full ml-2 -mt-20 object-cover ring-2 ring-zinc-400/25 dark:ring-zinc-400/25"
+            />
+          </div>
+          {/* pace badges on the RIGHT side of the user avatar place the index to be ONTOP of the userBanner*/}
+          <div className="flex flex-row gap-2 justify-end z-11">
+            {flags.map(v => (
+              <Tooltip
+                key={v}
+                content={v.split("_").join(" ")}
+                color='default'
+                className='z-11 rounded-md ring-1 ring-inset text-zinc-800 ring-zinc-400/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'
+              >
+                <img
+                  src={`data:image/png;base64,${Badges[v]}`}
+                  className='w-5 h-5 inline-block mx-1 z-11'
+                />
+              </Tooltip>
+            ))}
+          </div>
+        </div>
         <CardHeader className="flex flex-col items-center justify-center gap-2">
-          <Avatar>
-            <AvatarImage src={`https://cdn.discordapp.com/avatars/${user.discordId}/${user.avatar}.png`} className="rounded-full object-cover ring-1 ring-inset ring-zinc-400 dark:ring-zinc-400" alt="Avatar" />
-            <AvatarFallback>{user.username}</AvatarFallback>
-          </Avatar>
           <CardTitle>{user.username}</CardTitle>
           <CardDescription>{user.email}</CardDescription>
-          <div className="flex flex-col ml-2 mt-1 w-[180px]">
-            <div className='text-center items-center justify-center rounded-md ring-1 ring-inset bg-zinc-900/25 text-zinc-800 ring-zinc-400/25 dark:bg-zinc-900/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'>
-              <p className='text-gray-800 dark:text-gray-100 text-md p-2'>
-                
-              </p>
-            </div>
-          </div>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col items-center justify-center gap-2">
-            {/* user flags */}
-            {/* <DiscordUserCard id={user.discordId}/> */}
-          </div>
+
         </CardContent>
         <CardFooter>
           <div className="flex flex-row items-center justify-center">
