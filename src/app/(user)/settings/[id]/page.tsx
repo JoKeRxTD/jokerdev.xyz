@@ -22,8 +22,6 @@ export default async function Page({ params }: { params: { id: string } }) {
   const createdAt = new Date(post.createdAt).toLocaleDateString();
   
   const userId = user?.profile.id;
-  console.log(userId);
-  console.log(post.discordId)
   const isOwner = userId === post.discordId;
   
   return (
