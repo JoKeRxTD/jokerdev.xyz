@@ -1,19 +1,14 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-
 import { notFound } from "next/navigation";
 import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "@/src/components/ui/card";
 import { Button } from "@/src/components/ui/button";
-import Link from "next/link";
 import { auth } from "@/src/lib/auth";
 import DeleteUserButton from "@/src/components/DeleteUserButton";
 // import EditUser from "@/src/components/EditUser";
-import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar";
 import { Image } from "@nextui-org/image";
 import { Badges } from '../../../../../public/badges/BadgesEncoded';
 import { Tooltip } from "@nextui-org/react";
-import chalk from "chalk";
-// import DiscordUserCard from "@/src/components/DiscordUserCard";
 
 type User = {
   discordId: string;
@@ -111,7 +106,7 @@ export default async function MeProfilePage({ params }: { params: { id: string }
                 className='z-11 rounded-md ring-1 ring-inset text-zinc-800 ring-zinc-400/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'
               >
                 <img
-                  src={`data:image/png;base64,${Badges[v]}`}
+                  src={`data:image/png;base64,${Badges[v]}` || `https://cdn.discordapp.com/emojis/${Badges[v]}.png?size=24`}
                   className='w-5 h-5 inline-block mx-1 z-11'
                 />
               </Tooltip>
