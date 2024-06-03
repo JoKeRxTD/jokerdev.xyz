@@ -69,6 +69,12 @@ export default function Navbar() {
 		guestbook: <BookIcon className="text-orange-800 dark:text-orange-400 text-bold" fill="currentColor" size={24} />,
 	};
 	
+	let userBanner = userData?.banner;
+  if (userBanner?.includes("a_")) userBanner = `https://cdn.discordapp.com/banners/${userData?.discordId}/${userBanner}.gif?size=512` || `https://cdn.discordapp.com/banners/${userData?.discordId}/${userBanner}.png?size=512`;
+
+  let userAvatar = userData?.avatar;
+  if (userAvatar?.includes("a_")) userAvatar = `https://cdn.discordapp.com/avatars/${userData?.discordId}/${userAvatar}.gif?size=512` || `https://cdn.discordapp.com/avatars/${userData?.discordId}/${userAvatar}.png?size=512`;
+
 
 	const UserBar = () => {
 		if (session) {
@@ -77,7 +83,7 @@ export default function Navbar() {
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<Avatar>
-								<AvatarImage src={`https://cdn.discordapp.com/avatars/${userData?.discordId}/${userData?.avatar}.png`} />
+								<AvatarImage src={`${userAvatar}`} />
 								<AvatarFallback>{userData?.username}</AvatarFallback>
 							</Avatar>
 						</DropdownMenuTrigger>
