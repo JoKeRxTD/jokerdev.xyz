@@ -7,7 +7,7 @@ import { auth } from "@/src/lib/auth";
 import DeleteUserButton from "@/src/components/DeleteUserButton";
 // import EditUser from "@/src/components/EditUser";
 import { Image } from "@nextui-org/image";
-import { Badges } from '../../../../../public/badges/BadgesEncoded';
+import { processFlags } from '@/src/utils/flags';
 import { Tooltip } from "@nextui-org/react";
 
 type User = {
@@ -63,7 +63,7 @@ export default async function MeProfilePage({ params }: { params: { id: string }
     nitroType = false && user.premium_type === 0;
   }
 
-  let flags: string[] = DiscordBadges(user.public_flags);
+  let flags: string[] = processFlags(user.public_flags, nitroType);
   if (user.avatar && user.avatar.includes("a_")) flags.push("Nitro");
 
 
@@ -98,17 +98,14 @@ export default async function MeProfilePage({ params }: { params: { id: string }
           </div>
           {/* pace badges on the RIGHT side of the user avatar place the index to be ONTOP of the userBanner*/}
           <div className="flex flex-row gap-2 justify-end z-11">
-            {flags.map(v => (
+            {flags.map((v, index) => (
               <Tooltip
                 key={v}
                 content={v.split("_").join(" ")}
                 color='default'
                 className='z-11 rounded-md ring-1 ring-inset text-zinc-800 ring-zinc-400/25 dark:text-zinc-400 dark:ring-zinc-400/25 hover:text-zinc-400 dark:hover:text-zinc-400'
               >
-                <img
-                  src={`data:image/png;base64,${Badges[v]}` || `https://cdn.discordapp.com/emojis/${Badges[v]}.png?size=24`}
-                  className='w-5 h-5 inline-block mx-1 z-11'
-                />
+                <Image src={flags[v]} alt={v} width={24} height={24} />
               </Tooltip>
             ))}
           </div>
