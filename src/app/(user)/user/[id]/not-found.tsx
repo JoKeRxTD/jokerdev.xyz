@@ -1,3 +1,3 @@
 export default function NotFound() {
-  return <div>No post found for that id.</div>;
+  return <div>No user was found with this id. Try to logout & login again.</div>;
 }

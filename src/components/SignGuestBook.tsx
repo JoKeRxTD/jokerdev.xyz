@@ -1,6 +1,6 @@
 
 'use client'
-import { findPostByUser, createPost } from "../actions/actions";
+import { findPostByUser, createPost } from "../actions/guestPost";
 import React from "react";
 import { Divider } from "@nextui-org/react";
 import { useState } from 'react';
@@ -37,22 +37,21 @@ export default function SignGuestBook() {
 
     const user = session?.user;
     const profile = session?.profile;
-
-    const username = profile?.username!;
-    const discordId = profile?.id!;
-    if (!username) {
-        return "Invalid username";
-    }
-    if (!discordId) {
-        return "Invalid discordId";
-    }
+    const username = user?.username;
+    const discordId = profile?.id;
+    // if (!username) {
+    //     return "Invalid username";
+    // }
+    // if (!discordId) {
+    //     return "Invalid discordId";
+    // }
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         const form = e.target as HTMLFormElement;
         const formData = new FormData(form);
         setSending(true);
-        const checkUser = await CheckUser(session?.user?.name!);
+        const checkUser = await CheckUser(session?.user?.username!);
         if (checkUser) {
             setError("You have already signed the guestbook.");
             setSending(false);
@@ -116,13 +115,13 @@ export default function SignGuestBook() {
                             <input
                                 type="text"
                                 name="title"
-                                placeholder="Enter the title..."
+                                placeholder="Your Post Title..."
                                 className=" px-3 w-[20vh] h-10 text-zinc-800 dark:text-zinc-400 border rounded-md border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                                 required
                             />
                             <textarea
                                 name="body"
-                                placeholder="Enter your message here..."
+                                placeholder="Your respectful message..."
                                 className="px-3 py-2 w-[40vh] h-full text-zinc-800 dark:text-zinc-400  border rounded-md border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:rounded-md lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30"
                                 rows={4}
                                 required

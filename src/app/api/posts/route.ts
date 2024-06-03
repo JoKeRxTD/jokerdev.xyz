@@ -1,4 +1,4 @@
-import {getallPosts} from "@/src/actions/actions"
+import {getAllPosts} from "@/src/actions/guestPost"
 import { auth } from "@/src/lib/auth"
 import { NextResponse } from "next/server"
 type Post = {
@@ -17,21 +17,8 @@ export async function GET() {
         if (!user) {
             return NextResponse.redirect("/login")
         }
-        const posts = await getallPosts()
-        const postsJson = posts.map((post) => {
-            return {
-                id: post.id,
-                title: post.title,
-                body: post.body,
-                createdAt: post.createdAt.toLocaleDateString(), // Convert Date to string
-                updatedAt: post.updatedAt.toLocaleDateString(), // Convert Date to string
-                createdAtTimeStamp: post.createdAt.getTime(), // Add timestamp
-                updatedAtTimeStamp: post.updatedAt.getTime(), // Add timestamp
-                username: post.username,
-                discordId: post.discordId
-            }
-        })
-        return new Response(JSON.stringify(postsJson), {
+        const posts = await getAllPosts()
+        return new Response(JSON.stringify(posts), {
             headers: {
                 "Content-Type": "application/json"
             }

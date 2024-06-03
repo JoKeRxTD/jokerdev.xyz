@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 import { useRouter } from "next/navigation";
-import { deletePost, findPostByUser } from "@/src/actions/actions";
+import { deletePost, findPostByUser } from "@/src/actions/guestPost";
 import { cn } from "@/src/utils/cn";
 import { useRef } from "react";
 import { useToast } from "@/src/components/ui/use-toast"

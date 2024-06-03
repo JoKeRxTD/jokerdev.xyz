@@ -1,4 +1,4 @@
-import {getAllUsers} from "@/src/actions/actions"
+import {getAllUsers} from "@/src/actions/user"
 import { auth } from "@/src/lib/auth"
 import { NextResponse } from "next/server"
 type Users = {
@@ -26,42 +26,9 @@ type Users = {
 
 
 // todo get all users from database and sort into a json object with the structure of [id, title, body, createdAt, updatedAt, username, discordId] - all strings
-export async function GET() {
-    return auth().then(async (user) => {
-        if (!user) {
-            return NextResponse.redirect("/login")
-        }
-        // rate limit 1 request every 5 seconds
-        await new Promise((resolve) => setTimeout(resolve, 5000))
-        
+export const GET = auth(function GET(req) {
+    if (req.auth) return NextResponse.json(req.auth)
 
-        const users = await getAllUsers()
-        const usersJson = users.map((user) => {
-            return {
-                id: user.id,
-                discordId: user.discordId,
-                username: user.username,
-                global_name: user.global_name,
-                name: user.name,
-                avatar: user.avatar,
-                image: user.image,
-                role: user.role,
-                email: user.email,
-                email_verified: user.email_verified,
-                flags: user.flags,
-                premium_type: user.premium_type,
-                public_flags: user.public_flags,
-                banner: user.banner,
-                createdAt: user.createdAt.toLocaleDateString(),
-                updatedAt: user.updatedAt.toLocaleDateString(),
-                createdAtTimeStamp: user.createdAt.getTime(), // Add timestamp
-                updatedAtTimeStamp: user.updatedAt.getTime(), // Add timestamp
-            }
-        })
-        return new Response(JSON.stringify(usersJson), {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-    })
-}
+    return NextResponse.json({ error: "Not authenticated" }, { status: 401 })
+})
+

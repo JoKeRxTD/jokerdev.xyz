@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 import { useRouter } from "next/navigation";
-import { deletePost, CheckUserById, deleteUser } from "@/src/actions/actions";
+import { getUserById, deleteUser } from "@/src/actions/user";
 import { cn } from "@/src/utils/cn";
 import { useRef } from "react";
 import { useToast } from "@/src/components/ui/use-toast"
@@ -26,7 +26,7 @@ export default function DeleteUserButton({ id, className }: { id: string, classN
     }
 
     async function checkUserisOwner(discordId: string) {
-        const checkUser = await CheckUserById(discordId);
+        const checkUser = await getUserById(discordId);
         if (checkUser) {
             return true;
         } else {
