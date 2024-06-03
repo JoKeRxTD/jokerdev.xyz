@@ -7,7 +7,7 @@ import { auth } from "@/src/lib/auth";
 import DeleteUserButton from "@/src/components/DeleteUserButton";
 // import EditUser from "@/src/components/EditUser";
 import { Image } from "@nextui-org/image";
-import { processFlags } from '@/src/utils/flags';
+// import { processFlags } from '@/src/utils/flags';
 import { Tooltip } from "@nextui-org/react";
 
 type User = {
@@ -19,25 +19,25 @@ type User = {
   public_flags: number;
 };
 
-export const DiscordBadges = (flag: number): string[] => {
-  let flags: string[] = [];
+// export const DiscordBadges = (flag: number): string[] => {
+//   let flags: string[] = [];
 
-  // In the order they appear on profiles
-  if (flag & 1) flags.push("Discord_Employee"); // 1 << 0
-  if (flag & 262144) flags.push("Discord_Certified_Moderator"); // 1 << 18
-  if (flag & 2) flags.push("Partnered_Server_Owner"); // 1 << 1
-  if (flag & 4) flags.push("HypeSquad_Events"); // 1 << 2
-  if (flag & 64) flags.push("House_Bravery"); // 1 << 6
-  if (flag & 128) flags.push("House_Brilliance"); // 1 << 7
-  if (flag & 256) flags.push("House_Balance"); // 1 << 8
-  if (flag & 8) flags.push("Bug_Hunter_Level_1"); // 1 << 3
-  if (flag & 16384) flags.push("Bug_Hunter_Level_2"); // 1 << 14
-  if (flag & 4194304) flags.push("Active_Developer"); // 1 << 22
-  if (flag & 131072) flags.push("Early_Verified_Bot_Developer"); // 1 << 17
-  if (flag & 512) flags.push("Early_Supporter"); // 1 << 9
+//   // In the order they appear on profiles
+//   if (flag & 1) flags.push("Discord_Employee"); // 1 << 0
+//   if (flag & 262144) flags.push("Discord_Certified_Moderator"); // 1 << 18
+//   if (flag & 2) flags.push("Partnered_Server_Owner"); // 1 << 1
+//   if (flag & 4) flags.push("HypeSquad_Events"); // 1 << 2
+//   if (flag & 64) flags.push("House_Bravery"); // 1 << 6
+//   if (flag & 128) flags.push("House_Brilliance"); // 1 << 7
+//   if (flag & 256) flags.push("House_Balance"); // 1 << 8
+//   if (flag & 8) flags.push("Bug_Hunter_Level_1"); // 1 << 3
+//   if (flag & 16384) flags.push("Bug_Hunter_Level_2"); // 1 << 14
+//   if (flag & 4194304) flags.push("Active_Developer"); // 1 << 22
+//   if (flag & 131072) flags.push("Early_Verified_Bot_Developer"); // 1 << 17
+//   if (flag & 512) flags.push("Early_Supporter"); // 1 << 9
 
-  return flags;
-};
+//   return flags;
+// };
 
 // User Profile
 export default async function MeProfilePage({ params }: { params: { id: string } }) {
@@ -56,15 +56,15 @@ export default async function MeProfilePage({ params }: { params: { id: string }
   }
 
   // check if user has nitro return true or false
-  let nitroType = user.premium_type === 1 || user.premium_type === 2;
-  if (user.premium_type === 2) {
-    nitroType = true && user.premium_type === 2;
-  } else {
-    nitroType = false && user.premium_type === 0;
-  }
+  // let nitroType = user.premium_type === 1 || user.premium_type === 2;
+  // if (user.premium_type === 2) {
+  //   nitroType = true && user.premium_type === 2;
+  // } else {
+  //   nitroType = false && user.premium_type === 0;
+  // }
 
-  let flags: string[] = processFlags(user.public_flags, nitroType);
-  if (user.avatar && user.avatar.includes("a_")) flags.push("Nitro");
+  // let flags: string[] = processFlags(user.public_flags, nitroType);
+  // if (user.avatar && user.avatar.includes("a_")) flags.push("Nitro");
 
 
 
@@ -98,7 +98,7 @@ export default async function MeProfilePage({ params }: { params: { id: string }
           </div>
           {/* pace badges on the RIGHT side of the user avatar place the index to be ONTOP of the userBanner*/}
           <div className="flex flex-row gap-2 justify-end z-11">
-            {flags.map((v, index) => (
+            {/* {flags.map((v, index) => (
               <Tooltip
                 key={v}
                 content={v.split("_").join(" ")}
@@ -107,7 +107,7 @@ export default async function MeProfilePage({ params }: { params: { id: string }
               >
                 <Image src={flags[v]} alt={v} width={24} height={24} />
               </Tooltip>
-            ))}
+            ))} */}
           </div>
         </div>
         <CardHeader className="flex flex-col items-center justify-center gap-2">
