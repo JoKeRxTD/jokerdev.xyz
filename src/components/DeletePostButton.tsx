@@ -35,7 +35,7 @@ export default function DeletePostButton({ id, className }: { id: string, classN
     
     async function onSubmit() {
         setIsPending(true);
-        const username = session?.user?.name!;
+        const username = session?.user?.username!;
         const checkUsers = await checkUser(username || '');
         if (checkUsers) {
             try {
