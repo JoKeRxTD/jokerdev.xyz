@@ -1,4 +1,4 @@
-import { analytics } from '@/src/utils/analytics';
+import { analytics } from '@/src/actions/analytics';
 export { auth as middleware } from '@/src/lib/auth';
 
 
