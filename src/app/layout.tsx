@@ -79,7 +79,7 @@ export default function RootLayout({ children }: RootLayoutProps, session: any) 
 		<SessionProvider session={session}>
 			<html lang="en">
 				<body className={cn(
-					"min-h-screen antialiased transition-colors duration-200 ease-in-out",
+					"min-h-screen bg-white dark:bg-black text-black dark:text-white transition-colors duration-200 ease-in-out font-sans",
 					fontSans.variable
 				)}>
 					<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
