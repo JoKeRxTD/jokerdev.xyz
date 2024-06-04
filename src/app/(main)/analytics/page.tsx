@@ -1,6 +1,6 @@
 import AnalyticsDashboard from '@/src/components/AnalyticsDashboard'
 import { getDate } from '@/src/utils'
-import { analytics } from '@/src/utils/analytics'
+import { analytics } from '@/src/actions/analytics'
 import AccessDenied from '@/src/components/AccessDenied';
 import NotSignedIn from "@/src/components/NotSignedIn";
 import {auth} from "@/src/lib/auth";
