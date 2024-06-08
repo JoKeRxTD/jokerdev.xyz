@@ -37,6 +37,7 @@ import {
 	DropdownMenuSubTrigger,
 	DropdownMenuRadioGroup,
 } from "@/src/components/ui/dropdown-menu"
+import DiscordWidget from "@/src/components/DiscordWidget";
 
 
 export default function Navbar() {
@@ -180,6 +181,7 @@ export default function Navbar() {
 				justify="end">
 				<NavbarItem className="hidden sm:flex justify-center gap-2">
 					<Skeleton className="hidden sm:flex" isLoaded={false} />
+					<DiscordWidget/>
 					<Link isExternal href={siteConfig.links.github} aria-label="Github">
 						{icons.github}
 					</Link>
@@ -189,6 +191,7 @@ export default function Navbar() {
 			</NavbarContent>
 
 			<NavbarContent className="sm:hidden basis-1 pl-4 justify-center" justify="end">
+				<Skeleton className="hidden sm:flex" isLoaded={false} />
 				<Link isExternal href={siteConfig.links.discord} aria-label="Discord">
 					{icons.discord}
 				</Link>
