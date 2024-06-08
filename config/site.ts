@@ -9,6 +9,28 @@ export const siteConfig = {
 	ogImg: "https://cdn.jokerdev.xyz/img/dev_f0q2rhbn.jpeg",
 	twitterImg: "https://cdn.jokerdev.xyz/img/dev_f0q2rhbn.jpeg",
 	color: 3447003,
+	userRoles: [
+		{
+			name: "admin",
+			displayName: "Admin",
+			color: "red",
+		},
+		{
+			name: "moderator",
+			displayName: "Moderator",
+			color: "blue",
+		},
+		{
+			name: "member",
+			displayName: "Member",
+			color: "green",
+		},
+		{
+			name: "banned",
+			displayName: "Banned",
+			color: "black",
+		}
+	],
 	navItems: [
 		{
 			label: "Home",
@@ -164,6 +186,6 @@ export const siteConfig = {
 			text: "Tom \"JoKeR\"",
 			icon_url: "https://cdn.jokerdev.xyz/img/dev_f0q2rhbn.jpeg",
 		},
-		
-	}
+	},
+	guildId: "325761816426971137",
 };
