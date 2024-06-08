@@ -6,7 +6,7 @@ import { Tooltip, Button } from "@nextui-org/react";
 
 export default function Footer() {
     return (
-        <footer className="flex flex-col w-[100%] flex-wrap justify-center items-center gap-1 p-1 z-50 bg-white dark:bg-black border-t border-gray-200 dark:border-gray-800">
+        <footer className="flex flex-col w-[100%] flex-wrap justify-center items-center gap-1 p-1 z-50 bg-zinc-900/25 dark:bg-zinc-900/25 text-zinc-800 dark:text-zinc-800">
             <Link
                 isExternal
                 className="flex items-center gap-1 text-current"
